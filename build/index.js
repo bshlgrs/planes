@@ -44860,6 +44860,9 @@ class LabelGraphics {
 }
 
 // particleGraphics.ts
+var textureLoader = new TextureLoader;
+var particleTexture = textureLoader.load("particle.png");
+
 class ParticleGraphics {
   scene;
   physicsSystem;
@@ -44875,7 +44878,7 @@ class ParticleGraphics {
   constructor(scene, physicsSystem) {
     this.scene = scene;
     this.physicsSystem = physicsSystem;
-    this.particleCount = 2000;
+    this.particleCount = 20000;
     const particleCount = this.particleCount;
     this.particlesGeometry = new BufferGeometry;
     this.positions = new Float32Array(particleCount * 3);
@@ -44889,6 +44892,7 @@ class ParticleGraphics {
     const particlesMaterial = new PointsMaterial({
       size: 0.1,
       vertexColors: true,
+      map: particleTexture,
       transparent: true,
       opacity: 0.75
     });
@@ -44908,9 +44912,9 @@ class ParticleGraphics {
     this.velocities[nextIndex * 3] = vx;
     this.velocities[nextIndex * 3 + 1] = vy;
     this.velocities[nextIndex * 3 + 2] = vz;
-    this.lifetimes[nextIndex] = Math.round(Math.random() * 10);
+    this.lifetimes[nextIndex] = Math.round(Math.random() ** 2 * 100);
     this.nextIndex = (nextIndex + 1) % this.particleCount;
-    const force = this.physicsSystem.faces[0].force;
+    const force = this.physicsSystem.faces[0].force + Math.random() - 0.3;
     this.colors[nextIndex * 3] = Math.min(force, 1) - Math.max(force - 3.5, 0);
     this.colors[nextIndex * 3 + 1] = Math.max(Math.min(force - 1.5, 1), 0) * 0.8;
     this.colors[nextIndex * 3 + 2] = Math.max(Math.min(force - 2.5, 1), 0);
@@ -44940,12 +44944,12 @@ class ParticleGraphics {
     this.particlesGeometry.attributes.color.needsUpdate = true;
   }
   update() {
+    this.updateParticles();
     const engine = this.physicsSystem.faces[0];
     const numberToSpawn = Math.floor(10 * engine.force ** 2);
     const [x1, y1, z1] = this.physicsSystem.vertexPositions[engine.vertexIndices[0]];
     const [x2, y2, z2] = this.physicsSystem.vertexPositions[engine.vertexIndices[1]];
     const [x3, y3, z3] = this.physicsSystem.vertexPositions[engine.vertexIndices[2]];
-    const [avg_x, avg_y, avg_z] = [(x1 + x2 + x3) / 3, (y1 + y2 + y3) / 3, (z1 + z2 + z3) / 3];
     const [nx, ny, nz] = this.physicsSystem.calculateNormal([x1, y1, z1], [x2, y2, z2], [x3, y3, z3]);
     const newCenterOfMass2 = this.physicsSystem.centerOfMass();
     const [x4, y4, z4] = newCenterOfMass2;
@@ -44953,11 +44957,16 @@ class ParticleGraphics {
     const [dx2, dy2, dz2] = [x4 - oldX2, y4 - oldY2, z4 - oldZ2];
     this.oldCenterOfMass = newCenterOfMass2;
     for (let i = 0;i < numberToSpawn; i++) {
-      const scale = Math.random();
+      const uCoord = Math.random();
+      const vCoord = Math.random() ** 2;
+      const k1 = uCoord;
+      const k2 = (1 - uCoord) * vCoord;
+      const k3 = (1 - uCoord) * (1 - vCoord);
+      const [particleX, particleY, particleZ] = [x1 * k1 + x2 * k2 + x3 * k3, y1 * k1 + y2 * k2 + y3 * k3, z1 * k1 + z2 * k2 + z3 * k3];
+      const scale = Math.random() * (engine.force / 3 + 1);
       const scale2 = Math.random();
-      this.spawnParticle(avg_x - scale2 * dx2, avg_y - scale2 * dy2, avg_z - scale2 * dz2, -nx / 0.4 * scale, -ny / 0.4 * scale, -nz / 0.4 * scale, Math.hypot(dx2, dy2, dz2));
+      this.spawnParticle(particleX - scale2 * dx2, particleY - scale2 * dy2, particleZ - scale2 * dz2, -nx / 0.4 * scale, -ny / 0.4 * scale, -nz / 0.4 * scale, Math.hypot(dx2, dy2, dz2));
     }
-    this.updateParticles();
   }
   dispose() {
     this.scene.remove(this.particlesGeometry);
@@ -45160,10 +45169,10 @@ class MyPlane extends Plane2 {
   }
   handleInput(input) {
     this.addThrust((input.q - input.e + input.button_4 - input.button_5) * 0.1);
-    const steeringChange = (input.a - input.d) * 0.01 + input.axis_0 * 0.01;
+    const steeringChange = (input.a - input.d) * 0.04 + input.axis_0 * 0.04;
     this.getSpring(15, 17).restLength += steeringChange;
     this.getSpring(14, 17).restLength -= steeringChange;
-    const pitchChange = (input.w - input.s) * 0.01 + -input.axis_1 * 0.01;
+    const pitchChange = (input.w - input.s) * 0.04 + -input.axis_1 * 0.04;
     this.getSpring(16, 17).restLength += pitchChange;
     this.getSpring(13, 17).restLength -= pitchChange;
   }

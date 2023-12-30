@@ -3,6 +3,11 @@ import * as THREE from 'three';
 import { PhysicsSystem } from './physics';
 
 
+// Texture loader
+const textureLoader = new THREE.TextureLoader();
+const particleTexture = textureLoader.load('particle.png'); // Replace with your texture path
+
+
 export class ParticleGraphics {
     scene: THREE.Scene;
     physicsSystem: PhysicsSystem;
@@ -22,7 +27,8 @@ export class ParticleGraphics {
 
 
 
-        this.particleCount = 2000;
+
+        this.particleCount = 20000;
         const particleCount = this.particleCount;
         this.particlesGeometry = new THREE.BufferGeometry();
         this.positions = new Float32Array(particleCount * 3);
@@ -39,6 +45,7 @@ export class ParticleGraphics {
         const particlesMaterial = new THREE.PointsMaterial({
             size: 0.1,
             vertexColors: true, // Enable vertex colors
+            map: particleTexture,
             transparent: true,
             opacity: 0.75
         });
@@ -62,16 +69,18 @@ export class ParticleGraphics {
         this.positions[nextIndex * 3] = x;
         this.positions[nextIndex * 3 + 1] = y;
         this.positions[nextIndex * 3 + 2] = z;
+
+
         this.velocities[nextIndex * 3] = vx;
         this.velocities[nextIndex * 3 + 1] = vy;
         this.velocities[nextIndex * 3 + 2] = vz;
-        this.lifetimes[nextIndex] = Math.round(Math.random() * 10); // Set the lifetime of the particle
+        this.lifetimes[nextIndex] = Math.round(Math.random() ** 2 * 100); // Set the lifetime of the particle
 
         // const speed = Math.hypot(vx, vy, vz);
         // console.log(speed);
         this.nextIndex = (nextIndex + 1) % this.particleCount;
 
-        const force = this.physicsSystem.faces[0].force;
+        const force = this.physicsSystem.faces[0].force + Math.random() - 0.3;
         // Assign a random color
         // const rand = Math.random() * 0.2 + 0.8;
         // const rand = 1;
@@ -111,7 +120,13 @@ export class ParticleGraphics {
     }
 
     update() {
+
+        // Update particles
+        this.updateParticles();
+
         // Spawn a random number of particles
+
+
         const engine = this.physicsSystem.faces[0];
         const numberToSpawn = Math.floor(10 * engine.force ** 2);
 
@@ -120,7 +135,7 @@ export class ParticleGraphics {
         const [x2, y2, z2] = this.physicsSystem.vertexPositions[engine.vertexIndices[1]];
         const [x3, y3, z3] = this.physicsSystem.vertexPositions[engine.vertexIndices[2]];
 
-        const [avg_x, avg_y, avg_z] = [(x1 + x2 + x3) / 3, (y1 + y2 + y3) / 3, (z1 + z2 + z3) / 3];
+        // const [avg_x, avg_y, avg_z] = [(x1 + x2 + x3) / 3, (y1 + y2 + y3) / 3, (z1 + z2 + z3) / 3];
 
 
         const [nx, ny, nz] = this.physicsSystem.calculateNormal([x1, y1, z1], [x2, y2, z2], [x3, y3, z3]);
@@ -134,14 +149,22 @@ export class ParticleGraphics {
         this.oldCenterOfMass = newCenterOfMass;
 
         for (let i = 0; i < numberToSpawn; i++) {
-            const scale = Math.random();
+            const uCoord = Math.random();
+            const vCoord = Math.random() ** 2;
+
+            const k1 = uCoord;
+            const k2 = (1 - uCoord) * vCoord;
+            const k3 = (1 - uCoord) * (1 - vCoord);
+
+            const [particleX, particleY, particleZ] = [x1 * k1 + x2 * k2 + x3 * k3, y1 * k1 + y2 * k2 + y3 * k3, z1 * k1 + z2 * k2 + z3 * k3];
+
+
+            const scale = Math.random() * (engine.force / 3 + 1);
             const scale2 = Math.random();
-            this.spawnParticle(avg_x - scale2 * dx, avg_y - scale2 * dy, avg_z - scale2 * dz, (-nx) / 0.4 * scale, (-ny) / 0.4 * scale, (-nz) / 0.4 * scale,
+            this.spawnParticle(particleX - scale2 * dx, particleY - scale2 * dy, particleZ - scale2 * dz, (-nx) / 0.4 * scale, (-ny) / 0.4 * scale, (-nz) / 0.4 * scale,
                 Math.hypot(dx, dy, dz));
         }
 
-        // Update particles
-        this.updateParticles();
 
     }
 

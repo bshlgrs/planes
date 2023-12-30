@@ -130,11 +130,11 @@ export class MyPlane extends Plane {
         // To see your game controller mapping, use https://jsfiddle.net/5nwodauf/ 
         this.addThrust((input.q - input.e + input.button_4 - input.button_5) * 0.1);
 
-        const steeringChange = (input.a - input.d) * 0.01 + (input.axis_0) * 0.01;
+        const steeringChange = (input.a - input.d) * 0.04 + (input.axis_0) * 0.04;
         this.getSpring(15, 17).restLength += steeringChange;
         this.getSpring(14, 17).restLength -= steeringChange;
 
-        const pitchChange = (input.w - input.s) * 0.01 + (-input.axis_1) * 0.01;
+        const pitchChange = (input.w - input.s) * 0.04 + (-input.axis_1) * 0.04;
         this.getSpring(16, 17).restLength += pitchChange;
         this.getSpring(13, 17).restLength -= pitchChange;
     }
