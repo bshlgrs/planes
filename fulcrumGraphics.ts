@@ -48,4 +48,9 @@ export class FulcrumGraphics {
         this.fulcrumsInstancedMesh.instanceMatrix.needsUpdate = true;
 
     }
+
+    dispose() {
+        this.scene.remove(this.fulcrumsInstancedMesh);
+    }
+
 }

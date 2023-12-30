@@ -1,4 +1,54 @@
-class MyPlane extends Plane {
+
+const MAX_THRUST_CHANGE = 0.01;
+const MAX_THRUST = 5;
+
+export abstract class Plane {
+    vertexPositions: number[][];
+    springs: Spring[];
+    faces: Face[];
+    engine: Engine;
+
+    constructor() {
+        this.vertexPositions = [[0, 0, 0]];
+        this.springs = [];
+        this.faces = [];
+        this.engine = null;
+    }
+
+    addSpring(fromIdx: number, toIdx: number): Spring {
+        this.springs.push(new Spring(fromIdx, toIdx, Math.hypot(...this.vertexPositions[fromIdx].map((x, i) => x - this.vertexPositions[toIdx][i]))));
+        return this.springs[this.springs.length - 1];
+    }
+
+    addSpringSeries(vertexIndices: number[]) {
+        for (let i = 0; i < vertexIndices.length - 1; i++) {
+            this.addSpring(vertexIndices[i], vertexIndices[i + 1]);
+        }
+    }
+
+    getSpring(fromIdx: number, toIdx: number) {
+        return this.springs.find(spring => spring.fromIdx == fromIdx && spring.toIdx == toIdx || spring.fromIdx == toIdx && spring.toIdx == fromIdx);
+    }
+
+    addThrust(thrust: number) {
+        // limit rate of change of thrust
+        const clampedThrustChange = Math.min(Math.abs(thrust), MAX_THRUST_CHANGE) * Math.sign(thrust);
+
+        this.engine.force += clampedThrustChange;
+
+        // limit thrust
+        this.engine.force = Math.max(0, Math.min(MAX_THRUST, this.engine.force));
+    }
+
+    update() {
+        this.engine.update();
+        this.faces.forEach(face => face.update());
+        this.springs.forEach(spring => spring.update(this.vertexPositions));
+    }
+}
+
+
+export class MyPlane extends Plane {
     constructor() {
         super();
         this.vertexPositions = [
@@ -64,7 +114,8 @@ class MyPlane extends Plane {
         this.addSpringSeries([0, 11, 1]);
 
         this.addSpring(14, 15);
-        this.addSpring(13, 16);
+        const specialSpring = this.addSpring(13, 16);
+        specialSpring.restLength *= 1.1;
 
         this.engine = new Engine([11, 3, 2]);
         this.faces = [
@@ -75,54 +126,17 @@ class MyPlane extends Plane {
         ];
     }
 
-    handleInput(input: Object) {
-        this.addThrust((input.q - input.e + input.gamepad_button_4 - input.gamepad_button_5) * 0.1);
+    handleInput(input) {
+        // To see your game controller mapping, use https://jsfiddle.net/5nwodauf/ 
+        this.addThrust((input.q - input.e + input.button_4 - input.button_5) * 0.1);
 
-        const steeringChange = (input.w - input.s) * 0.01 + (input.gamepad_axis_2) * 0.01;
+        const steeringChange = (input.a - input.d) * 0.01 + (input.axis_0) * 0.01;
         this.getSpring(15, 17).restLength += steeringChange;
         this.getSpring(14, 17).restLength -= steeringChange;
 
-        const pitchChange = (input.w - input.s) * 0.01 + (input.gamepad_axis_1) * 0.01;
+        const pitchChange = (input.w - input.s) * 0.01 + (-input.axis_1) * 0.01;
         this.getSpring(16, 17).restLength += pitchChange;
         this.getSpring(13, 17).restLength -= pitchChange;
-    }
-}
-
-abstract class Plane {
-    vertexPositions: number[][];
-    springs: Spring[];
-    faces: Face[];
-    engine: Engine;
-
-    constructor() {
-        this.vertexPositions = [[0, 0, 0]];
-        this.springs = [];
-        this.faces = [];
-        this.engine = null;
-    }
-
-    addSpring(fromIdx: number, toIdx: number) {
-        this.springs.push(new Spring(fromIdx, toIdx));
-    }
-
-    addSpringSeries(vertexIndices: number[]) {
-        for (let i = 0; i < vertexIndices.length - 1; i++) {
-            this.addSpring(vertexIndices[i], vertexIndices[i + 1]);
-        }
-    }
-
-    getSpring(fromIdx: number, toIdx: number) {
-        return this.springs.find(spring => spring.fromIdx == fromIdx && spring.toIdx == toIdx || spring.fromIdx == toIdx && spring.toIdx == fromIdx);
-    }
-
-    addThrust(thrust: number) {
-        this.engine.force = thrust;
-    }
-
-    update() {
-        this.engine.update();
-        this.faces.forEach(face => face.update());
-        this.springs.forEach(spring => spring.update(this.vertexPositions));
     }
 }
 
@@ -131,11 +145,13 @@ class Spring {
     fromIdx: number;
     toIdx: number;
     restLength: number;
+    initialRestLength: number;
 
     constructor(fromIdx: number, toIdx: number, restLength: number) {
         this.fromIdx = fromIdx;
         this.toIdx = toIdx;
         this.restLength = restLength;
+        this.initialRestLength = restLength;
     }
 }
 

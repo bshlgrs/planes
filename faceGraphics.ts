@@ -32,6 +32,7 @@ export class FaceGraphics {
 
         for (let i = 0; i < physicsSystem.faces.length; i++) {
             const geometry = new THREE.BufferGeometry();
+            geometry.name = `triangle-${i}`;
 
             const [a, b, c] = physicsSystem.faces[i].vertexIndices;
             // Add vertices for each triangle
@@ -48,6 +49,7 @@ export class FaceGraphics {
 
             triangle.name = `triangle-${i}`;
         }
+        this.update();
     }
 
     update() {
@@ -61,19 +63,35 @@ export class FaceGraphics {
             for (let i = 0; i < vertexIndices.length; i++) {
                 let vi = vertexIndices[i];
                 let pos = this.physicsSystem.vertexPositions[vi];
+                // console.log(pos);
 
                 // Update the positions for each vertex
                 positions.setXYZ(i, pos[0], pos[1], pos[2]);
             } positions.needsUpdate = true;
 
-            if (this.physicsSystem.faces[faceIdx].force != 0) {
-                const otherLightness = this.physicsSystem.faces[faceIdx].force / 5;
-                triangle.material.color = new THREE.Color(otherLightness, otherLightness, 1);
+
+
+            if (faceIdx == 0) { // this is the engine
+                const force = this.physicsSystem.faces[faceIdx].force;
+
+                triangle.material.color = new THREE.Color(
+                    Math.min(force, 1) - Math.max(force - 3.5, 0), // Red
+                    Math.max(Math.min(force - 1.5, 1), 0) * 0.8, // Green
+                    Math.max(Math.min(force - 2.5, 1), 0) // Blue
+                );
                 triangle.color_needs_update = true;
             }
 
             triangle.geometry.computeVertexNormals(); // Recompute normals for proper lighting
         }
+        // debugger;
+    }
 
+    dispose() {
+        this.triangles.forEach((triangle) => {
+            this.scene.remove(triangle);
+            triangle.geometry.dispose();
+            triangle.material.dispose();
+        });
     }
 }

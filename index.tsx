@@ -13,33 +13,37 @@ import { LabelGraphics } from './labelGraphics';
 import { ParticleGraphics } from './particleGraphics';
 import { FulcrumGraphics } from './fulcrumGraphics';
 import { SpringGraphics } from './springGraphics';
+import { MyPlane } from './planeBuilder';
+import { MagicInput } from './magicInput';
+
 
 // Basic setup
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10000);
 const renderer = new THREE.WebGLRenderer({ antialias: true });
+
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 
-const physicsSystem = new PhysicsSystem();
 
+const magicInput = new MagicInput();
 
 const light = new THREE.DirectionalLight(0xffffff, 0.5);
 scene.add(light);
 scene.add(new THREE.AmbientLight(0xffffff, 0.5));
 
 {
-    const planeGeometry = new THREE.PlaneGeometry(10000, 10000); // Adjust size as needed
+    const groundGeometry = new THREE.PlaneGeometry(10000, 10000); // Adjust size as needed
     const loader = new THREE.TextureLoader();
     const texture = loader.load('grass.jpg'); // Replace with your image path
     texture.wrapS = THREE.RepeatWrapping;
     texture.wrapT = THREE.RepeatWrapping;
     texture.repeat.set(100, 100); // Adjust the repeat values as needed
-    const planeMaterial = new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide });
-    const plane = new THREE.Mesh(planeGeometry, planeMaterial);
-    plane.rotation.x = -Math.PI / 2; // Rotate the plane to be horizontal
-    scene.add(plane);
+    const groundMaterial = new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide });
+    const ground = new THREE.Mesh(groundGeometry, groundMaterial);
+    ground.rotation.x = -Math.PI / 2; // Rotate the ground to be horizontal
+    scene.add(ground);
 }
 
 {
@@ -61,13 +65,39 @@ scene.add(new THREE.AmbientLight(0xffffff, 0.5));
 
 }
 
+const gameStuff = {
+    plane: null,
+    physicsSystem: null,
+    faceGraphics: null,
+    labelGraphics: null,
+    particleGraphics: null,
+    fulcrumGraphics: null,
+    springGraphics: null,
+
+};
 
 
-const faceGraphics = new FaceGraphics(scene, physicsSystem);
-const labelGraphics = new LabelGraphics(scene, physicsSystem);
-const particleGraphics = new ParticleGraphics(scene, physicsSystem);
-const fulcrumGraphics = new FulcrumGraphics(scene, physicsSystem);
-const springGraphics = new SpringGraphics(scene, physicsSystem);
+function loadPlane(newPlane: Plane) {
+    if (gameStuff.plane) {
+        gameStuff.faceGraphics.dispose();
+        gameStuff.labelGraphics.dispose();
+        gameStuff.particleGraphics.dispose();
+        gameStuff.fulcrumGraphics.dispose();
+        gameStuff.springGraphics.dispose();
+    }
+    gameStuff.plane = newPlane;
+    gameStuff.physicsSystem = new PhysicsSystem(newPlane);
+    const physicsSystem = gameStuff.physicsSystem;
+    gameStuff.faceGraphics = new FaceGraphics(scene, physicsSystem);
+    gameStuff.labelGraphics = new LabelGraphics(scene, physicsSystem);
+    gameStuff.particleGraphics = new ParticleGraphics(scene, physicsSystem);
+    gameStuff.fulcrumGraphics = new FulcrumGraphics(scene, physicsSystem);
+    gameStuff.springGraphics = new SpringGraphics(scene, physicsSystem);
+}
+
+loadPlane(new MyPlane());
+
+// debugger;
 
 const controls = new OrbitControls(camera, renderer.domElement);
 
@@ -78,6 +108,7 @@ camera.position.z = 5;
 camera.position.y = 5;
 controls.update();
 
+const physicsSystem = gameStuff.physicsSystem;
 let oldCenterOfMass = physicsSystem.centerOfMass();
 
 const overlayElement = document.getElementById('overlay');
@@ -142,27 +173,32 @@ let angle2 = controls.getAzimuthalAngle();
 function animate() {
     requestAnimationFrame(animate);
 
+    const physicsSystem = gameStuff.physicsSystem;
+
+    magicInput.step();
+    // console.log(magicInput.input);
+
+    gameStuff.plane.handleInput(magicInput.input);
+
     // debugger;
-    {
+    if (magicInput.input.axis_2) {
+        // console.log(magicInput.input.axis_2, magicInput.input.axis_3);
 
-        const gamepads = navigator.getGamepads();
-        const gamepad = gamepads[0] || gamepads[1] || gamepads[2] || gamepads[3];
-        if (gamepad) {
-            angle1 += gamepad.axes[2] * 0.02;
-            angle2 += gamepad.axes[3] * 0.02;
-            const x = 15 * Math.cos(angle1) * Math.cos(angle2) + oldCenterOfMass[0];
-            const y = 15 * Math.sin(angle2) + oldCenterOfMass[1];
-            const z = 15 * Math.sin(angle1) * Math.cos(angle2) + oldCenterOfMass[2];
 
-            camera.position.set(x, y, z);
-            camera.lookAt(new THREE.Vector3(oldCenterOfMass));
+        angle1 += (magicInput.input.axis_2 + 0.08) * 0.02;
+        angle2 += (magicInput.input.axis_3 + 0.08) * 0.02;
+        const x = 15 * Math.cos(angle1) * Math.cos(angle2) + oldCenterOfMass[0];
+        const y = 15 * Math.sin(angle2) + oldCenterOfMass[1];
+        const z = 15 * Math.sin(angle1) * Math.cos(angle2) + oldCenterOfMass[2];
 
-            // controls.update();
-            // debugger;
+        camera.position.set(x, y, z);
+        camera.lookAt(new THREE.Vector3(oldCenterOfMass));
 
-        }
+        controls.update();
+        // debugger;
 
     }
+
     // controls.rotateLeft(0.01);
 
     if (uiState.playing) {
@@ -173,32 +209,32 @@ function animate() {
 
         // physicsSystem.leapfrogIntegrate(0.01, 10, 1);
         // console.log(physicsSystem.faces[0].force);
-        physicsSystem.handleGameController();
+        // physicsSystem.handleGameController();
+
+
         physicsSystem.rk4Integrate(0.01, 10, 30);
 
-        particleGraphics.update();
+        gameStuff.particleGraphics.update();
 
 
-
-        // physicsSystem.deleteVerticesBelowGround();
         // update labels
-        labelGraphics.update();
+        gameStuff.labelGraphics.update();
 
 
         // Update points
-        fulcrumGraphics.update();
+        gameStuff.fulcrumGraphics.update();
 
 
 
         // Update lines
-        springGraphics.update();
+        gameStuff.springGraphics.update();
 
         // // Update faces
         // faceGeometry.setFromPoints(physicsSystem.faceVertexIndices.flatMap(f => f.map(vi => physicsSystem.vertexPositions[vi])).map(v => new THREE.Vector3(...v)));
         // faceGeometry.attributes.position.needsUpdate = true; // Important for updating the geometry
         // faceGeometry.computeVertexNormals(); // Recompute normals for proper lighting
 
-        faceGraphics.update();
+        gameStuff.faceGraphics.update();
         // Update camera position
         // debugger;
 
@@ -266,10 +302,13 @@ window.addEventListener('keydown', (e) => {
 //     debugger;
 // });
 
+const reactState = { oldCenterOfMass: [0, 0, 0] };
 /////// react shit
 const MyComponent = () => {
     // State for the animated value
     const [value, setValue] = useState(0);
+    const [planeCode, setPlaneCode] = useState(MyPlane + "");
+    const [showPlaneEditor, setShowPlaneEditor] = useState(true);
     var gamepads = navigator.getGamepads();
 
     const gamepad = gamepads[1];
@@ -296,18 +335,62 @@ const MyComponent = () => {
     //     debugger;
     // }
 
-    const newCenterOfMass = physicsSystem.centerOfMass();
+
+    const newCenterOfMass = gameStuff.physicsSystem.centerOfMass();
     const [x, y, z] = newCenterOfMass;
-    const [oldX, oldY, oldZ] = oldCenterOfMass;
+    const [oldX, oldY, oldZ] = reactState.oldCenterOfMass;
     const [dx, dy, dz] = [x - oldX, y - oldY, z - oldZ];
+    reactState.oldCenterOfMass = newCenterOfMass;
+
+    const heading = Math.atan2(z - oldZ, x - oldX);
+    const horizontalSpeed = (Math.sqrt((x - oldX) ** 2 + (z - oldZ) ** 2) / 0.03);
+    const verticalSpeed = dy / 0.03;
+
+    if (magicInput.input.button_9) {
+        loadPlane(new (eval("(" + planeCode + ")")));
+    }
 
     return <div>
-        <p style={{ backgroundColor: y < 10 ? 'lightblue' : (y < 100 ? 'pink' : 'grey') }}>Altitude: {y.toFixed(0)}</p>
-        {/* <p>Vertical speed: {(-dy / 0.03).toFixed(1)}</p>
-        <p>Horizontal speed: {(Math.sqrt((x - oldX) ** 2 + (z - oldZ) ** 2) / 0.03).toFixed(1)}</p> */}
-        <button onClick={() => { uiState.playing = !uiState.playing }}>play/pause</button>
+        <div className='overlay-l'>
+            <svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="-1.2 -1.2 2.4 2.4">
+                <circle cx="0" cy="0" r={horizontalSpeed / 400} stroke="white" strokeWidth="0.02" fill="none" />
+                <circle cx="0" cy="0" r={Math.abs(verticalSpeed / 400)} stroke={verticalSpeed > 0 ? "green" : 'red'} strokeWidth="0.02" fill="none" />
 
-    </div>;
+
+                <line x1={Math.cos(heading)} y1={-Math.sin(heading)} x2="0" y2="0" stroke="red" strokeWidth="0.1" />
+                <text x={Math.cos(heading)} y={-Math.sin(heading)} fill="red" fontSize="0.5" textAnchor="middle" dominantBaseline="middle">N</text>
+
+                <line x1={-Math.cos(heading)} y1={Math.sin(heading)} x2="0" y2="0" stroke="white" strokeWidth="0.05" />
+                <text x={-Math.cos(heading)} y={Math.sin(heading)} fill="white" fontSize="0.5" textAnchor="middle" dominantBaseline="middle">S</text>
+
+                <line x1={Math.sin(heading)} y1={Math.cos(heading)} x2="0" y2="0" stroke="white" strokeWidth="0.05" />
+                <text x={Math.sin(heading)} y={Math.cos(heading)} fill="white" fontSize="0.5" textAnchor="middle" dominantBaseline="middle">E</text>
+
+                <line x1={-Math.sin(heading)} y1={-Math.cos(heading)} x2="0" y2="0" stroke="white" strokeWidth="0.05" />
+                <text x={-Math.sin(heading)} y={-Math.cos(heading)} fill="white" fontSize="0.5" textAnchor="middle" dominantBaseline="middle">W</text>
+
+                <line x1="0" y1="0" x2="0" y2="-1" stroke="pink" strokeWidth="0.01" />
+
+            </svg>
+            <div style={{ backgroundColor: y < 10 ? 'lightblue' : (y < 100 ? 'pink' : 'grey') }}>Altitude: {y.toFixed(0)}</div>
+            <div>Vertical speed: {verticalSpeed.toFixed(1)}</div>
+            <div>Horizontal speed: {horizontalSpeed.toFixed(1)}</div>
+            <div>Thrust: {gameStuff.physicsSystem.faces[0].force.toFixed(2)}</div>
+        </div>
+
+        <div className='overlay-r'>
+            {showPlaneEditor ? <div>
+                {/* <button onClick={() => { uiState.playing = !uiState.playing }}>play/pause</button> */}
+                <textarea rows={50} style={{ width: 500 }} value={planeCode} onChange={(e) => { setPlaneCode(e.target.value) }}></textarea>
+                <br />
+                <button onClick={() => { loadPlane(new (eval("(" + planeCode + ")"))) }}>load plane</button>
+
+                <button onClick={() => { setShowPlaneEditor(false); gameStuff.labelGraphics.setInvisible() }}>hide plane editor</button>
+            </div> : <div>
+                <button onClick={() => { setShowPlaneEditor(true); gameStuff.labelGraphics.setVisible() }}>show plane editor</button>
+            </div>}
+        </div>
+    </div >;
 };
 
 

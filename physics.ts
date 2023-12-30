@@ -1,33 +1,34 @@
+import { Plane, Spring, Face, Engine } from './plane';
+
 type Vector3 = [number, number, number];
 
 
 const VERTEX_MASS = 1.4;
 
 export class PhysicsSystem {
-    vertexPositions: Vector3[];
-    // vertexMasses: number[];
-    springs: Spring[];
+    plane: Plane;
     vertexVelocities: Vector3[];
+    vertexPositions: Vector3[];
+    springs: Spring[];
+
     faces: Face[];
+    engine: Engine;
 
-    constructor() {
+    constructor(plane: Plane) {
+        this.plane = plane;
+        this.vertexVelocities = new Array(plane.vertexPositions.length).fill([0, 0, 0]);
 
-
-        this.vertexVelocities = this.vertexPositions.map(position => [0, 0, 0]);
+        // TODO extremely cursed. I'm copying the arrays by reference so that both objects can freely manipulate them.
+        this.vertexPositions = plane.vertexPositions;
+        this.faces = plane.faces;
+        this.springs = plane.springs;
+        this.faces.unshift(plane.engine);
+        // this.engine = plane.engine;
     }
 
-    addSpring(fromIdx: number, toIdx: number): void {
-        this.springs.push(new Spring(fromIdx, toIdx, this.norm(this.subtractVectors(this.vertexPositions[fromIdx], this.vertexPositions[toIdx]))));
-    }
-
-    addSpringSeries(vertexIndices: number[]): void {
-        for (let i = 0; i < vertexIndices.length - 1; i++) {
-            this.addSpring(vertexIndices[i], vertexIndices[i + 1]);
-        }
-    }
 
     centerOfMass(): Vector3 {
-        let centerOfMass = [0, 0, 0];
+        let centerOfMass = [0, 0, 0] as Vector3;
         let totalMass = 0;
         for (let i = 0; i < this.vertexPositions.length; i++) {
             centerOfMass = this.addVectors(centerOfMass, this.multiplyVectorByScalar(this.vertexPositions[i], 1));
@@ -36,7 +37,7 @@ export class PhysicsSystem {
         return this.divideVectorByScalar(centerOfMass, totalMass);
     }
 
-    getSpringByVertexIndices(vertexIndex1: number, vertexIndex2: number): Spring | undefined {
+    getSpring(vertexIndex1: number, vertexIndex2: number): Spring | undefined {
         return this.springs.find(spring => {
             return (spring.fromIdx === vertexIndex1 && spring.toIdx === vertexIndex2) ||
                 (spring.fromIdx === vertexIndex2 && spring.toIdx === vertexIndex1);
@@ -46,77 +47,74 @@ export class PhysicsSystem {
 
     handleKeyDown(event: KeyboardEvent) {
 
-        const otherSpring = this.getSpringByVertexIndices(16, 17);
-        const springToShorten = this.getSpringByVertexIndices(13, 17);
-        if (event.key === 'w') {
-            otherSpring.restLength += 0.02;
-            springToShorten.restLength -= 0.02;
-        }
-        if (event.key === 's') {
-            otherSpring.restLength -= 0.02;
-            springToShorten.restLength += 0.02;
-        }
+        // const otherSpring = this.getSpringByVertexIndices(16, 17);
+        // const springToShorten = this.getSpringByVertexIndices(13, 17);
+        // if (event.key === 'w') {
+        //     otherSpring.restLength += 0.02;
+        //     springToShorten.restLength -= 0.02;
+        // }
+        // if (event.key === 's') {
+        //     otherSpring.restLength -= 0.02;
+        //     springToShorten.restLength += 0.02;
+        // }
 
-        const lspring = this.getSpringByVertexIndices(15, 17);
-        const rspring = this.getSpringByVertexIndices(14, 17);
+        // const lspring = this.getSpringByVertexIndices(15, 17);
+        // const rspring = this.getSpringByVertexIndices(14, 17);
 
-        if (event.key === 'a') {
-            lspring.restLength -= 0.01;
-            rspring.restLength += 0.01;
-        }
-        if (event.key === 'd') {
-            lspring.restLength += 0.01;
-            rspring.restLength -= 0.01;
-        }
+        // if (event.key === 'a') {
+        //     lspring.restLength -= 0.01;
+        //     rspring.restLength += 0.01;
+        // }
+        // if (event.key === 'd') {
+        //     lspring.restLength += 0.01;
+        //     rspring.restLength -= 0.01;
+        // }
 
-        if (event.key === 'q') {
-            this.faces[0].force += 0.03;
-        }
-        if (event.key === 'e') {
-            this.faces[0].force -= 0.03;
-            if (this.faces[0].force < 0) {
-                this.faces[0].force = 0;
-            }
-        }
-
-
-
+        // if (event.key === 'q') {
+        //     this.faces[0].force += 0.03;
+        // }
+        // if (event.key === 'e') {
+        //     this.faces[0].force -= 0.03;
+        //     if (this.faces[0].force < 0) {
+        //         this.faces[0].force = 0;
+        //     }
     }
+
 
     handleGameController() {
-        const gamepads = navigator.getGamepads();
+        // const gamepads = navigator.getGamepads();
 
-        const gamepad = gamepads[0] || gamepads[1] || gamepads[2] || gamepads[3];
+        // const gamepad = gamepads[0] || gamepads[1] || gamepads[2] || gamepads[3];
 
-        if (!gamepad) {
-            return;
-        }
+        // if (!gamepad) {
+        //     return;
+        // }
 
-        if (gamepad.buttons[4].pressed) {
-            this.faces[0].force += 0.03;
-        }
-        if (gamepad.buttons[5].pressed) {
-            this.faces[0].force -= 0.03;
-        }
-        this.faces[0].force = Math.min(5, Math.max(0, this.faces[0].force));
+        // if (gamepad.buttons[4].pressed) {
+        //     this.faces[0].force += 0.03;
+        // }
+        // if (gamepad.buttons[5].pressed) {
+        //     this.faces[0].force -= 0.03;
+        // }
+        // this.faces[0].force = Math.min(5, Math.max(0, this.faces[0].force));
 
-        const lspring = this.getSpringByVertexIndices(15, 17);
-        const rspring = this.getSpringByVertexIndices(14, 17);
+        // const lspring = this.getSpringByVertexIndices(15, 17);
+        // const rspring = this.getSpringByVertexIndices(14, 17);
 
-        lspring.restLength += gamepad.axes[0] * 0.01;
-        rspring.restLength -= gamepad.axes[0] * 0.01;
+        // lspring.restLength += gamepad.axes[0] * 0.01;
+        // rspring.restLength -= gamepad.axes[0] * 0.01;
 
 
-        const otherSpring = this.getSpringByVertexIndices(16, 17);
-        const springToShorten = this.getSpringByVertexIndices(13, 17);
+        // const otherSpring = this.getSpringByVertexIndices(16, 17);
+        // const springToShorten = this.getSpringByVertexIndices(13, 17);
 
-        otherSpring.restLength -= gamepad.axes[1] * 0.01;
-        springToShorten.restLength += gamepad.axes[1] * 0.01;
+        // otherSpring.restLength -= gamepad.axes[1] * 0.01;
+        // springToShorten.restLength += gamepad.axes[1] * 0.01;
 
 
     }
 
-    computeForces(vertexPositions, vertexVelocities, dampingCoefficient: number): Vector3[] {
+    computeForces(vertexPositions: Vector3[], vertexVelocities: Vector3[], dampingCoefficient: number): Vector3[] {
         const numVertices = vertexPositions.length;
         const forces: Vector3[] = new Array(numVertices).fill([0, 0, 0]);
 
@@ -125,8 +123,12 @@ export class PhysicsSystem {
             forces[i] = this.addVectors(forces[i], gravityForce);
 
             const y = vertexPositions[i][1];
-            const groundForce = this.multiplyVectorByScalar([0, Math.max(0, 0.5 - y), 0], 100);
-            forces[i] = this.addVectors(forces[i], groundForce);
+
+            if (vertexPositions[i][0] > -5000 && vertexPositions[i][0] < 5000 && vertexPositions[i][2] > -5000 && vertexPositions[i][2] < 5000) {
+                const groundForce = this.multiplyVectorByScalar([0, Math.max(0, 0.5 - y), 0], 100);
+                forces[i] = this.addVectors(forces[i], groundForce);
+
+            }
 
             // const dragForce = this.multiplyVectorByScalar(vertexVelocities[i], (y > 2 ? -0.001 : 0.01));
             // forces[i] = this.addVectors(forces[i], dragForce);
@@ -143,7 +145,7 @@ export class PhysicsSystem {
 
             const springVector = this.subtractVectors(position2, position1);
             const springLength = this.norm(springVector);
-            const springVectorNormalized = springLength !== 0 ? this.divideVectorByScalar(springVector, springLength) : [0, 0, 0];
+            const springVectorNormalized = springLength !== 0 ? this.divideVectorByScalar(springVector, springLength) : ([0, 0, 0] as Vector3);
 
             // multiply by this.springStrengths[index] if you want
             const forceMagnitude = (springLength - spring.restLength) * 450;
@@ -182,10 +184,10 @@ export class PhysicsSystem {
             const force = this.addVectors(this.multiplyVectorByScalar(normal, thrustMagnitude + windForceStrength), dragForce);
             // console.log('face', this.norm(force));
 
-            if (this.norm(force) > 1000) {
-                debugger;
-            }
-            face.vertexIndices.forEach(vertexIndex => {
+            // if (this.norm(force) > 1000) {
+            //     debugger;
+            // }
+            face.vertexIndices.forEach((vertexIndex: number) => {
                 forces[vertexIndex] = this.addVectors(forces[vertexIndex], this.divideVectorByScalar(force, 3));
 
             });
@@ -199,16 +201,6 @@ export class PhysicsSystem {
         // }
 
         return forces;
-    }
-
-    deleteVerticesBelowGround(): void {
-        // Delete vertices below ground
-        for (let i = 0; i < this.vertexPositions.length; i++) {
-            if (this.vertexPositions[i][1] < 0) {
-                this.deleteVertex(i);
-                i--;
-            }
-        }
     }
 
     private addVectors(a: Vector3, b: Vector3): Vector3 {
@@ -323,7 +315,7 @@ export class PhysicsSystem {
                         1 / 6)
                 );
 
-                if (vertexPositions[i][1] > 0.02) {
+                if (vertexPositions[i][1] > 0.02 || vertexPositions[i][0] < -5000 || vertexPositions[i][0] > 5000 || vertexPositions[i][2] < -5000 || vertexPositions[i][2] > 5000) {
                     vertexPositions[i] = this.addVectors(
                         vertexPositions[i],
 

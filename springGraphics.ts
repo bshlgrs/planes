@@ -65,4 +65,10 @@ export class SpringGraphics {
         this.cylindersInstancedMesh.instanceColor.needsUpdate = true;
         this.cylindersInstancedMesh.instanceMatrix.needsUpdate = true;
     }
+
+    dispose() {
+        this.cylindersInstancedMesh.geometry.dispose();
+        this.cylindersInstancedMesh.material.dispose();
+        this.scene.remove(this.cylindersInstancedMesh);
+    }
 }

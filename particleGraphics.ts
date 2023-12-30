@@ -13,6 +13,7 @@ export class ParticleGraphics {
     nextIndex: number;
     particleCount: number;
     particlesGeometry: THREE.BufferGeometry;
+    particlesSystem: THREE.Points;
     oldCenterOfMass: number[];
 
     constructor(scene: THREE.Scene, physicsSystem: PhysicsSystem) {
@@ -46,7 +47,7 @@ export class ParticleGraphics {
         const particleSystem = new THREE.Points(this.particlesGeometry, particlesMaterial);
         particleSystem.frustumCulled = false; // Important for updating the geometry
         scene.add(particleSystem);
-
+        this.particlesSystem = particleSystem;
 
         this.particlesGeometry.setAttribute('position', new THREE.BufferAttribute(this.positions, 3));
         this.particlesGeometry.setAttribute('color', new THREE.BufferAttribute(this.colors, 3)); // Add color attribute
@@ -141,6 +142,17 @@ export class ParticleGraphics {
 
         // Update particles
         this.updateParticles();
+
+    }
+
+    dispose() {
+
+
+        this.scene.remove(this.particlesGeometry);
+        this.particlesGeometry.dispose();
+        this.particlesSystem.material.dispose();
+        this.scene.remove(this.particlesSystem);
+
 
     }
 

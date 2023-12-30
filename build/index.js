@@ -231,31 +231,31 @@ var require_react_development = __commonJS((exports, module) => {
       function isArray(a) {
         return isArrayImpl(a);
       }
-      function typeName(value) {
+      function typeName(value2) {
         {
           var hasToStringTag = typeof Symbol === "function" && Symbol.toStringTag;
-          var type = hasToStringTag && value[Symbol.toStringTag] || value.constructor.name || "Object";
+          var type = hasToStringTag && value2[Symbol.toStringTag] || value2.constructor.name || "Object";
           return type;
         }
       }
-      function willCoercionThrow(value) {
+      function willCoercionThrow(value2) {
         {
           try {
-            testStringCoercion(value);
+            testStringCoercion(value2);
             return false;
           } catch (e) {
             return true;
           }
         }
       }
-      function testStringCoercion(value) {
-        return "" + value;
+      function testStringCoercion(value2) {
+        return "" + value2;
       }
-      function checkKeyStringCoercion(value) {
+      function checkKeyStringCoercion(value2) {
         {
-          if (willCoercionThrow(value)) {
-            error("The provided key is an unsupported type %s. This value must be coerced to a string before before using it here.", typeName(value));
-            return testStringCoercion(value);
+          if (willCoercionThrow(value2)) {
+            error("The provided key is an unsupported type %s. This value must be coerced to a string before before using it here.", typeName(value2));
+            return testStringCoercion(value2);
           }
         }
       }
@@ -321,7 +321,7 @@ var require_react_development = __commonJS((exports, module) => {
               var init = lazyComponent._init;
               try {
                 return getComponentNameFromType(init(payload));
-              } catch (x) {
+              } catch (x2) {
                 return null;
               }
             }
@@ -1025,19 +1025,19 @@ var require_react_development = __commonJS((exports, module) => {
         var dispatcher = resolveDispatcher();
         return dispatcher.useImperativeHandle(ref, create, deps);
       }
-      function useDebugValue(value, formatterFn) {
+      function useDebugValue(value2, formatterFn) {
         {
           var dispatcher = resolveDispatcher();
-          return dispatcher.useDebugValue(value, formatterFn);
+          return dispatcher.useDebugValue(value2, formatterFn);
         }
       }
       function useTransition() {
         var dispatcher = resolveDispatcher();
         return dispatcher.useTransition();
       }
-      function useDeferredValue(value) {
+      function useDeferredValue(value2) {
         var dispatcher = resolveDispatcher();
-        return dispatcher.useDeferredValue(value);
+        return dispatcher.useDeferredValue(value2);
       }
       function useId() {
         var dispatcher = resolveDispatcher();
@@ -1132,8 +1132,8 @@ var require_react_development = __commonJS((exports, module) => {
           if (prefix === undefined) {
             try {
               throw Error();
-            } catch (x) {
-              var match = x.stack.trim().match(/\n( *(at )?)/);
+            } catch (x2) {
+              var match = x2.stack.trim().match(/\n( *(at )?)/);
               prefix = match && match[1] || "";
             }
           }
@@ -1179,23 +1179,23 @@ var require_react_development = __commonJS((exports, module) => {
             if (typeof Reflect === "object" && Reflect.construct) {
               try {
                 Reflect.construct(Fake, []);
-              } catch (x) {
-                control = x;
+              } catch (x2) {
+                control = x2;
               }
               Reflect.construct(fn, [], Fake);
             } else {
               try {
                 Fake.call();
-              } catch (x) {
-                control = x;
+              } catch (x2) {
+                control = x2;
               }
               fn.call(Fake.prototype);
             }
           } else {
             try {
               throw Error();
-            } catch (x) {
-              control = x;
+            } catch (x2) {
+              control = x2;
             }
             fn();
           }
@@ -1288,7 +1288,7 @@ var require_react_development = __commonJS((exports, module) => {
               var init = lazyComponent._init;
               try {
                 return describeUnknownElementTypeFrameInDEV(init(payload), source, ownerFn);
-              } catch (x) {
+              } catch (x2) {
               }
             }
           }
@@ -2378,71 +2378,71 @@ var require_react_dom_development = __commonJS((exports) => {
       }
       var canUseDOM = !!(typeof window !== "undefined" && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined");
       var hasOwnProperty = Object.prototype.hasOwnProperty;
-      function typeName(value) {
+      function typeName(value2) {
         {
           var hasToStringTag = typeof Symbol === "function" && Symbol.toStringTag;
-          var type = hasToStringTag && value[Symbol.toStringTag] || value.constructor.name || "Object";
+          var type = hasToStringTag && value2[Symbol.toStringTag] || value2.constructor.name || "Object";
           return type;
         }
       }
-      function willCoercionThrow(value) {
+      function willCoercionThrow(value2) {
         {
           try {
-            testStringCoercion(value);
+            testStringCoercion(value2);
             return false;
           } catch (e) {
             return true;
           }
         }
       }
-      function testStringCoercion(value) {
-        return "" + value;
+      function testStringCoercion(value2) {
+        return "" + value2;
       }
-      function checkAttributeStringCoercion(value, attributeName) {
+      function checkAttributeStringCoercion(value2, attributeName) {
         {
-          if (willCoercionThrow(value)) {
-            error("The provided `%s` attribute is an unsupported type %s. This value must be coerced to a string before before using it here.", attributeName, typeName(value));
-            return testStringCoercion(value);
+          if (willCoercionThrow(value2)) {
+            error("The provided `%s` attribute is an unsupported type %s. This value must be coerced to a string before before using it here.", attributeName, typeName(value2));
+            return testStringCoercion(value2);
           }
         }
       }
-      function checkKeyStringCoercion(value) {
+      function checkKeyStringCoercion(value2) {
         {
-          if (willCoercionThrow(value)) {
-            error("The provided key is an unsupported type %s. This value must be coerced to a string before before using it here.", typeName(value));
-            return testStringCoercion(value);
+          if (willCoercionThrow(value2)) {
+            error("The provided key is an unsupported type %s. This value must be coerced to a string before before using it here.", typeName(value2));
+            return testStringCoercion(value2);
           }
         }
       }
-      function checkPropStringCoercion(value, propName) {
+      function checkPropStringCoercion(value2, propName) {
         {
-          if (willCoercionThrow(value)) {
-            error("The provided `%s` prop is an unsupported type %s. This value must be coerced to a string before before using it here.", propName, typeName(value));
-            return testStringCoercion(value);
+          if (willCoercionThrow(value2)) {
+            error("The provided `%s` prop is an unsupported type %s. This value must be coerced to a string before before using it here.", propName, typeName(value2));
+            return testStringCoercion(value2);
           }
         }
       }
-      function checkCSSPropertyStringCoercion(value, propName) {
+      function checkCSSPropertyStringCoercion(value2, propName) {
         {
-          if (willCoercionThrow(value)) {
-            error("The provided `%s` CSS property is an unsupported type %s. This value must be coerced to a string before before using it here.", propName, typeName(value));
-            return testStringCoercion(value);
+          if (willCoercionThrow(value2)) {
+            error("The provided `%s` CSS property is an unsupported type %s. This value must be coerced to a string before before using it here.", propName, typeName(value2));
+            return testStringCoercion(value2);
           }
         }
       }
-      function checkHtmlStringCoercion(value) {
+      function checkHtmlStringCoercion(value2) {
         {
-          if (willCoercionThrow(value)) {
-            error("The provided HTML markup uses a value of unsupported type %s. This value must be coerced to a string before before using it here.", typeName(value));
-            return testStringCoercion(value);
+          if (willCoercionThrow(value2)) {
+            error("The provided HTML markup uses a value of unsupported type %s. This value must be coerced to a string before before using it here.", typeName(value2));
+            return testStringCoercion(value2);
           }
         }
       }
-      function checkFormFieldValueStringCoercion(value) {
+      function checkFormFieldValueStringCoercion(value2) {
         {
-          if (willCoercionThrow(value)) {
-            error("Form field values (value, checked, defaultValue, or defaultChecked props) must be strings, not %s. This value must be coerced to a string before before using it here.", typeName(value));
-            return testStringCoercion(value);
+          if (willCoercionThrow(value2)) {
+            error("Form field values (value, checked, defaultValue, or defaultChecked props) must be strings, not %s. This value must be coerced to a string before before using it here.", typeName(value2));
+            return testStringCoercion(value2);
           }
         }
       }
@@ -2487,11 +2487,11 @@ var require_react_dom_development = __commonJS((exports) => {
         }
         return false;
       }
-      function shouldRemoveAttributeWithWarning(name, value, propertyInfo, isCustomComponentTag) {
+      function shouldRemoveAttributeWithWarning(name, value2, propertyInfo, isCustomComponentTag) {
         if (propertyInfo !== null && propertyInfo.type === RESERVED) {
           return false;
         }
-        switch (typeof value) {
+        switch (typeof value2) {
           case "function":
           case "symbol":
             return true;
@@ -2510,11 +2510,11 @@ var require_react_dom_development = __commonJS((exports) => {
             return false;
         }
       }
-      function shouldRemoveAttribute(name, value, propertyInfo, isCustomComponentTag) {
-        if (value === null || typeof value === "undefined") {
+      function shouldRemoveAttribute(name, value2, propertyInfo, isCustomComponentTag) {
+        if (value2 === null || typeof value2 === "undefined") {
           return true;
         }
-        if (shouldRemoveAttributeWithWarning(name, value, propertyInfo, isCustomComponentTag)) {
+        if (shouldRemoveAttributeWithWarning(name, value2, propertyInfo, isCustomComponentTag)) {
           return true;
         }
         if (isCustomComponentTag) {
@@ -2523,13 +2523,13 @@ var require_react_dom_development = __commonJS((exports) => {
         if (propertyInfo !== null) {
           switch (propertyInfo.type) {
             case BOOLEAN:
-              return !value;
+              return !value2;
             case OVERLOADED_BOOLEAN:
-              return value === false;
+              return value2 === false;
             case NUMERIC:
-              return isNaN(value);
+              return isNaN(value2);
             case POSITIVE_NUMERIC:
-              return isNaN(value) || value < 1;
+              return isNaN(value2) || value2 < 1;
           }
         }
         return false;
@@ -2758,17 +2758,17 @@ var require_react_dom_development = __commonJS((exports) => {
             var stringValue = null;
             if (propertyInfo.type === OVERLOADED_BOOLEAN) {
               if (node.hasAttribute(attributeName)) {
-                var value = node.getAttribute(attributeName);
-                if (value === "") {
+                var value2 = node.getAttribute(attributeName);
+                if (value2 === "") {
                   return true;
                 }
                 if (shouldRemoveAttribute(name, expected, propertyInfo, false)) {
-                  return value;
+                  return value2;
                 }
-                if (value === "" + expected) {
+                if (value2 === "" + expected) {
                   return expected;
                 }
-                return value;
+                return value2;
               }
             } else if (node.hasAttribute(attributeName)) {
               if (shouldRemoveAttribute(name, expected, propertyInfo, false)) {
@@ -2797,34 +2797,34 @@ var require_react_dom_development = __commonJS((exports) => {
           if (!node.hasAttribute(name)) {
             return expected === undefined ? undefined : null;
           }
-          var value = node.getAttribute(name);
+          var value2 = node.getAttribute(name);
           {
             checkAttributeStringCoercion(expected, name);
           }
-          if (value === "" + expected) {
+          if (value2 === "" + expected) {
             return expected;
           }
-          return value;
+          return value2;
         }
       }
-      function setValueForProperty(node, name, value, isCustomComponentTag) {
+      function setValueForProperty(node, name, value2, isCustomComponentTag) {
         var propertyInfo = getPropertyInfo(name);
         if (shouldIgnoreAttribute(name, propertyInfo, isCustomComponentTag)) {
           return;
         }
-        if (shouldRemoveAttribute(name, value, propertyInfo, isCustomComponentTag)) {
-          value = null;
+        if (shouldRemoveAttribute(name, value2, propertyInfo, isCustomComponentTag)) {
+          value2 = null;
         }
         if (isCustomComponentTag || propertyInfo === null) {
           if (isAttributeNameSafe(name)) {
             var _attributeName = name;
-            if (value === null) {
+            if (value2 === null) {
               node.removeAttribute(_attributeName);
             } else {
               {
-                checkAttributeStringCoercion(value, name);
+                checkAttributeStringCoercion(value2, name);
               }
-              node.setAttribute(_attributeName, "" + value);
+              node.setAttribute(_attributeName, "" + value2);
             }
           }
           return;
@@ -2832,28 +2832,28 @@ var require_react_dom_development = __commonJS((exports) => {
         var mustUseProperty = propertyInfo.mustUseProperty;
         if (mustUseProperty) {
           var propertyName = propertyInfo.propertyName;
-          if (value === null) {
+          if (value2 === null) {
             var type = propertyInfo.type;
             node[propertyName] = type === BOOLEAN ? false : "";
           } else {
-            node[propertyName] = value;
+            node[propertyName] = value2;
           }
           return;
         }
         var { attributeName, attributeNamespace } = propertyInfo;
-        if (value === null) {
+        if (value2 === null) {
           node.removeAttribute(attributeName);
         } else {
           var _type = propertyInfo.type;
           var attributeValue;
-          if (_type === BOOLEAN || _type === OVERLOADED_BOOLEAN && value === true) {
+          if (_type === BOOLEAN || _type === OVERLOADED_BOOLEAN && value2 === true) {
             attributeValue = "";
           } else {
             {
               {
-                checkAttributeStringCoercion(value, attributeName);
+                checkAttributeStringCoercion(value2, attributeName);
               }
-              attributeValue = "" + value;
+              attributeValue = "" + value2;
             }
             if (propertyInfo.sanitizeURL) {
               sanitizeURL(attributeValue.toString());
@@ -2982,8 +2982,8 @@ var require_react_dom_development = __commonJS((exports) => {
           if (prefix === undefined) {
             try {
               throw Error();
-            } catch (x) {
-              var match = x.stack.trim().match(/\n( *(at )?)/);
+            } catch (x2) {
+              var match = x2.stack.trim().match(/\n( *(at )?)/);
               prefix = match && match[1] || "";
             }
           }
@@ -3029,23 +3029,23 @@ var require_react_dom_development = __commonJS((exports) => {
             if (typeof Reflect === "object" && Reflect.construct) {
               try {
                 Reflect.construct(Fake, []);
-              } catch (x) {
-                control = x;
+              } catch (x2) {
+                control = x2;
               }
               Reflect.construct(fn, [], Fake);
             } else {
               try {
                 Fake.call();
-              } catch (x) {
-                control = x;
+              } catch (x2) {
+                control = x2;
               }
               fn.call(Fake.prototype);
             }
           } else {
             try {
               throw Error();
-            } catch (x) {
-              control = x;
+            } catch (x2) {
+              control = x2;
             }
             fn();
           }
@@ -3143,7 +3143,7 @@ var require_react_dom_development = __commonJS((exports) => {
               var init = lazyComponent._init;
               try {
                 return describeUnknownElementTypeFrameInDEV(init(payload), source, ownerFn);
-              } catch (x) {
+              } catch (x2) {
               }
             }
           }
@@ -3183,8 +3183,8 @@ var require_react_dom_development = __commonJS((exports) => {
             node = node.return;
           } while (node);
           return info;
-        } catch (x) {
-          return "\nError generating stack: " + x.message + "\n" + x.stack;
+        } catch (x2) {
+          return "\nError generating stack: " + x2.message + "\n" + x2.stack;
         }
       }
       function getWrappedName(outerType, innerType, wrapperName) {
@@ -3249,7 +3249,7 @@ var require_react_dom_development = __commonJS((exports) => {
               var init = lazyComponent._init;
               try {
                 return getComponentNameFromType(init(payload));
-              } catch (x) {
+              } catch (x2) {
                 return null;
               }
             }
@@ -3371,21 +3371,21 @@ var require_react_dom_development = __commonJS((exports) => {
           isRendering = rendering;
         }
       }
-      function toString(value) {
-        return "" + value;
+      function toString(value2) {
+        return "" + value2;
       }
-      function getToStringValue(value) {
-        switch (typeof value) {
+      function getToStringValue(value2) {
+        switch (typeof value2) {
           case "boolean":
           case "number":
           case "string":
           case "undefined":
-            return value;
+            return value2;
           case "object":
             {
-              checkFormFieldValueStringCoercion(value);
+              checkFormFieldValueStringCoercion(value2);
             }
-            return value;
+            return value2;
           default:
             return "";
         }
@@ -3421,16 +3421,16 @@ var require_react_dom_development = __commonJS((exports) => {
         node._valueTracker = null;
       }
       function getValueFromNode(node) {
-        var value = "";
+        var value2 = "";
         if (!node) {
-          return value;
+          return value2;
         }
         if (isCheckable(node)) {
-          value = node.checked ? "true" : "false";
+          value2 = node.checked ? "true" : "false";
         } else {
-          value = node.value;
+          value2 = node.value;
         }
-        return value;
+        return value2;
       }
       function trackValueOnNode(node) {
         var valueField = isCheckable(node) ? "checked" : "value";
@@ -3448,12 +3448,12 @@ var require_react_dom_development = __commonJS((exports) => {
           get: function() {
             return get2.call(this);
           },
-          set: function(value) {
+          set: function(value2) {
             {
-              checkFormFieldValueStringCoercion(value);
+              checkFormFieldValueStringCoercion(value2);
             }
-            currentValue = "" + value;
-            set2.call(this, value);
+            currentValue = "" + value2;
+            set2.call(this, value2);
           }
         });
         Object.defineProperty(node, valueField, {
@@ -3463,11 +3463,11 @@ var require_react_dom_development = __commonJS((exports) => {
           getValue: function() {
             return currentValue;
           },
-          setValue: function(value) {
+          setValue: function(value2) {
             {
-              checkFormFieldValueStringCoercion(value);
+              checkFormFieldValueStringCoercion(value2);
             }
-            currentValue = "" + value;
+            currentValue = "" + value2;
           },
           stopTracking: function() {
             detachTracker(node);
@@ -3569,15 +3569,15 @@ var require_react_dom_development = __commonJS((exports) => {
           }
         }
         updateChecked(element, props);
-        var value = getToStringValue(props.value);
+        var value2 = getToStringValue(props.value);
         var type = props.type;
-        if (value != null) {
+        if (value2 != null) {
           if (type === "number") {
-            if (value === 0 && node.value === "" || node.value != value) {
-              node.value = toString(value);
+            if (value2 === 0 && node.value === "" || node.value != value2) {
+              node.value = toString(value2);
             }
-          } else if (node.value !== toString(value)) {
-            node.value = toString(value);
+          } else if (node.value !== toString(value2)) {
+            node.value = toString(value2);
           }
         } else if (type === "submit" || type === "reset") {
           node.removeAttribute("value");
@@ -3585,7 +3585,7 @@ var require_react_dom_development = __commonJS((exports) => {
         }
         {
           if (props.hasOwnProperty("value")) {
-            setDefaultValue(node, props.type, value);
+            setDefaultValue(node, props.type, value2);
           } else if (props.hasOwnProperty("defaultValue")) {
             setDefaultValue(node, props.type, getToStringValue(props.defaultValue));
           }
@@ -3658,12 +3658,12 @@ var require_react_dom_development = __commonJS((exports) => {
           }
         }
       }
-      function setDefaultValue(node, type, value) {
+      function setDefaultValue(node, type, value2) {
         if (type !== "number" || getActiveElement(node.ownerDocument) !== node) {
-          if (value == null) {
+          if (value2 == null) {
             node.defaultValue = toString(node._wrapperState.initialValue);
-          } else if (node.defaultValue !== toString(value)) {
-            node.defaultValue = toString(value);
+          } else if (node.defaultValue !== toString(value2)) {
+            node.defaultValue = toString(value2);
           }
         }
       }
@@ -3797,9 +3797,9 @@ var require_react_dom_development = __commonJS((exports) => {
       function postMountWrapper$2(element, props) {
         var node = element;
         node.multiple = !!props.multiple;
-        var value = props.value;
-        if (value != null) {
-          updateOptions(node, !!props.multiple, value, false);
+        var value2 = props.value;
+        if (value2 != null) {
+          updateOptions(node, !!props.multiple, value2, false);
         } else if (props.defaultValue != null) {
           updateOptions(node, !!props.multiple, props.defaultValue, true);
         }
@@ -3808,9 +3808,9 @@ var require_react_dom_development = __commonJS((exports) => {
         var node = element;
         var wasMultiple = node._wrapperState.wasMultiple;
         node._wrapperState.wasMultiple = !!props.multiple;
-        var value = props.value;
-        if (value != null) {
-          updateOptions(node, !!props.multiple, value, false);
+        var value2 = props.value;
+        if (value2 != null) {
+          updateOptions(node, !!props.multiple, value2, false);
         } else if (wasMultiple !== !!props.multiple) {
           if (props.defaultValue != null) {
             updateOptions(node, !!props.multiple, props.defaultValue, true);
@@ -3821,9 +3821,9 @@ var require_react_dom_development = __commonJS((exports) => {
       }
       function restoreControlledState$1(element, props) {
         var node = element;
-        var value = props.value;
-        if (value != null) {
-          updateOptions(node, !!props.multiple, value, false);
+        var value2 = props.value;
+        if (value2 != null) {
+          updateOptions(node, !!props.multiple, value2, false);
         }
       }
       var didWarnValDefaultVal = false;
@@ -3879,10 +3879,10 @@ var require_react_dom_development = __commonJS((exports) => {
       }
       function updateWrapper$1(element, props) {
         var node = element;
-        var value = getToStringValue(props.value);
+        var value2 = getToStringValue(props.value);
         var defaultValue = getToStringValue(props.defaultValue);
-        if (value != null) {
-          var newValue = toString(value);
+        if (value2 != null) {
+          var newValue = toString(value2);
           if (newValue !== node.value) {
             node.value = newValue;
           }
@@ -4075,18 +4075,18 @@ var require_react_dom_development = __commonJS((exports) => {
           isUnitlessNumber[prefixKey(prefix2, prop)] = isUnitlessNumber[prop];
         });
       });
-      function dangerousStyleValue(name, value, isCustomProperty) {
-        var isEmpty = value == null || typeof value === "boolean" || value === "";
+      function dangerousStyleValue(name, value2, isCustomProperty) {
+        var isEmpty = value2 == null || typeof value2 === "boolean" || value2 === "";
         if (isEmpty) {
           return "";
         }
-        if (!isCustomProperty && typeof value === "number" && value !== 0 && !(isUnitlessNumber.hasOwnProperty(name) && isUnitlessNumber[name])) {
-          return value + "px";
+        if (!isCustomProperty && typeof value2 === "number" && value2 !== 0 && !(isUnitlessNumber.hasOwnProperty(name) && isUnitlessNumber[name])) {
+          return value2 + "px";
         }
         {
-          checkCSSPropertyStringCoercion(value, name);
+          checkCSSPropertyStringCoercion(value2, name);
         }
-        return ("" + value).trim();
+        return ("" + value2).trim();
       }
       var uppercasePattern = /([A-Z])/g;
       var msPattern = /^ms-/;
@@ -4123,40 +4123,40 @@ var require_react_dom_development = __commonJS((exports) => {
           warnedStyleNames[name] = true;
           error("Unsupported vendor-prefixed style property %s. Did you mean %s?", name, name.charAt(0).toUpperCase() + name.slice(1));
         };
-        var warnStyleValueWithSemicolon = function(name, value) {
-          if (warnedStyleValues.hasOwnProperty(value) && warnedStyleValues[value]) {
+        var warnStyleValueWithSemicolon = function(name, value2) {
+          if (warnedStyleValues.hasOwnProperty(value2) && warnedStyleValues[value2]) {
             return;
           }
-          warnedStyleValues[value] = true;
-          error(`Style property values shouldn't contain a semicolon. Try "%s: %s" instead.`, name, value.replace(badStyleValueWithSemicolonPattern, ""));
+          warnedStyleValues[value2] = true;
+          error(`Style property values shouldn't contain a semicolon. Try "%s: %s" instead.`, name, value2.replace(badStyleValueWithSemicolonPattern, ""));
         };
-        var warnStyleValueIsNaN = function(name, value) {
+        var warnStyleValueIsNaN = function(name, value2) {
           if (warnedForNaNValue) {
             return;
           }
           warnedForNaNValue = true;
           error("`NaN` is an invalid value for the `%s` css style property.", name);
         };
-        var warnStyleValueIsInfinity = function(name, value) {
+        var warnStyleValueIsInfinity = function(name, value2) {
           if (warnedForInfinityValue) {
             return;
           }
           warnedForInfinityValue = true;
           error("`Infinity` is an invalid value for the `%s` css style property.", name);
         };
-        warnValidStyle = function(name, value) {
+        warnValidStyle = function(name, value2) {
           if (name.indexOf("-") > -1) {
             warnHyphenatedStyleName(name);
           } else if (badVendoredStyleNamePattern.test(name)) {
             warnBadVendoredStyleName(name);
-          } else if (badStyleValueWithSemicolonPattern.test(value)) {
-            warnStyleValueWithSemicolon(name, value);
+          } else if (badStyleValueWithSemicolonPattern.test(value2)) {
+            warnStyleValueWithSemicolon(name, value2);
           }
-          if (typeof value === "number") {
-            if (isNaN(value)) {
-              warnStyleValueIsNaN(name, value);
-            } else if (!isFinite(value)) {
-              warnStyleValueIsInfinity(name, value);
+          if (typeof value2 === "number") {
+            if (isNaN(value2)) {
+              warnStyleValueIsNaN(name, value2);
+            } else if (!isFinite(value2)) {
+              warnStyleValueIsInfinity(name, value2);
             }
           }
         };
@@ -4204,8 +4204,8 @@ var require_react_dom_development = __commonJS((exports) => {
           }
         }
       }
-      function isValueEmpty(value) {
-        return value == null || typeof value === "boolean" || value === "";
+      function isValueEmpty(value2) {
+        return value2 == null || typeof value2 === "boolean" || value2 === "";
       }
       function expandShorthandMap(styles) {
         var expanded = {};
@@ -4929,7 +4929,7 @@ var require_react_dom_development = __commonJS((exports) => {
         var INVALID_EVENT_NAME_REGEX = /^on[^A-Z]/;
         var rARIA$1 = new RegExp("^(aria)-[" + ATTRIBUTE_NAME_CHAR + "]*$");
         var rARIACamel$1 = new RegExp("^(aria)[A-Z][" + ATTRIBUTE_NAME_CHAR + "]*$");
-        validateProperty$1 = function(tagName, name, value, eventRegistry) {
+        validateProperty$1 = function(tagName, name, value2, eventRegistry) {
           if (hasOwnProperty.call(warnedProperties$1, name) && warnedProperties$1[name]) {
             return true;
           }
@@ -4975,12 +4975,12 @@ var require_react_dom_development = __commonJS((exports) => {
             warnedProperties$1[name] = true;
             return true;
           }
-          if (lowerCasedName === "is" && value !== null && value !== undefined && typeof value !== "string") {
-            error("Received a `%s` for a string attribute `is`. If this is expected, cast the value to a string.", typeof value);
+          if (lowerCasedName === "is" && value2 !== null && value2 !== undefined && typeof value2 !== "string") {
+            error("Received a `%s` for a string attribute `is`. If this is expected, cast the value to a string.", typeof value2);
             warnedProperties$1[name] = true;
             return true;
           }
-          if (typeof value === "number" && isNaN(value)) {
+          if (typeof value2 === "number" && isNaN(value2)) {
             error("Received NaN for the `%s` attribute. If this is expected, cast the value to a string.", name);
             warnedProperties$1[name] = true;
             return true;
@@ -4999,11 +4999,11 @@ var require_react_dom_development = __commonJS((exports) => {
             warnedProperties$1[name] = true;
             return true;
           }
-          if (typeof value === "boolean" && shouldRemoveAttributeWithWarning(name, value, propertyInfo, false)) {
-            if (value) {
-              error('Received `%s` for a non-boolean attribute `%s`.\n\nIf you want to write it to the DOM, pass a string instead: %s="%s" or %s={value.toString()}.', value, name, name, value, name);
+          if (typeof value2 === "boolean" && shouldRemoveAttributeWithWarning(name, value2, propertyInfo, false)) {
+            if (value2) {
+              error('Received `%s` for a non-boolean attribute `%s`.\n\nIf you want to write it to the DOM, pass a string instead: %s="%s" or %s={value.toString()}.', value2, name, name, value2, name);
             } else {
-              error('Received `%s` for a non-boolean attribute `%s`.\n\nIf you want to write it to the DOM, pass a string instead: %s="%s" or %s={value.toString()}.\n\nIf you used to conditionally omit it with %s={condition && value}, pass %s={condition ? value : undefined} instead.', value, name, name, value, name, name, name);
+              error('Received `%s` for a non-boolean attribute `%s`.\n\nIf you want to write it to the DOM, pass a string instead: %s="%s" or %s={value.toString()}.\n\nIf you used to conditionally omit it with %s={condition && value}, pass %s={condition ? value : undefined} instead.', value2, name, name, value2, name, name, name);
             }
             warnedProperties$1[name] = true;
             return true;
@@ -5011,12 +5011,12 @@ var require_react_dom_development = __commonJS((exports) => {
           if (isReserved) {
             return true;
           }
-          if (shouldRemoveAttributeWithWarning(name, value, propertyInfo, false)) {
+          if (shouldRemoveAttributeWithWarning(name, value2, propertyInfo, false)) {
             warnedProperties$1[name] = true;
             return false;
           }
-          if ((value === "false" || value === "true") && propertyInfo !== null && propertyInfo.type === BOOLEAN) {
-            error("Received the string `%s` for the boolean attribute `%s`. %s Did you mean %s={%s}?", value, name, value === "false" ? "The browser will interpret it as a truthy value." : 'Although this works, it will not work as expected if you pass the string "false".', name, value);
+          if ((value2 === "false" || value2 === "true") && propertyInfo !== null && propertyInfo.type === BOOLEAN) {
+            error("Received the string `%s` for the boolean attribute `%s`. %s Did you mean %s={%s}?", value2, name, value2 === "false" ? "The browser will interpret it as a truthy value." : 'Although this works, it will not work as expected if you pass the string "false".', name, value2);
             warnedProperties$1[name] = true;
             return true;
           }
@@ -5340,8 +5340,8 @@ var require_react_dom_development = __commonJS((exports) => {
       function has(key) {
         return key._reactInternals !== undefined;
       }
-      function set(key, value) {
-        key._reactInternals = value;
+      function set(key, value2) {
+        key._reactInternals = value2;
       }
       var NoFlags = 0;
       var PerformedWork = 1;
@@ -5919,8 +5919,8 @@ var require_react_dom_development = __commonJS((exports) => {
       var clz32 = Math.clz32 ? Math.clz32 : clz32Fallback;
       var log = Math.log;
       var LN2 = Math.LN2;
-      function clz32Fallback(x) {
-        var asUint = x >>> 0;
+      function clz32Fallback(x2) {
+        var asUint = x2 >>> 0;
         if (asUint === 0) {
           return 32;
         }
@@ -7804,8 +7804,8 @@ var require_react_dom_development = __commonJS((exports) => {
         }
         accumulateEnterLeaveTwoPhaseListeners(dispatchQueue, leave, enter, from, to);
       }
-      function is(x, y) {
-        return x === y && (x !== 0 || 1 / x === 1 / y) || x !== x && y !== y;
+      function is(x2, y2) {
+        return x2 === y2 && (x2 !== 0 || 1 / x2 === 1 / y2) || x2 !== x2 && y2 !== y2;
       }
       var objectIs = typeof Object.is === "function" ? Object.is : is;
       function shallowEqual(objA, objB) {
@@ -10240,13 +10240,13 @@ var require_react_dom_development = __commonJS((exports) => {
         }
         index--;
       }
-      function push(cursor, value, fiber) {
+      function push(cursor, value2, fiber) {
         index++;
         valueStack[index] = cursor.current;
         {
           fiberStack[index] = fiber;
         }
-        cursor.current = value;
+        cursor.current = value2;
       }
       var warnedAboutMissingGetChildContext;
       {
@@ -10965,8 +10965,8 @@ var require_react_dom_development = __commonJS((exports) => {
         };
         var setToSortedString = function(set2) {
           var array = [];
-          set2.forEach(function(value) {
-            array.push(value);
+          set2.forEach(function(value2) {
+            array.push(value2);
           });
           return array.sort().join(", ");
         };
@@ -11317,13 +11317,13 @@ var require_react_dom_development = __commonJS((exports) => {
             error("Context can only be read while React is rendering. In classes, you can read it in the render method or getDerivedStateFromProps. In function components, you can read it directly in the function body, but not inside Hooks like useReducer() or useMemo().");
           }
         }
-        var value = context._currentValue;
+        var value2 = context._currentValue;
         if (lastFullyObservedContext === context)
           ;
         else {
           var contextItem = {
             context,
-            memoizedValue: value,
+            memoizedValue: value2,
             next: null
           };
           if (lastContextDependency === null) {
@@ -11339,7 +11339,7 @@ var require_react_dom_development = __commonJS((exports) => {
             lastContextDependency = lastContextDependency.next = contextItem;
           }
         }
-        return value;
+        return value2;
       }
       var concurrentQueues = null;
       function pushConcurrentUpdateQueue(queue) {
@@ -12452,15 +12452,15 @@ var require_react_dom_development = __commonJS((exports) => {
             if (current2 !== null && current2.ref !== null && typeof current2.ref === "function" && current2.ref._stringRef === stringRef) {
               return current2.ref;
             }
-            var ref = function(value) {
+            var ref = function(value2) {
               var refs = resolvedInst.refs;
               if (refs === emptyRefsObject) {
                 refs = resolvedInst.refs = {};
               }
-              if (value === null) {
+              if (value2 === null) {
                 delete refs[stringRef];
               } else {
-                refs[stringRef] = value;
+                refs[stringRef] = value2;
               }
             };
             ref._stringRef = stringRef;
@@ -14007,7 +14007,7 @@ var require_react_dom_development = __commonJS((exports) => {
         var effectDeps = deps !== null && deps !== undefined ? deps.concat([ref]) : null;
         return updateEffectImpl(Update, Layout, imperativeHandleEffect.bind(null, create, ref), effectDeps);
       }
-      function mountDebugValue(value, formatterFn) {
+      function mountDebugValue(value2, formatterFn) {
       }
       var updateDebugValue = mountDebugValue;
       function mountCallback(callback, deps) {
@@ -14054,31 +14054,31 @@ var require_react_dom_development = __commonJS((exports) => {
         hook.memoizedState = [nextValue, nextDeps];
         return nextValue;
       }
-      function mountDeferredValue(value) {
+      function mountDeferredValue(value2) {
         var hook = mountWorkInProgressHook();
-        hook.memoizedState = value;
-        return value;
+        hook.memoizedState = value2;
+        return value2;
       }
-      function updateDeferredValue(value) {
+      function updateDeferredValue(value2) {
         var hook = updateWorkInProgressHook();
         var resolvedCurrentHook = currentHook;
         var prevValue = resolvedCurrentHook.memoizedState;
-        return updateDeferredValueImpl(hook, prevValue, value);
+        return updateDeferredValueImpl(hook, prevValue, value2);
       }
-      function rerenderDeferredValue(value) {
+      function rerenderDeferredValue(value2) {
         var hook = updateWorkInProgressHook();
         if (currentHook === null) {
-          hook.memoizedState = value;
-          return value;
+          hook.memoizedState = value2;
+          return value2;
         } else {
           var prevValue = currentHook.memoizedState;
-          return updateDeferredValueImpl(hook, prevValue, value);
+          return updateDeferredValueImpl(hook, prevValue, value2);
         }
       }
-      function updateDeferredValueImpl(hook, prevValue, value) {
+      function updateDeferredValueImpl(hook, prevValue, value2) {
         var shouldDeferValue = !includesOnlyNonUrgentLanes(renderLanes);
         if (shouldDeferValue) {
-          if (!objectIs(value, prevValue)) {
+          if (!objectIs(value2, prevValue)) {
             var deferredLane = claimNextTransitionLane();
             currentlyRenderingFiber$1.lanes = mergeLanes(currentlyRenderingFiber$1.lanes, deferredLane);
             markSkippedUpdateLanes(deferredLane);
@@ -14090,8 +14090,8 @@ var require_react_dom_development = __commonJS((exports) => {
             hook.baseState = false;
             markWorkInProgressReceivedUpdate();
           }
-          hook.memoizedState = value;
-          return value;
+          hook.memoizedState = value2;
+          return value2;
         }
       }
       function startTransition(setPending, callback, options2) {
@@ -14390,15 +14390,15 @@ var require_react_dom_development = __commonJS((exports) => {
               ReactCurrentDispatcher$1.current = prevDispatcher;
             }
           },
-          useDebugValue: function(value, formatterFn) {
+          useDebugValue: function(value2, formatterFn) {
             currentHookNameInDev = "useDebugValue";
             mountHookTypesDev();
             return mountDebugValue();
           },
-          useDeferredValue: function(value) {
+          useDeferredValue: function(value2) {
             currentHookNameInDev = "useDeferredValue";
             mountHookTypesDev();
-            return mountDeferredValue(value);
+            return mountDeferredValue(value2);
           },
           useTransition: function() {
             currentHookNameInDev = "useTransition";
@@ -14494,15 +14494,15 @@ var require_react_dom_development = __commonJS((exports) => {
               ReactCurrentDispatcher$1.current = prevDispatcher;
             }
           },
-          useDebugValue: function(value, formatterFn) {
+          useDebugValue: function(value2, formatterFn) {
             currentHookNameInDev = "useDebugValue";
             updateHookTypesDev();
             return mountDebugValue();
           },
-          useDeferredValue: function(value) {
+          useDeferredValue: function(value2) {
             currentHookNameInDev = "useDeferredValue";
             updateHookTypesDev();
-            return mountDeferredValue(value);
+            return mountDeferredValue(value2);
           },
           useTransition: function() {
             currentHookNameInDev = "useTransition";
@@ -14598,15 +14598,15 @@ var require_react_dom_development = __commonJS((exports) => {
               ReactCurrentDispatcher$1.current = prevDispatcher;
             }
           },
-          useDebugValue: function(value, formatterFn) {
+          useDebugValue: function(value2, formatterFn) {
             currentHookNameInDev = "useDebugValue";
             updateHookTypesDev();
             return updateDebugValue();
           },
-          useDeferredValue: function(value) {
+          useDeferredValue: function(value2) {
             currentHookNameInDev = "useDeferredValue";
             updateHookTypesDev();
-            return updateDeferredValue(value);
+            return updateDeferredValue(value2);
           },
           useTransition: function() {
             currentHookNameInDev = "useTransition";
@@ -14702,15 +14702,15 @@ var require_react_dom_development = __commonJS((exports) => {
               ReactCurrentDispatcher$1.current = prevDispatcher;
             }
           },
-          useDebugValue: function(value, formatterFn) {
+          useDebugValue: function(value2, formatterFn) {
             currentHookNameInDev = "useDebugValue";
             updateHookTypesDev();
             return updateDebugValue();
           },
-          useDeferredValue: function(value) {
+          useDeferredValue: function(value2) {
             currentHookNameInDev = "useDeferredValue";
             updateHookTypesDev();
-            return rerenderDeferredValue(value);
+            return rerenderDeferredValue(value2);
           },
           useTransition: function() {
             currentHookNameInDev = "useTransition";
@@ -14817,17 +14817,17 @@ var require_react_dom_development = __commonJS((exports) => {
               ReactCurrentDispatcher$1.current = prevDispatcher;
             }
           },
-          useDebugValue: function(value, formatterFn) {
+          useDebugValue: function(value2, formatterFn) {
             currentHookNameInDev = "useDebugValue";
             warnInvalidHookAccess();
             mountHookTypesDev();
             return mountDebugValue();
           },
-          useDeferredValue: function(value) {
+          useDeferredValue: function(value2) {
             currentHookNameInDev = "useDeferredValue";
             warnInvalidHookAccess();
             mountHookTypesDev();
-            return mountDeferredValue(value);
+            return mountDeferredValue(value2);
           },
           useTransition: function() {
             currentHookNameInDev = "useTransition";
@@ -14938,17 +14938,17 @@ var require_react_dom_development = __commonJS((exports) => {
               ReactCurrentDispatcher$1.current = prevDispatcher;
             }
           },
-          useDebugValue: function(value, formatterFn) {
+          useDebugValue: function(value2, formatterFn) {
             currentHookNameInDev = "useDebugValue";
             warnInvalidHookAccess();
             updateHookTypesDev();
             return updateDebugValue();
           },
-          useDeferredValue: function(value) {
+          useDeferredValue: function(value2) {
             currentHookNameInDev = "useDeferredValue";
             warnInvalidHookAccess();
             updateHookTypesDev();
-            return updateDeferredValue(value);
+            return updateDeferredValue(value2);
           },
           useTransition: function() {
             currentHookNameInDev = "useTransition";
@@ -15059,17 +15059,17 @@ var require_react_dom_development = __commonJS((exports) => {
               ReactCurrentDispatcher$1.current = prevDispatcher;
             }
           },
-          useDebugValue: function(value, formatterFn) {
+          useDebugValue: function(value2, formatterFn) {
             currentHookNameInDev = "useDebugValue";
             warnInvalidHookAccess();
             updateHookTypesDev();
             return updateDebugValue();
           },
-          useDeferredValue: function(value) {
+          useDeferredValue: function(value2) {
             currentHookNameInDev = "useDeferredValue";
             warnInvalidHookAccess();
             updateHookTypesDev();
-            return rerenderDeferredValue(value);
+            return rerenderDeferredValue(value2);
           },
           useTransition: function() {
             currentHookNameInDev = "useTransition";
@@ -15207,17 +15207,17 @@ var require_react_dom_development = __commonJS((exports) => {
           child = child.sibling;
         }
       }
-      function createCapturedValueAtFiber(value, source) {
+      function createCapturedValueAtFiber(value2, source) {
         return {
-          value,
+          value: value2,
           source,
           stack: getStackByFiberInDevAndProd(source),
           digest: null
         };
       }
-      function createCapturedValue(value, digest, stack) {
+      function createCapturedValue(value2, digest, stack) {
         return {
-          value,
+          value: value2,
           source: null,
           stack: stack != null ? stack : null,
           digest: digest != null ? digest : null
@@ -15403,15 +15403,15 @@ var require_react_dom_development = __commonJS((exports) => {
         suspenseBoundary.lanes = rootRenderLanes;
         return suspenseBoundary;
       }
-      function throwException(root2, returnFiber, sourceFiber, value, rootRenderLanes) {
+      function throwException(root2, returnFiber, sourceFiber, value2, rootRenderLanes) {
         sourceFiber.flags |= Incomplete;
         {
           if (isDevToolsPresent) {
             restorePendingUpdaters(root2, rootRenderLanes);
           }
         }
-        if (value !== null && typeof value === "object" && typeof value.then === "function") {
-          var wakeable = value;
+        if (value2 !== null && typeof value2 === "object" && typeof value2.then === "function") {
+          var wakeable = value2;
           resetSuspendedComponent(sourceFiber);
           {
             if (getIsHydrating() && sourceFiber.mode & ConcurrentMode) {
@@ -15434,7 +15434,7 @@ var require_react_dom_development = __commonJS((exports) => {
               return;
             }
             var uncaughtSuspenseError = new Error("A component suspended while responding to synchronous input. This will cause the UI to be replaced with a loading indicator. To fix, updates that suspend should be wrapped with startTransition.");
-            value = uncaughtSuspenseError;
+            value2 = uncaughtSuspenseError;
           }
         } else {
           if (getIsHydrating() && sourceFiber.mode & ConcurrentMode) {
@@ -15445,18 +15445,18 @@ var require_react_dom_development = __commonJS((exports) => {
                 _suspenseBoundary.flags |= ForceClientRender;
               }
               markSuspenseBoundaryShouldCapture(_suspenseBoundary, returnFiber, sourceFiber, root2, rootRenderLanes);
-              queueHydrationError(createCapturedValueAtFiber(value, sourceFiber));
+              queueHydrationError(createCapturedValueAtFiber(value2, sourceFiber));
               return;
             }
           }
         }
-        value = createCapturedValueAtFiber(value, sourceFiber);
-        renderDidError(value);
+        value2 = createCapturedValueAtFiber(value2, sourceFiber);
+        renderDidError(value2);
         var workInProgress2 = returnFiber;
         do {
           switch (workInProgress2.tag) {
             case HostRoot: {
-              var _errorInfo = value;
+              var _errorInfo = value2;
               workInProgress2.flags |= ShouldCapture;
               var lane = pickArbitraryLane(rootRenderLanes);
               workInProgress2.lanes = mergeLanes(workInProgress2.lanes, lane);
@@ -15465,7 +15465,7 @@ var require_react_dom_development = __commonJS((exports) => {
               return;
             }
             case ClassComponent:
-              var errorInfo = value;
+              var errorInfo = value2;
               var ctor = workInProgress2.type;
               var instance = workInProgress2.stateNode;
               if ((workInProgress2.flags & DidCapture) === NoFlags && (typeof ctor.getDerivedStateFromError === "function" || instance !== null && typeof instance.componentDidCatch === "function" && !isAlreadyFailedLegacyErrorBoundary(instance))) {
@@ -15625,7 +15625,7 @@ var require_react_dom_development = __commonJS((exports) => {
               var init = lazyComponent._init;
               try {
                 outerMemoType = init(payload);
-              } catch (x) {
+              } catch (x2) {
                 outerMemoType = null;
               }
               var outerPropTypes = outerMemoType && outerMemoType.propTypes;
@@ -16068,7 +16068,7 @@ var require_react_dom_development = __commonJS((exports) => {
           context = getMaskedContext(workInProgress2, unmaskedContext);
         }
         prepareToReadContext(workInProgress2, renderLanes2);
-        var value;
+        var value2;
         var hasId;
         {
           markComponentRenderStarted(workInProgress2);
@@ -16086,7 +16086,7 @@ var require_react_dom_development = __commonJS((exports) => {
           }
           setIsRendering(true);
           ReactCurrentOwner$1.current = workInProgress2;
-          value = renderWithHooks(null, workInProgress2, Component2, props, context, renderLanes2);
+          value2 = renderWithHooks(null, workInProgress2, Component2, props, context, renderLanes2);
           hasId = checkDidRenderIdHook();
           setIsRendering(false);
         }
@@ -16095,7 +16095,7 @@ var require_react_dom_development = __commonJS((exports) => {
         }
         workInProgress2.flags |= PerformedWork;
         {
-          if (typeof value === "object" && value !== null && typeof value.render === "function" && value.$$typeof === undefined) {
+          if (typeof value2 === "object" && value2 !== null && typeof value2.render === "function" && value2.$$typeof === undefined) {
             var _componentName = getComponentNameFromType(Component2) || "Unknown";
             if (!didWarnAboutModulePatternComponent[_componentName]) {
               error("The <%s /> component appears to be a function component that returns a class instance. Change %s to a class that extends React.Component instead. If you can't use a class try assigning the prototype on the function as a workaround. `%s.prototype = React.Component.prototype`. Don't use an arrow function since it cannot be called with `new` by React.", _componentName, _componentName, _componentName);
@@ -16103,7 +16103,7 @@ var require_react_dom_development = __commonJS((exports) => {
             }
           }
         }
-        if (typeof value === "object" && value !== null && typeof value.render === "function" && value.$$typeof === undefined) {
+        if (typeof value2 === "object" && value2 !== null && typeof value2.render === "function" && value2.$$typeof === undefined) {
           {
             var _componentName2 = getComponentNameFromType(Component2) || "Unknown";
             if (!didWarnAboutModulePatternComponent[_componentName2]) {
@@ -16121,9 +16121,9 @@ var require_react_dom_development = __commonJS((exports) => {
           } else {
             hasContext = false;
           }
-          workInProgress2.memoizedState = value.state !== null && value.state !== undefined ? value.state : null;
+          workInProgress2.memoizedState = value2.state !== null && value2.state !== undefined ? value2.state : null;
           initializeUpdateQueue(workInProgress2);
-          adoptClassInstance(workInProgress2, value);
+          adoptClassInstance(workInProgress2, value2);
           mountClassInstance(workInProgress2, Component2, props, renderLanes2);
           return finishClassComponent(null, workInProgress2, Component2, true, hasContext, renderLanes2);
         } else {
@@ -16132,7 +16132,7 @@ var require_react_dom_development = __commonJS((exports) => {
             if (workInProgress2.mode & StrictLegacyMode) {
               setIsStrictModeForDevtools(true);
               try {
-                value = renderWithHooks(null, workInProgress2, Component2, props, context, renderLanes2);
+                value2 = renderWithHooks(null, workInProgress2, Component2, props, context, renderLanes2);
                 hasId = checkDidRenderIdHook();
               } finally {
                 setIsStrictModeForDevtools(false);
@@ -16142,7 +16142,7 @@ var require_react_dom_development = __commonJS((exports) => {
           if (getIsHydrating() && hasId) {
             pushMaterializedTreeId(workInProgress2);
           }
-          reconcileChildren(null, workInProgress2, value, renderLanes2);
+          reconcileChildren(null, workInProgress2, value2, renderLanes2);
           {
             validateFunctionComponentInDev(workInProgress2, Component2);
           }
@@ -21985,17 +21985,17 @@ var require_react_dom_development = __commonJS((exports) => {
           }
           return copyWithRenameImpl(obj, oldPath, newPath, 0);
         };
-        var copyWithSetImpl = function(obj, path, index2, value) {
+        var copyWithSetImpl = function(obj, path, index2, value2) {
           if (index2 >= path.length) {
-            return value;
+            return value2;
           }
           var key = path[index2];
           var updated = isArray(obj) ? obj.slice() : assign({}, obj);
-          updated[key] = copyWithSetImpl(obj[key], path, index2 + 1, value);
+          updated[key] = copyWithSetImpl(obj[key], path, index2 + 1, value2);
           return updated;
         };
-        var copyWithSet = function(obj, path, value) {
-          return copyWithSetImpl(obj, path, 0, value);
+        var copyWithSet = function(obj, path, value2) {
+          return copyWithSetImpl(obj, path, 0, value2);
         };
         var findHook = function(fiber, id) {
           var currentHook2 = fiber.memoizedState;
@@ -22005,10 +22005,10 @@ var require_react_dom_development = __commonJS((exports) => {
           }
           return currentHook2;
         };
-        overrideHookState = function(fiber, id, path, value) {
+        overrideHookState = function(fiber, id, path, value2) {
           var hook = findHook(fiber, id);
           if (hook !== null) {
-            var newState = copyWithSet(hook.memoizedState, path, value);
+            var newState = copyWithSet(hook.memoizedState, path, value2);
             hook.memoizedState = newState;
             hook.baseState = newState;
             fiber.memoizedProps = assign({}, fiber.memoizedProps);
@@ -22044,8 +22044,8 @@ var require_react_dom_development = __commonJS((exports) => {
             }
           }
         };
-        overrideProps = function(fiber, path, value) {
-          fiber.pendingProps = copyWithSet(fiber.memoizedProps, path, value);
+        overrideProps = function(fiber, path, value2) {
+          fiber.pendingProps = copyWithSet(fiber.memoizedProps, path, value2);
           if (fiber.alternate) {
             fiber.alternate.pendingProps = fiber.pendingProps;
           }
@@ -22724,7 +22724,7 @@ var require_react_jsx_dev_runtime_development = __commonJS((exports) => {
               var init = lazyComponent._init;
               try {
                 return getComponentNameFromType(init(payload));
-              } catch (x) {
+              } catch (x2) {
                 return null;
               }
             }
@@ -22818,8 +22818,8 @@ var require_react_jsx_dev_runtime_development = __commonJS((exports) => {
           if (prefix === undefined) {
             try {
               throw Error();
-            } catch (x) {
-              var match = x.stack.trim().match(/\n( *(at )?)/);
+            } catch (x2) {
+              var match = x2.stack.trim().match(/\n( *(at )?)/);
               prefix = match && match[1] || "";
             }
           }
@@ -22865,23 +22865,23 @@ var require_react_jsx_dev_runtime_development = __commonJS((exports) => {
             if (typeof Reflect === "object" && Reflect.construct) {
               try {
                 Reflect.construct(Fake, []);
-              } catch (x) {
-                control = x;
+              } catch (x2) {
+                control = x2;
               }
               Reflect.construct(fn, [], Fake);
             } else {
               try {
                 Fake.call();
-              } catch (x) {
-                control = x;
+              } catch (x2) {
+                control = x2;
               }
               fn.call(Fake.prototype);
             }
           } else {
             try {
               throw Error();
-            } catch (x) {
-              control = x;
+            } catch (x2) {
+              control = x2;
             }
             fn();
           }
@@ -22974,7 +22974,7 @@ var require_react_jsx_dev_runtime_development = __commonJS((exports) => {
               var init = lazyComponent._init;
               try {
                 return describeUnknownElementTypeFrameInDEV(init(payload), source, ownerFn);
-              } catch (x) {
+              } catch (x2) {
               }
             }
           }
@@ -23030,31 +23030,31 @@ var require_react_jsx_dev_runtime_development = __commonJS((exports) => {
       function isArray(a) {
         return isArrayImpl(a);
       }
-      function typeName(value) {
+      function typeName(value2) {
         {
           var hasToStringTag = typeof Symbol === "function" && Symbol.toStringTag;
-          var type = hasToStringTag && value[Symbol.toStringTag] || value.constructor.name || "Object";
+          var type = hasToStringTag && value2[Symbol.toStringTag] || value2.constructor.name || "Object";
           return type;
         }
       }
-      function willCoercionThrow(value) {
+      function willCoercionThrow(value2) {
         {
           try {
-            testStringCoercion(value);
+            testStringCoercion(value2);
             return false;
           } catch (e) {
             return true;
           }
         }
       }
-      function testStringCoercion(value) {
-        return "" + value;
+      function testStringCoercion(value2) {
+        return "" + value2;
       }
-      function checkKeyStringCoercion(value) {
+      function checkKeyStringCoercion(value2) {
         {
-          if (willCoercionThrow(value)) {
-            error("The provided key is an unsupported type %s. This value must be coerced to a string before before using it here.", typeName(value));
-            return testStringCoercion(value);
+          if (willCoercionThrow(value2)) {
+            error("The provided key is an unsupported type %s. This value must be coerced to a string before before using it here.", typeName(value2));
+            return testStringCoercion(value2);
           }
         }
       }
@@ -23454,46 +23454,46 @@ var generateUUID = function() {
   const uuid = _lut[d0 & 255] + _lut[d0 >> 8 & 255] + _lut[d0 >> 16 & 255] + _lut[d0 >> 24 & 255] + "-" + _lut[d1 & 255] + _lut[d1 >> 8 & 255] + "-" + _lut[d1 >> 16 & 15 | 64] + _lut[d1 >> 24 & 255] + "-" + _lut[d2 & 63 | 128] + _lut[d2 >> 8 & 255] + "-" + _lut[d2 >> 16 & 255] + _lut[d2 >> 24 & 255] + _lut[d3 & 255] + _lut[d3 >> 8 & 255] + _lut[d3 >> 16 & 255] + _lut[d3 >> 24 & 255];
   return uuid.toLowerCase();
 };
-var clamp = function(value, min, max) {
-  return Math.max(min, Math.min(max, value));
+var clamp = function(value2, min, max) {
+  return Math.max(min, Math.min(max, value2));
 };
 var euclideanModulo = function(n, m) {
   return (n % m + m) % m;
 };
-var mapLinear = function(x, a1, a2, b1, b2) {
-  return b1 + (x - a1) * (b2 - b1) / (a2 - a1);
+var mapLinear = function(x2, a1, a2, b1, b2) {
+  return b1 + (x2 - a1) * (b2 - b1) / (a2 - a1);
 };
-var inverseLerp = function(x, y, value) {
-  if (x !== y) {
-    return (value - x) / (y - x);
+var inverseLerp = function(x2, y2, value2) {
+  if (x2 !== y2) {
+    return (value2 - x2) / (y2 - x2);
   } else {
     return 0;
   }
 };
-var lerp = function(x, y, t) {
-  return (1 - t) * x + t * y;
+var lerp = function(x2, y2, t) {
+  return (1 - t) * x2 + t * y2;
 };
-var damp = function(x, y, lambda, dt) {
-  return lerp(x, y, 1 - Math.exp(-lambda * dt));
+var damp = function(x2, y2, lambda, dt) {
+  return lerp(x2, y2, 1 - Math.exp(-lambda * dt));
 };
-var pingpong = function(x, length = 1) {
-  return length - Math.abs(euclideanModulo(x, length * 2) - length);
+var pingpong = function(x2, length = 1) {
+  return length - Math.abs(euclideanModulo(x2, length * 2) - length);
 };
-var smoothstep = function(x, min, max) {
-  if (x <= min)
+var smoothstep = function(x2, min, max) {
+  if (x2 <= min)
     return 0;
-  if (x >= max)
+  if (x2 >= max)
     return 1;
-  x = (x - min) / (max - min);
-  return x * x * (3 - 2 * x);
+  x2 = (x2 - min) / (max - min);
+  return x2 * x2 * (3 - 2 * x2);
 };
-var smootherstep = function(x, min, max) {
-  if (x <= min)
+var smootherstep = function(x2, min, max) {
+  if (x2 <= min)
     return 0;
-  if (x >= max)
+  if (x2 >= max)
     return 1;
-  x = (x - min) / (max - min);
-  return x * x * x * (x * (x * 6 - 15) + 10);
+  x2 = (x2 - min) / (max - min);
+  return x2 * x2 * x2 * (x2 * (x2 * 6 - 15) + 10);
 };
 var randInt = function(low, high) {
   return low + Math.floor(Math.random() * (high - low + 1));
@@ -23518,14 +23518,14 @@ var degToRad = function(degrees) {
 var radToDeg = function(radians) {
   return radians * RAD2DEG;
 };
-var isPowerOfTwo = function(value) {
-  return (value & value - 1) === 0 && value !== 0;
+var isPowerOfTwo = function(value2) {
+  return (value2 & value2 - 1) === 0 && value2 !== 0;
 };
-var ceilPowerOfTwo = function(value) {
-  return Math.pow(2, Math.ceil(Math.log(value) / Math.LN2));
+var ceilPowerOfTwo = function(value2) {
+  return Math.pow(2, Math.ceil(Math.log(value2) / Math.LN2));
 };
-var floorPowerOfTwo = function(value) {
-  return Math.pow(2, Math.floor(Math.log(value) / Math.LN2));
+var floorPowerOfTwo = function(value2) {
+  return Math.pow(2, Math.floor(Math.log(value2) / Math.LN2));
 };
 var setQuaternionFromProperEuler = function(q, a, b, c, order) {
   const cos = Math.cos;
@@ -23561,42 +23561,42 @@ var setQuaternionFromProperEuler = function(q, a, b, c, order) {
       console.warn("THREE.MathUtils: .setQuaternionFromProperEuler() encountered an unknown order: " + order);
   }
 };
-var denormalize = function(value, array) {
+var denormalize = function(value2, array) {
   switch (array.constructor) {
     case Float32Array:
-      return value;
+      return value2;
     case Uint32Array:
-      return value / 4294967295;
+      return value2 / 4294967295;
     case Uint16Array:
-      return value / 65535;
+      return value2 / 65535;
     case Uint8Array:
-      return value / 255;
+      return value2 / 255;
     case Int32Array:
-      return Math.max(value / 2147483647, -1);
+      return Math.max(value2 / 2147483647, -1);
     case Int16Array:
-      return Math.max(value / 32767, -1);
+      return Math.max(value2 / 32767, -1);
     case Int8Array:
-      return Math.max(value / 127, -1);
+      return Math.max(value2 / 127, -1);
     default:
       throw new Error("Invalid component type.");
   }
 };
-var normalize = function(value, array) {
+var normalize = function(value2, array) {
   switch (array.constructor) {
     case Float32Array:
-      return value;
+      return value2;
     case Uint32Array:
-      return Math.round(value * 4294967295);
+      return Math.round(value2 * 4294967295);
     case Uint16Array:
-      return Math.round(value * 65535);
+      return Math.round(value2 * 65535);
     case Uint8Array:
-      return Math.round(value * 255);
+      return Math.round(value2 * 255);
     case Int32Array:
-      return Math.round(value * 2147483647);
+      return Math.round(value2 * 2147483647);
     case Int16Array:
-      return Math.round(value * 32767);
+      return Math.round(value2 * 32767);
     case Int8Array:
-      return Math.round(value * 127);
+      return Math.round(value2 * 127);
     default:
       throw new Error("Invalid component type.");
   }
@@ -23801,8 +23801,8 @@ var WebGLAnimation = function() {
     setAnimationLoop: function(callback) {
       animationLoop = callback;
     },
-    setContext: function(value) {
-      context = value;
+    setContext: function(value2) {
+      context = value2;
     }
   };
 };
@@ -24317,20 +24317,20 @@ var WebGLBindingStates = function(gl, extensions, attributes, capabilities) {
             }
           }
         } else if (materialDefaultAttributeValues !== undefined) {
-          const value = materialDefaultAttributeValues[name];
-          if (value !== undefined) {
-            switch (value.length) {
+          const value2 = materialDefaultAttributeValues[name];
+          if (value2 !== undefined) {
+            switch (value2.length) {
               case 2:
-                gl.vertexAttrib2fv(programAttribute.location, value);
+                gl.vertexAttrib2fv(programAttribute.location, value2);
                 break;
               case 3:
-                gl.vertexAttrib3fv(programAttribute.location, value);
+                gl.vertexAttrib3fv(programAttribute.location, value2);
                 break;
               case 4:
-                gl.vertexAttrib4fv(programAttribute.location, value);
+                gl.vertexAttrib4fv(programAttribute.location, value2);
                 break;
               default:
-                gl.vertexAttrib1fv(programAttribute.location, value);
+                gl.vertexAttrib1fv(programAttribute.location, value2);
             }
           }
         }
@@ -24408,8 +24408,8 @@ var WebGLBindingStates = function(gl, extensions, attributes, capabilities) {
 var WebGLBufferRenderer = function(gl, extensions, info, capabilities) {
   const isWebGL2 = capabilities.isWebGL2;
   let mode;
-  function setMode(value) {
-    mode = value;
+  function setMode(value2) {
+    mode = value2;
   }
   function render(start, count) {
     gl.drawArrays(mode, start, count);
@@ -24681,26 +24681,26 @@ var _createPlanes = function(lodMax) {
     const uv = new Float32Array(uvSize * vertices * cubeFaces);
     const faceIndex = new Float32Array(faceIndexSize * vertices * cubeFaces);
     for (let face = 0;face < cubeFaces; face++) {
-      const x = face % 3 * 2 / 3 - 1;
-      const y = face > 2 ? 0 : -1;
+      const x2 = face % 3 * 2 / 3 - 1;
+      const y2 = face > 2 ? 0 : -1;
       const coordinates = [
-        x,
-        y,
+        x2,
+        y2,
         0,
-        x + 2 / 3,
-        y,
+        x2 + 2 / 3,
+        y2,
         0,
-        x + 2 / 3,
-        y + 1,
+        x2 + 2 / 3,
+        y2 + 1,
         0,
-        x,
-        y,
+        x2,
+        y2,
         0,
-        x + 2 / 3,
-        y + 1,
+        x2 + 2 / 3,
+        y2 + 1,
         0,
-        x,
-        y + 1,
+        x2,
+        y2 + 1,
         0
       ];
       position.set(coordinates, positionSize * vertices * face);
@@ -24726,9 +24726,9 @@ var _createRenderTarget = function(width, height, params) {
   cubeUVRenderTarget.scissorTest = true;
   return cubeUVRenderTarget;
 };
-var _setViewport = function(target, x, y, width, height) {
-  target.viewport.set(x, y, width, height);
-  target.scissor.set(x, y, width, height);
+var _setViewport = function(target, x2, y2, width, height) {
+  target.viewport.set(x2, y2, width, height);
+  target.scissor.set(x2, y2, width, height);
 };
 var _getBlurShader = function(lodMax, width, height) {
   const weights = new Float32Array(MAX_SAMPLES);
@@ -25170,13 +25170,13 @@ var WebGLGeometries = function(gl, attributes, info, bindingStates) {
 var WebGLIndexedBufferRenderer = function(gl, extensions, info, capabilities) {
   const isWebGL2 = capabilities.isWebGL2;
   let mode;
-  function setMode(value) {
-    mode = value;
+  function setMode(value2) {
+    mode = value2;
   }
   let type, bytesPerElement;
-  function setIndex(value) {
-    type = value.type;
-    bytesPerElement = value.bytesPerElement;
+  function setIndex(value2) {
+    type = value2.type;
+    bytesPerElement = value2.bytesPerElement;
   }
   function render(start, count) {
     gl.drawElements(mode, count, type, start * bytesPerElement);
@@ -25405,16 +25405,16 @@ var WebGLMorphtargets = function(gl, capabilities, textures) {
       for (let i = 0;i < 8; i++) {
         const influence = workInfluences[i];
         const index = influence[0];
-        const value = influence[1];
-        if (index !== Number.MAX_SAFE_INTEGER && value) {
+        const value2 = influence[1];
+        if (index !== Number.MAX_SAFE_INTEGER && value2) {
           if (morphTargets && geometry.getAttribute("morphTarget" + i) !== morphTargets[index]) {
             geometry.setAttribute("morphTarget" + i, morphTargets[index]);
           }
           if (morphNormals && geometry.getAttribute("morphNormal" + i) !== morphNormals[index]) {
             geometry.setAttribute("morphNormal" + i, morphNormals[index]);
           }
-          morphInfluences[i] = value;
-          morphInfluencesSum += value;
+          morphInfluences[i] = value2;
+          morphInfluencesSum += value2;
         } else {
           if (morphTargets && geometry.hasAttribute("morphTarget" + i) === true) {
             geometry.deleteAttribute("morphTarget" + i);
@@ -26125,10 +26125,10 @@ var generateVertexExtensions = function(parameters) {
 var generateDefines = function(defines) {
   const chunks = [];
   for (const name in defines) {
-    const value = defines[name];
-    if (value === false)
+    const value2 = defines[name];
+    if (value2 === false)
       continue;
-    chunks.push("#define " + name + " " + value);
+    chunks.push("#define " + name + " " + value2);
   }
   return chunks.join("\n");
 };
@@ -26670,10 +26670,10 @@ var WebGLPrograms = function(renderer, cubemaps, cubeuvmaps, extensions, capabil
     ShadowMaterial: "shadow",
     SpriteMaterial: "sprite"
   };
-  function getChannel(value) {
-    if (value === 0)
+  function getChannel(value2) {
+    if (value2 === 0)
       return "uv";
-    return `uv${value}`;
+    return `uv${value2}`;
   }
   function getParameters(material, lights, shadows, scene, object) {
     const fog = scene.fog;
@@ -27116,8 +27116,8 @@ var WebGLProperties = function() {
   function remove(object) {
     properties.delete(object);
   }
-  function update(object, key, value) {
-    properties.get(object)[key] = value;
+  function update(object, key, value2) {
+    properties.get(object)[key] = value2;
   }
   function dispose() {
     properties = new WeakMap;
@@ -27165,7 +27165,7 @@ var WebGLRenderList = function() {
     transmissive.length = 0;
     transparent.length = 0;
   }
-  function getNextRenderItem(object, geometry, material, groupOrder, z, group) {
+  function getNextRenderItem(object, geometry, material, groupOrder, z2, group) {
     let renderItem = renderItems[renderItemsIndex];
     if (renderItem === undefined) {
       renderItem = {
@@ -27175,7 +27175,7 @@ var WebGLRenderList = function() {
         material,
         groupOrder,
         renderOrder: object.renderOrder,
-        z,
+        z: z2,
         group
       };
       renderItems[renderItemsIndex] = renderItem;
@@ -27186,14 +27186,14 @@ var WebGLRenderList = function() {
       renderItem.material = material;
       renderItem.groupOrder = groupOrder;
       renderItem.renderOrder = object.renderOrder;
-      renderItem.z = z;
+      renderItem.z = z2;
       renderItem.group = group;
     }
     renderItemsIndex++;
     return renderItem;
   }
-  function push(object, geometry, material, groupOrder, z, group) {
-    const renderItem = getNextRenderItem(object, geometry, material, groupOrder, z, group);
+  function push(object, geometry, material, groupOrder, z2, group) {
+    const renderItem = getNextRenderItem(object, geometry, material, groupOrder, z2, group);
     if (material.transmission > 0) {
       transmissive.push(renderItem);
     } else if (material.transparent === true) {
@@ -27202,8 +27202,8 @@ var WebGLRenderList = function() {
       opaque.push(renderItem);
     }
   }
-  function unshift(object, geometry, material, groupOrder, z, group) {
-    const renderItem = getNextRenderItem(object, geometry, material, groupOrder, z, group);
+  function unshift(object, geometry, material, groupOrder, z2, group) {
+    const renderItem = getNextRenderItem(object, geometry, material, groupOrder, z2, group);
     if (material.transmission > 0) {
       transmissive.unshift(renderItem);
     } else if (material.transparent === true) {
@@ -30348,26 +30348,26 @@ var WebGLUniformsGroups = function(gl, info, capabilities, state) {
           const values = Array.isArray(uniform.value) ? uniform.value : [uniform.value];
           let arrayOffset = 0;
           for (let k = 0;k < values.length; k++) {
-            const value = values[k];
-            const info2 = getUniformSize(value);
-            if (typeof value === "number" || typeof value === "boolean") {
-              uniform.__data[0] = value;
+            const value2 = values[k];
+            const info2 = getUniformSize(value2);
+            if (typeof value2 === "number" || typeof value2 === "boolean") {
+              uniform.__data[0] = value2;
               gl.bufferSubData(gl.UNIFORM_BUFFER, offset + arrayOffset, uniform.__data);
-            } else if (value.isMatrix3) {
-              uniform.__data[0] = value.elements[0];
-              uniform.__data[1] = value.elements[1];
-              uniform.__data[2] = value.elements[2];
+            } else if (value2.isMatrix3) {
+              uniform.__data[0] = value2.elements[0];
+              uniform.__data[1] = value2.elements[1];
+              uniform.__data[2] = value2.elements[2];
               uniform.__data[3] = 0;
-              uniform.__data[4] = value.elements[3];
-              uniform.__data[5] = value.elements[4];
-              uniform.__data[6] = value.elements[5];
+              uniform.__data[4] = value2.elements[3];
+              uniform.__data[5] = value2.elements[4];
+              uniform.__data[6] = value2.elements[5];
               uniform.__data[7] = 0;
-              uniform.__data[8] = value.elements[6];
-              uniform.__data[9] = value.elements[7];
-              uniform.__data[10] = value.elements[8];
+              uniform.__data[8] = value2.elements[6];
+              uniform.__data[9] = value2.elements[7];
+              uniform.__data[10] = value2.elements[8];
               uniform.__data[11] = 0;
             } else {
-              value.toArray(uniform.__data, arrayOffset);
+              value2.toArray(uniform.__data, arrayOffset);
               arrayOffset += info2.storage / Float32Array.BYTES_PER_ELEMENT;
             }
           }
@@ -30378,25 +30378,25 @@ var WebGLUniformsGroups = function(gl, info, capabilities, state) {
     gl.bindBuffer(gl.UNIFORM_BUFFER, null);
   }
   function hasUniformChanged(uniform, index, indexArray, cache) {
-    const value = uniform.value;
+    const value2 = uniform.value;
     const indexString = index + "_" + indexArray;
     if (cache[indexString] === undefined) {
-      if (typeof value === "number" || typeof value === "boolean") {
-        cache[indexString] = value;
+      if (typeof value2 === "number" || typeof value2 === "boolean") {
+        cache[indexString] = value2;
       } else {
-        cache[indexString] = value.clone();
+        cache[indexString] = value2.clone();
       }
       return true;
     } else {
       const cachedObject = cache[indexString];
-      if (typeof value === "number" || typeof value === "boolean") {
-        if (cachedObject !== value) {
-          cache[indexString] = value;
+      if (typeof value2 === "number" || typeof value2 === "boolean") {
+        if (cachedObject !== value2) {
+          cache[indexString] = value2;
           return true;
         }
       } else {
-        if (cachedObject.equals(value) === false) {
-          cachedObject.copy(value);
+        if (cachedObject.equals(value2) === false) {
+          cachedObject.copy(value2);
           return true;
         }
       }
@@ -30413,8 +30413,8 @@ var WebGLUniformsGroups = function(gl, info, capabilities, state) {
         const uniform = uniformArray[j];
         const values = Array.isArray(uniform.value) ? uniform.value : [uniform.value];
         for (let k = 0, kl = values.length;k < kl; k++) {
-          const value = values[k];
-          const info2 = getUniformSize(value);
+          const value2 = values[k];
+          const info2 = getUniformSize(value2);
           const chunkOffsetUniform = offset % chunkSize;
           if (chunkOffsetUniform !== 0 && chunkSize - chunkOffsetUniform < info2.boundary) {
             offset += chunkSize - chunkOffsetUniform;
@@ -30432,33 +30432,33 @@ var WebGLUniformsGroups = function(gl, info, capabilities, state) {
     uniformsGroup.__cache = {};
     return this;
   }
-  function getUniformSize(value) {
+  function getUniformSize(value2) {
     const info2 = {
       boundary: 0,
       storage: 0
     };
-    if (typeof value === "number" || typeof value === "boolean") {
+    if (typeof value2 === "number" || typeof value2 === "boolean") {
       info2.boundary = 4;
       info2.storage = 4;
-    } else if (value.isVector2) {
+    } else if (value2.isVector2) {
       info2.boundary = 8;
       info2.storage = 8;
-    } else if (value.isVector3 || value.isColor) {
+    } else if (value2.isVector3 || value2.isColor) {
       info2.boundary = 16;
       info2.storage = 12;
-    } else if (value.isVector4) {
+    } else if (value2.isVector4) {
       info2.boundary = 16;
       info2.storage = 16;
-    } else if (value.isMatrix3) {
+    } else if (value2.isMatrix3) {
       info2.boundary = 48;
       info2.storage = 48;
-    } else if (value.isMatrix4) {
+    } else if (value2.isMatrix4) {
       info2.boundary = 64;
       info2.storage = 64;
-    } else if (value.isTexture) {
+    } else if (value2.isTexture) {
       console.warn("THREE.WebGLRenderer: Texture samplers can not be part of an uniforms group.");
     } else {
-      console.warn("THREE.WebGLRenderer: Unsupported uniform value type.", value);
+      console.warn("THREE.WebGLRenderer: Unsupported uniform value type.", value2);
     }
     return info2;
   }
@@ -30781,26 +30781,26 @@ var MathUtils = {
 };
 
 class Vector2 {
-  constructor(x = 0, y = 0) {
+  constructor(x2 = 0, y2 = 0) {
     Vector2.prototype.isVector2 = true;
-    this.x = x;
-    this.y = y;
+    this.x = x2;
+    this.y = y2;
   }
   get width() {
     return this.x;
   }
-  set width(value) {
-    this.x = value;
+  set width(value2) {
+    this.x = value2;
   }
   get height() {
     return this.y;
   }
-  set height(value) {
-    this.y = value;
+  set height(value2) {
+    this.y = value2;
   }
-  set(x, y) {
-    this.x = x;
-    this.y = y;
+  set(x2, y2) {
+    this.x = x2;
+    this.y = y2;
     return this;
   }
   setScalar(scalar) {
@@ -30808,21 +30808,21 @@ class Vector2 {
     this.y = scalar;
     return this;
   }
-  setX(x) {
-    this.x = x;
+  setX(x2) {
+    this.x = x2;
     return this;
   }
-  setY(y) {
-    this.y = y;
+  setY(y2) {
+    this.y = y2;
     return this;
   }
-  setComponent(index, value) {
+  setComponent(index, value2) {
     switch (index) {
       case 0:
-        this.x = value;
+        this.x = value2;
         break;
       case 1:
-        this.y = value;
+        this.y = value2;
         break;
       default:
         throw new Error("index is out of range: " + index);
@@ -30901,10 +30901,10 @@ class Vector2 {
     return this.multiplyScalar(1 / scalar);
   }
   applyMatrix3(m) {
-    const x = this.x, y = this.y;
+    const x2 = this.x, y2 = this.y;
     const e = m.elements;
-    this.x = e[0] * x + e[3] * y + e[6];
-    this.y = e[1] * x + e[4] * y + e[7];
+    this.x = e[0] * x2 + e[3] * y2 + e[6];
+    this.y = e[1] * x2 + e[4] * y2 + e[7];
     return this;
   }
   min(v) {
@@ -30989,8 +30989,8 @@ class Vector2 {
     return Math.sqrt(this.distanceToSquared(v));
   }
   distanceToSquared(v) {
-    const dx = this.x - v.x, dy = this.y - v.y;
-    return dx * dx + dy * dy;
+    const dx2 = this.x - v.x, dy2 = this.y - v.y;
+    return dx2 * dx2 + dy2 * dy2;
   }
   manhattanDistanceTo(v) {
     return Math.abs(this.x - v.x) + Math.abs(this.y - v.y);
@@ -31028,10 +31028,10 @@ class Vector2 {
   }
   rotateAround(center, angle) {
     const c = Math.cos(angle), s = Math.sin(angle);
-    const x = this.x - center.x;
-    const y = this.y - center.y;
-    this.x = x * c - y * s + center.x;
-    this.y = x * s + y * c + center.y;
+    const x2 = this.x - center.x;
+    const y2 = this.y - center.y;
+    this.x = x2 * c - y2 * s + center.x;
+    this.y = x2 * s + y2 * c + center.y;
     return this;
   }
   random() {
@@ -31214,11 +31214,11 @@ class Matrix3 {
     this.premultiply(_m3.makeTranslation(tx, ty));
     return this;
   }
-  makeTranslation(x, y) {
-    if (x.isVector2) {
-      this.set(1, 0, x.x, 0, 1, x.y, 0, 0, 1);
+  makeTranslation(x2, y2) {
+    if (x2.isVector2) {
+      this.set(1, 0, x2.x, 0, 1, x2.y, 0, 0, 1);
     } else {
-      this.set(1, 0, x, 0, 1, y, 0, 0, 1);
+      this.set(1, 0, x2, 0, 1, y2, 0, 0, 1);
     }
     return this;
   }
@@ -31228,8 +31228,8 @@ class Matrix3 {
     this.set(c, -s, 0, s, c, 0, 0, 0, 1);
     return this;
   }
-  makeScale(x, y) {
-    this.set(x, 0, 0, 0, y, 0, 0, 0, 1);
+  makeScale(x2, y2) {
+    this.set(x2, 0, 0, 0, y2, 0, 0, 0, 1);
     return this;
   }
   equals(matrix) {
@@ -31407,8 +31407,8 @@ class Source {
     this.data = data;
     this.version = 0;
   }
-  set needsUpdate(value) {
-    if (value === true)
+  set needsUpdate(value2) {
+    if (value2 === true)
       this.version++;
   }
   toJSON(meta) {
@@ -31489,8 +31489,8 @@ class Texture extends EventDispatcher {
   get image() {
     return this.source.data;
   }
-  set image(value = null) {
-    this.source.data = value;
+  set image(value2 = null) {
+    this.source.data = value2;
   }
   updateMatrix() {
     this.matrix.setUvTransform(this.offset.x, this.offset.y, this.repeat.x, this.repeat.y, this.rotation, this.center.x, this.center.y);
@@ -31613,8 +31613,8 @@ class Texture extends EventDispatcher {
     }
     return uv;
   }
-  set needsUpdate(value) {
-    if (value === true) {
+  set needsUpdate(value2) {
+    if (value2 === true) {
       this.version++;
       this.source.needsUpdate = true;
     }
@@ -31633,29 +31633,29 @@ Texture.DEFAULT_MAPPING = UVMapping;
 Texture.DEFAULT_ANISOTROPY = 1;
 
 class Vector4 {
-  constructor(x = 0, y = 0, z = 0, w = 1) {
+  constructor(x2 = 0, y2 = 0, z2 = 0, w = 1) {
     Vector4.prototype.isVector4 = true;
-    this.x = x;
-    this.y = y;
-    this.z = z;
+    this.x = x2;
+    this.y = y2;
+    this.z = z2;
     this.w = w;
   }
   get width() {
     return this.z;
   }
-  set width(value) {
-    this.z = value;
+  set width(value2) {
+    this.z = value2;
   }
   get height() {
     return this.w;
   }
-  set height(value) {
-    this.w = value;
+  set height(value2) {
+    this.w = value2;
   }
-  set(x, y, z, w) {
-    this.x = x;
-    this.y = y;
-    this.z = z;
+  set(x2, y2, z2, w) {
+    this.x = x2;
+    this.y = y2;
+    this.z = z2;
     this.w = w;
     return this;
   }
@@ -31666,35 +31666,35 @@ class Vector4 {
     this.w = scalar;
     return this;
   }
-  setX(x) {
-    this.x = x;
+  setX(x2) {
+    this.x = x2;
     return this;
   }
-  setY(y) {
-    this.y = y;
+  setY(y2) {
+    this.y = y2;
     return this;
   }
-  setZ(z) {
-    this.z = z;
+  setZ(z2) {
+    this.z = z2;
     return this;
   }
   setW(w) {
     this.w = w;
     return this;
   }
-  setComponent(index, value) {
+  setComponent(index, value2) {
     switch (index) {
       case 0:
-        this.x = value;
+        this.x = value2;
         break;
       case 1:
-        this.y = value;
+        this.y = value2;
         break;
       case 2:
-        this.z = value;
+        this.z = value2;
         break;
       case 3:
-        this.w = value;
+        this.w = value2;
         break;
       default:
         throw new Error("index is out of range: " + index);
@@ -31789,12 +31789,12 @@ class Vector4 {
     return this;
   }
   applyMatrix4(m) {
-    const x = this.x, y = this.y, z = this.z, w = this.w;
+    const x2 = this.x, y2 = this.y, z2 = this.z, w = this.w;
     const e = m.elements;
-    this.x = e[0] * x + e[4] * y + e[8] * z + e[12] * w;
-    this.y = e[1] * x + e[5] * y + e[9] * z + e[13] * w;
-    this.z = e[2] * x + e[6] * y + e[10] * z + e[14] * w;
-    this.w = e[3] * x + e[7] * y + e[11] * z + e[15] * w;
+    this.x = e[0] * x2 + e[4] * y2 + e[8] * z2 + e[12] * w;
+    this.y = e[1] * x2 + e[5] * y2 + e[9] * z2 + e[13] * w;
+    this.z = e[2] * x2 + e[6] * y2 + e[10] * z2 + e[14] * w;
+    this.w = e[3] * x2 + e[7] * y2 + e[11] * z2 + e[15] * w;
     return this;
   }
   divideScalar(scalar) {
@@ -31815,7 +31815,7 @@ class Vector4 {
     return this;
   }
   setAxisAngleFromRotationMatrix(m) {
-    let angle, x, y, z;
+    let angle, x2, y2, z2;
     const epsilon = 0.01, epsilon2 = 0.1, te = m.elements, m11 = te[0], m12 = te[4], m13 = te[8], m21 = te[1], m22 = te[5], m23 = te[9], m31 = te[2], m32 = te[6], m33 = te[10];
     if (Math.abs(m12 - m21) < epsilon && Math.abs(m13 - m31) < epsilon && Math.abs(m23 - m32) < epsilon) {
       if (Math.abs(m12 + m21) < epsilon2 && Math.abs(m13 + m31) < epsilon2 && Math.abs(m23 + m32) < epsilon2 && Math.abs(m11 + m22 + m33 - 3) < epsilon2) {
@@ -31831,36 +31831,36 @@ class Vector4 {
       const yz = (m23 + m32) / 4;
       if (xx > yy && xx > zz) {
         if (xx < epsilon) {
-          x = 0;
-          y = 0.707106781;
-          z = 0.707106781;
+          x2 = 0;
+          y2 = 0.707106781;
+          z2 = 0.707106781;
         } else {
-          x = Math.sqrt(xx);
-          y = xy / x;
-          z = xz / x;
+          x2 = Math.sqrt(xx);
+          y2 = xy / x2;
+          z2 = xz / x2;
         }
       } else if (yy > zz) {
         if (yy < epsilon) {
-          x = 0.707106781;
-          y = 0;
-          z = 0.707106781;
+          x2 = 0.707106781;
+          y2 = 0;
+          z2 = 0.707106781;
         } else {
-          y = Math.sqrt(yy);
-          x = xy / y;
-          z = yz / y;
+          y2 = Math.sqrt(yy);
+          x2 = xy / y2;
+          z2 = yz / y2;
         }
       } else {
         if (zz < epsilon) {
-          x = 0.707106781;
-          y = 0.707106781;
-          z = 0;
+          x2 = 0.707106781;
+          y2 = 0.707106781;
+          z2 = 0;
         } else {
-          z = Math.sqrt(zz);
-          x = xz / z;
-          y = yz / z;
+          z2 = Math.sqrt(zz);
+          x2 = xz / z2;
+          y2 = yz / z2;
         }
       }
-      this.set(x, y, z, angle);
+      this.set(x2, y2, z2, angle);
       return this;
     }
     let s = Math.sqrt((m32 - m23) * (m32 - m23) + (m13 - m31) * (m13 - m31) + (m21 - m12) * (m21 - m12));
@@ -32117,11 +32117,11 @@ class Data3DTexture extends Texture {
   }
 }
 class Quaternion {
-  constructor(x = 0, y = 0, z = 0, w = 1) {
+  constructor(x2 = 0, y2 = 0, z2 = 0, w = 1) {
     this.isQuaternion = true;
-    this._x = x;
-    this._y = y;
-    this._z = z;
+    this._x = x2;
+    this._y = y2;
+    this._z = z2;
     this._w = w;
   }
   static slerpFlat(dst, dstOffset, src0, srcOffset0, src1, srcOffset1, t) {
@@ -32185,35 +32185,35 @@ class Quaternion {
   get x() {
     return this._x;
   }
-  set x(value) {
-    this._x = value;
+  set x(value2) {
+    this._x = value2;
     this._onChangeCallback();
   }
   get y() {
     return this._y;
   }
-  set y(value) {
-    this._y = value;
+  set y(value2) {
+    this._y = value2;
     this._onChangeCallback();
   }
   get z() {
     return this._z;
   }
-  set z(value) {
-    this._z = value;
+  set z(value2) {
+    this._z = value2;
     this._onChangeCallback();
   }
   get w() {
     return this._w;
   }
-  set w(value) {
-    this._w = value;
+  set w(value2) {
+    this._w = value2;
     this._onChangeCallback();
   }
-  set(x, y, z, w) {
-    this._x = x;
-    this._y = y;
-    this._z = z;
+  set(x2, y2, z2, w) {
+    this._x = x2;
+    this._y = y2;
+    this._z = z2;
     this._w = w;
     this._onChangeCallback();
     return this;
@@ -32230,15 +32230,15 @@ class Quaternion {
     return this;
   }
   setFromEuler(euler, update = true) {
-    const { _x: x, _y: y, _z: z, _order: order } = euler;
+    const { _x: x2, _y: y2, _z: z2, _order: order } = euler;
     const cos = Math.cos;
     const sin = Math.sin;
-    const c1 = cos(x / 2);
-    const c2 = cos(y / 2);
-    const c3 = cos(z / 2);
-    const s1 = sin(x / 2);
-    const s2 = sin(y / 2);
-    const s3 = sin(z / 2);
+    const c1 = cos(x2 / 2);
+    const c2 = cos(y2 / 2);
+    const c3 = cos(z2 / 2);
+    const s1 = sin(x2 / 2);
+    const s2 = sin(y2 / 2);
+    const s3 = sin(z2 / 2);
     switch (order) {
       case "XYZ":
         this._x = s1 * c2 * c3 + c1 * s2 * s3;
@@ -32416,8 +32416,8 @@ class Quaternion {
       return this;
     if (t === 1)
       return this.copy(qb);
-    const x = this._x, y = this._y, z = this._z, w = this._w;
-    let cosHalfTheta = w * qb._w + x * qb._x + y * qb._y + z * qb._z;
+    const x2 = this._x, y2 = this._y, z2 = this._z, w = this._w;
+    let cosHalfTheta = w * qb._w + x2 * qb._x + y2 * qb._y + z2 * qb._z;
     if (cosHalfTheta < 0) {
       this._w = -qb._w;
       this._x = -qb._x;
@@ -32429,18 +32429,18 @@ class Quaternion {
     }
     if (cosHalfTheta >= 1) {
       this._w = w;
-      this._x = x;
-      this._y = y;
-      this._z = z;
+      this._x = x2;
+      this._y = y2;
+      this._z = z2;
       return this;
     }
     const sqrSinHalfTheta = 1 - cosHalfTheta * cosHalfTheta;
     if (sqrSinHalfTheta <= Number.EPSILON) {
       const s = 1 - t;
       this._w = s * w + t * this._w;
-      this._x = s * x + t * this._x;
-      this._y = s * y + t * this._y;
-      this._z = s * z + t * this._z;
+      this._x = s * x2 + t * this._x;
+      this._y = s * y2 + t * this._y;
+      this._z = s * z2 + t * this._z;
       this.normalize();
       return this;
     }
@@ -32448,9 +32448,9 @@ class Quaternion {
     const halfTheta = Math.atan2(sinHalfTheta, cosHalfTheta);
     const ratioA = Math.sin((1 - t) * halfTheta) / sinHalfTheta, ratioB = Math.sin(t * halfTheta) / sinHalfTheta;
     this._w = w * ratioA + this._w * ratioB;
-    this._x = x * ratioA + this._x * ratioB;
-    this._y = y * ratioA + this._y * ratioB;
-    this._z = z * ratioA + this._z * ratioB;
+    this._x = x2 * ratioA + this._x * ratioB;
+    this._y = y2 * ratioA + this._y * ratioB;
+    this._z = z2 * ratioA + this._z * ratioB;
     this._onChangeCallback();
     return this;
   }
@@ -32509,18 +32509,18 @@ class Quaternion {
 }
 
 class Vector3 {
-  constructor(x = 0, y = 0, z = 0) {
+  constructor(x2 = 0, y2 = 0, z2 = 0) {
     Vector3.prototype.isVector3 = true;
-    this.x = x;
-    this.y = y;
-    this.z = z;
+    this.x = x2;
+    this.y = y2;
+    this.z = z2;
   }
-  set(x, y, z) {
-    if (z === undefined)
-      z = this.z;
-    this.x = x;
-    this.y = y;
-    this.z = z;
+  set(x2, y2, z2) {
+    if (z2 === undefined)
+      z2 = this.z;
+    this.x = x2;
+    this.y = y2;
+    this.z = z2;
     return this;
   }
   setScalar(scalar) {
@@ -32529,28 +32529,28 @@ class Vector3 {
     this.z = scalar;
     return this;
   }
-  setX(x) {
-    this.x = x;
+  setX(x2) {
+    this.x = x2;
     return this;
   }
-  setY(y) {
-    this.y = y;
+  setY(y2) {
+    this.y = y2;
     return this;
   }
-  setZ(z) {
-    this.z = z;
+  setZ(z2) {
+    this.z = z2;
     return this;
   }
-  setComponent(index, value) {
+  setComponent(index, value2) {
     switch (index) {
       case 0:
-        this.x = value;
+        this.x = value2;
         break;
       case 1:
-        this.y = value;
+        this.y = value2;
         break;
       case 2:
-        this.z = value;
+        this.z = value2;
         break;
       default:
         throw new Error("index is out of range: " + index);
@@ -32645,23 +32645,23 @@ class Vector3 {
     return this.applyQuaternion(_quaternion$4.setFromAxisAngle(axis, angle));
   }
   applyMatrix3(m) {
-    const x = this.x, y = this.y, z = this.z;
+    const x2 = this.x, y2 = this.y, z2 = this.z;
     const e = m.elements;
-    this.x = e[0] * x + e[3] * y + e[6] * z;
-    this.y = e[1] * x + e[4] * y + e[7] * z;
-    this.z = e[2] * x + e[5] * y + e[8] * z;
+    this.x = e[0] * x2 + e[3] * y2 + e[6] * z2;
+    this.y = e[1] * x2 + e[4] * y2 + e[7] * z2;
+    this.z = e[2] * x2 + e[5] * y2 + e[8] * z2;
     return this;
   }
   applyNormalMatrix(m) {
     return this.applyMatrix3(m).normalize();
   }
   applyMatrix4(m) {
-    const x = this.x, y = this.y, z = this.z;
+    const x2 = this.x, y2 = this.y, z2 = this.z;
     const e = m.elements;
-    const w = 1 / (e[3] * x + e[7] * y + e[11] * z + e[15]);
-    this.x = (e[0] * x + e[4] * y + e[8] * z + e[12]) * w;
-    this.y = (e[1] * x + e[5] * y + e[9] * z + e[13]) * w;
-    this.z = (e[2] * x + e[6] * y + e[10] * z + e[14]) * w;
+    const w = 1 / (e[3] * x2 + e[7] * y2 + e[11] * z2 + e[15]);
+    this.x = (e[0] * x2 + e[4] * y2 + e[8] * z2 + e[12]) * w;
+    this.y = (e[1] * x2 + e[5] * y2 + e[9] * z2 + e[13]) * w;
+    this.z = (e[2] * x2 + e[6] * y2 + e[10] * z2 + e[14]) * w;
     return this;
   }
   applyQuaternion(q) {
@@ -32682,11 +32682,11 @@ class Vector3 {
     return this.applyMatrix4(camera.projectionMatrixInverse).applyMatrix4(camera.matrixWorld);
   }
   transformDirection(m) {
-    const x = this.x, y = this.y, z = this.z;
+    const x2 = this.x, y2 = this.y, z2 = this.z;
     const e = m.elements;
-    this.x = e[0] * x + e[4] * y + e[8] * z;
-    this.y = e[1] * x + e[5] * y + e[9] * z;
-    this.z = e[2] * x + e[6] * y + e[10] * z;
+    this.x = e[0] * x2 + e[4] * y2 + e[8] * z2;
+    this.y = e[1] * x2 + e[5] * y2 + e[9] * z2;
+    this.z = e[2] * x2 + e[6] * y2 + e[10] * z2;
     return this.normalize();
   }
   divide(v) {
@@ -32822,8 +32822,8 @@ class Vector3 {
     return Math.sqrt(this.distanceToSquared(v));
   }
   distanceToSquared(v) {
-    const dx = this.x - v.x, dy = this.y - v.y, dz = this.z - v.z;
-    return dx * dx + dy * dy + dz * dz;
+    const dx2 = this.x - v.x, dy2 = this.y - v.y, dz2 = this.z - v.z;
+    return dx2 * dx2 + dy2 * dy2 + dz2 * dz2;
   }
   manhattanDistanceTo(v) {
     return Math.abs(this.x - v.x) + Math.abs(this.y - v.y) + Math.abs(this.z - v.z);
@@ -32841,9 +32841,9 @@ class Vector3 {
   setFromCylindrical(c) {
     return this.setFromCylindricalCoords(c.radius, c.theta, c.y);
   }
-  setFromCylindricalCoords(radius, theta, y) {
+  setFromCylindricalCoords(radius, theta, y2) {
     this.x = radius * Math.sin(theta);
-    this.y = y;
+    this.y = y2;
     this.z = radius * Math.cos(theta);
     return this;
   }
@@ -33705,10 +33705,10 @@ class Matrix4 {
   }
   makeRotationFromEuler(euler) {
     const te = this.elements;
-    const { x, y, z } = euler;
-    const a = Math.cos(x), b = Math.sin(x);
-    const c = Math.cos(y), d = Math.sin(y);
-    const e = Math.cos(z), f = Math.sin(z);
+    const { x: x2, y: y2, z: z2 } = euler;
+    const a = Math.cos(x2), b = Math.sin(x2);
+    const c = Math.cos(y2), d = Math.sin(y2);
+    const e = Math.cos(z2), f = Math.sin(z2);
     if (euler.order === "XYZ") {
       const ae = a * e, af = a * f, be = b * e, bf = b * f;
       te[0] = c * e;
@@ -33905,16 +33905,16 @@ class Matrix4 {
     te[14] = tmp;
     return this;
   }
-  setPosition(x, y, z) {
+  setPosition(x2, y2, z2) {
     const te = this.elements;
-    if (x.isVector3) {
-      te[12] = x.x;
-      te[13] = x.y;
-      te[14] = x.z;
+    if (x2.isVector3) {
+      te[12] = x2.x;
+      te[13] = x2.y;
+      te[14] = x2.z;
     } else {
-      te[12] = x;
-      te[13] = y;
-      te[14] = z;
+      te[12] = x2;
+      te[13] = y2;
+      te[14] = z2;
     }
     return this;
   }
@@ -33944,19 +33944,19 @@ class Matrix4 {
   }
   scale(v) {
     const te = this.elements;
-    const { x, y, z } = v;
-    te[0] *= x;
-    te[4] *= y;
-    te[8] *= z;
-    te[1] *= x;
-    te[5] *= y;
-    te[9] *= z;
-    te[2] *= x;
-    te[6] *= y;
-    te[10] *= z;
-    te[3] *= x;
-    te[7] *= y;
-    te[11] *= z;
+    const { x: x2, y: y2, z: z2 } = v;
+    te[0] *= x2;
+    te[4] *= y2;
+    te[8] *= z2;
+    te[1] *= x2;
+    te[5] *= y2;
+    te[9] *= z2;
+    te[2] *= x2;
+    te[6] *= y2;
+    te[10] *= z2;
+    te[3] *= x2;
+    te[7] *= y2;
+    te[11] *= z2;
     return this;
   }
   getMaxScaleOnAxis() {
@@ -33966,11 +33966,11 @@ class Matrix4 {
     const scaleZSq = te[8] * te[8] + te[9] * te[9] + te[10] * te[10];
     return Math.sqrt(Math.max(scaleXSq, scaleYSq, scaleZSq));
   }
-  makeTranslation(x, y, z) {
-    if (x.isVector3) {
-      this.set(1, 0, 0, x.x, 0, 1, 0, x.y, 0, 0, 1, x.z, 0, 0, 0, 1);
+  makeTranslation(x2, y2, z2) {
+    if (x2.isVector3) {
+      this.set(1, 0, 0, x2.x, 0, 1, 0, x2.y, 0, 0, 1, x2.z, 0, 0, 0, 1);
     } else {
-      this.set(1, 0, 0, x, 0, 1, 0, y, 0, 0, 1, z, 0, 0, 0, 1);
+      this.set(1, 0, 0, x2, 0, 1, 0, y2, 0, 0, 1, z2, 0, 0, 0, 1);
     }
     return this;
   }
@@ -33993,13 +33993,13 @@ class Matrix4 {
     const c = Math.cos(angle);
     const s = Math.sin(angle);
     const t = 1 - c;
-    const { x, y, z } = axis;
-    const tx = t * x, ty = t * y;
-    this.set(tx * x + c, tx * y - s * z, tx * z + s * y, 0, tx * y + s * z, ty * y + c, ty * z - s * x, 0, tx * z - s * y, ty * z + s * x, t * z * z + c, 0, 0, 0, 0, 1);
+    const { x: x2, y: y2, z: z2 } = axis;
+    const tx = t * x2, ty = t * y2;
+    this.set(tx * x2 + c, tx * y2 - s * z2, tx * z2 + s * y2, 0, tx * y2 + s * z2, ty * y2 + c, ty * z2 - s * x2, 0, tx * z2 - s * y2, ty * z2 + s * x2, t * z2 * z2 + c, 0, 0, 0, 0, 1);
     return this;
   }
-  makeScale(x, y, z) {
-    this.set(x, 0, 0, 0, 0, y, 0, 0, 0, 0, z, 0, 0, 0, 0, 1);
+  makeScale(x2, y2, z2) {
+    this.set(x2, 0, 0, 0, 0, y2, 0, 0, 0, 0, z2, 0, 0, 0, 0, 1);
     return this;
   }
   makeShear(xy, xz, yx, yz, zx, zy) {
@@ -34008,11 +34008,11 @@ class Matrix4 {
   }
   compose(position, quaternion, scale) {
     const te = this.elements;
-    const { _x: x, _y: y, _z: z, _w: w } = quaternion;
-    const x2 = x + x, y2 = y + y, z2 = z + z;
-    const xx = x * x2, xy = x * y2, xz = x * z2;
-    const yy = y * y2, yz = y * z2, zz = z * z2;
-    const wx = w * x2, wy = w * y2, wz = w * z2;
+    const { _x: x2, _y: y2, _z: z2, _w: w } = quaternion;
+    const x22 = x2 + x2, y22 = y2 + y2, z22 = z2 + z2;
+    const xx = x2 * x22, xy = x2 * y22, xz = x2 * z22;
+    const yy = y2 * y22, yz = y2 * z22, zz = z2 * z22;
+    const wx = w * x22, wy = w * y22, wz = w * z22;
     const { x: sx, y: sy, z: sz } = scale;
     te[0] = (1 - (yy + zz)) * sx;
     te[1] = (xy + wz) * sx;
@@ -34064,8 +34064,8 @@ class Matrix4 {
   }
   makePerspective(left, right, top, bottom, near, far, coordinateSystem = WebGLCoordinateSystem) {
     const te = this.elements;
-    const x = 2 * near / (right - left);
-    const y = 2 * near / (top - bottom);
+    const x2 = 2 * near / (right - left);
+    const y2 = 2 * near / (top - bottom);
     const a = (right + left) / (right - left);
     const b = (top + bottom) / (top - bottom);
     let c, d;
@@ -34078,12 +34078,12 @@ class Matrix4 {
     } else {
       throw new Error("THREE.Matrix4.makePerspective(): Invalid coordinate system: " + coordinateSystem);
     }
-    te[0] = x;
+    te[0] = x2;
     te[4] = 0;
     te[8] = a;
     te[12] = 0;
     te[1] = 0;
-    te[5] = y;
+    te[5] = y2;
     te[9] = b;
     te[13] = 0;
     te[2] = 0;
@@ -34101,14 +34101,14 @@ class Matrix4 {
     const w = 1 / (right - left);
     const h = 1 / (top - bottom);
     const p = 1 / (far - near);
-    const x = (right + left) * w;
-    const y = (top + bottom) * h;
-    let z, zInv;
+    const x2 = (right + left) * w;
+    const y2 = (top + bottom) * h;
+    let z2, zInv;
     if (coordinateSystem === WebGLCoordinateSystem) {
-      z = (far + near) * p;
+      z2 = (far + near) * p;
       zInv = -2 * p;
     } else if (coordinateSystem === WebGPUCoordinateSystem) {
-      z = near * p;
+      z2 = near * p;
       zInv = -1 * p;
     } else {
       throw new Error("THREE.Matrix4.makeOrthographic(): Invalid coordinate system: " + coordinateSystem);
@@ -34116,15 +34116,15 @@ class Matrix4 {
     te[0] = 2 * w;
     te[4] = 0;
     te[8] = 0;
-    te[12] = -x;
+    te[12] = -x2;
     te[1] = 0;
     te[5] = 2 * h;
     te[9] = 0;
-    te[13] = -y;
+    te[13] = -y2;
     te[2] = 0;
     te[6] = 0;
     te[10] = zInv;
-    te[14] = -z;
+    te[14] = -z2;
     te[3] = 0;
     te[7] = 0;
     te[11] = 0;
@@ -34178,45 +34178,45 @@ var _matrix$1 = new Matrix4;
 var _quaternion$3 = new Quaternion;
 
 class Euler {
-  constructor(x = 0, y = 0, z = 0, order = Euler.DEFAULT_ORDER) {
+  constructor(x2 = 0, y2 = 0, z2 = 0, order = Euler.DEFAULT_ORDER) {
     this.isEuler = true;
-    this._x = x;
-    this._y = y;
-    this._z = z;
+    this._x = x2;
+    this._y = y2;
+    this._z = z2;
     this._order = order;
   }
   get x() {
     return this._x;
   }
-  set x(value) {
-    this._x = value;
+  set x(value2) {
+    this._x = value2;
     this._onChangeCallback();
   }
   get y() {
     return this._y;
   }
-  set y(value) {
-    this._y = value;
+  set y(value2) {
+    this._y = value2;
     this._onChangeCallback();
   }
   get z() {
     return this._z;
   }
-  set z(value) {
-    this._z = value;
+  set z(value2) {
+    this._z = value2;
     this._onChangeCallback();
   }
   get order() {
     return this._order;
   }
-  set order(value) {
-    this._order = value;
+  set order(value2) {
+    this._order = value2;
     this._onChangeCallback();
   }
-  set(x, y, z, order = this._order) {
-    this._x = x;
-    this._y = y;
-    this._z = z;
+  set(x2, y2, z2, order = this._order) {
+    this._x = x2;
+    this._y = y2;
+    this._z = z2;
     this._order = order;
     this._onChangeCallback();
     return this;
@@ -34530,11 +34530,11 @@ class Object3D extends EventDispatcher {
     this.updateWorldMatrix(true, false);
     return vector.applyMatrix4(_m1$1.copy(this.matrixWorld).invert());
   }
-  lookAt(x, y, z) {
-    if (x.isVector3) {
-      _target.copy(x);
+  lookAt(x2, y2, z2) {
+    if (x2.isVector3) {
+      _target.copy(x2);
     } else {
-      _target.set(x, y, z);
+      _target.set(x2, y2, z2);
     }
     const parent = this.parent;
     this.updateWorldMatrix(true, false);
@@ -34617,24 +34617,24 @@ class Object3D extends EventDispatcher {
   getObjectByName(name) {
     return this.getObjectByProperty("name", name);
   }
-  getObjectByProperty(name, value) {
-    if (this[name] === value)
+  getObjectByProperty(name, value2) {
+    if (this[name] === value2)
       return this;
     for (let i = 0, l = this.children.length;i < l; i++) {
       const child = this.children[i];
-      const object = child.getObjectByProperty(name, value);
+      const object = child.getObjectByProperty(name, value2);
       if (object !== undefined) {
         return object;
       }
     }
     return;
   }
-  getObjectsByProperty(name, value, result = []) {
-    if (this[name] === value)
+  getObjectsByProperty(name, value2, result = []) {
+    if (this[name] === value2)
       result.push(this);
     const children = this.children;
     for (let i = 0, l = children.length;i < l; i++) {
-      children[i].getObjectsByProperty(name, value, result);
+      children[i].getObjectsByProperty(name, value2, result);
     }
     return result;
   }
@@ -35304,13 +35304,13 @@ class Color {
   }
   set(r, g, b) {
     if (g === undefined && b === undefined) {
-      const value = r;
-      if (value && value.isColor) {
-        this.copy(value);
-      } else if (typeof value === "number") {
-        this.setHex(value);
-      } else if (typeof value === "string") {
-        this.setStyle(value);
+      const value2 = r;
+      if (value2 && value2.isColor) {
+        this.copy(value2);
+      } else if (typeof value2 === "number") {
+        this.setHex(value2);
+      } else if (typeof value2 === "string") {
+        this.setStyle(value2);
       }
     } else {
       this.setRGB(r, g, b);
@@ -35659,11 +35659,11 @@ class Material extends EventDispatcher {
   get alphaTest() {
     return this._alphaTest;
   }
-  set alphaTest(value) {
-    if (this._alphaTest > 0 !== value > 0) {
+  set alphaTest(value2) {
+    if (this._alphaTest > 0 !== value2 > 0) {
       this.version++;
     }
-    this._alphaTest = value;
+    this._alphaTest = value2;
   }
   onBuild() {
   }
@@ -36021,8 +36021,8 @@ class Material extends EventDispatcher {
   dispose() {
     this.dispatchEvent({ type: "dispose" });
   }
-  set needsUpdate(value) {
-    if (value === true)
+  set needsUpdate(value2) {
+    if (value2 === true)
       this.version++;
   }
 }
@@ -36095,16 +36095,16 @@ class BufferAttribute {
   }
   onUploadCallback() {
   }
-  set needsUpdate(value) {
-    if (value === true)
+  set needsUpdate(value2) {
+    if (value2 === true)
       this.version++;
   }
   get updateRange() {
     console.warn("THREE.BufferAttribute: updateRange() is deprecated and will be removed in r169. Use addUpdateRange() instead.");
     return this._updateRange;
   }
-  setUsage(value) {
-    this.usage = value;
+  setUsage(value2) {
+    this.usage = value2;
     return this;
   }
   addUpdateRange(start, count) {
@@ -36175,56 +36175,56 @@ class BufferAttribute {
     }
     return this;
   }
-  set(value, offset = 0) {
-    this.array.set(value, offset);
+  set(value2, offset = 0) {
+    this.array.set(value2, offset);
     return this;
   }
   getComponent(index, component) {
-    let value = this.array[index * this.itemSize + component];
+    let value2 = this.array[index * this.itemSize + component];
     if (this.normalized)
-      value = denormalize(value, this.array);
-    return value;
+      value2 = denormalize(value2, this.array);
+    return value2;
   }
-  setComponent(index, component, value) {
+  setComponent(index, component, value2) {
     if (this.normalized)
-      value = normalize(value, this.array);
-    this.array[index * this.itemSize + component] = value;
+      value2 = normalize(value2, this.array);
+    this.array[index * this.itemSize + component] = value2;
     return this;
   }
   getX(index) {
-    let x = this.array[index * this.itemSize];
+    let x2 = this.array[index * this.itemSize];
     if (this.normalized)
-      x = denormalize(x, this.array);
-    return x;
+      x2 = denormalize(x2, this.array);
+    return x2;
   }
-  setX(index, x) {
+  setX(index, x2) {
     if (this.normalized)
-      x = normalize(x, this.array);
-    this.array[index * this.itemSize] = x;
+      x2 = normalize(x2, this.array);
+    this.array[index * this.itemSize] = x2;
     return this;
   }
   getY(index) {
-    let y = this.array[index * this.itemSize + 1];
+    let y2 = this.array[index * this.itemSize + 1];
     if (this.normalized)
-      y = denormalize(y, this.array);
-    return y;
+      y2 = denormalize(y2, this.array);
+    return y2;
   }
-  setY(index, y) {
+  setY(index, y2) {
     if (this.normalized)
-      y = normalize(y, this.array);
-    this.array[index * this.itemSize + 1] = y;
+      y2 = normalize(y2, this.array);
+    this.array[index * this.itemSize + 1] = y2;
     return this;
   }
   getZ(index) {
-    let z = this.array[index * this.itemSize + 2];
+    let z2 = this.array[index * this.itemSize + 2];
     if (this.normalized)
-      z = denormalize(z, this.array);
-    return z;
+      z2 = denormalize(z2, this.array);
+    return z2;
   }
-  setZ(index, z) {
+  setZ(index, z2) {
     if (this.normalized)
-      z = normalize(z, this.array);
-    this.array[index * this.itemSize + 2] = z;
+      z2 = normalize(z2, this.array);
+    this.array[index * this.itemSize + 2] = z2;
     return this;
   }
   getW(index) {
@@ -36239,39 +36239,39 @@ class BufferAttribute {
     this.array[index * this.itemSize + 3] = w;
     return this;
   }
-  setXY(index, x, y) {
+  setXY(index, x2, y2) {
     index *= this.itemSize;
     if (this.normalized) {
-      x = normalize(x, this.array);
-      y = normalize(y, this.array);
+      x2 = normalize(x2, this.array);
+      y2 = normalize(y2, this.array);
     }
-    this.array[index + 0] = x;
-    this.array[index + 1] = y;
+    this.array[index + 0] = x2;
+    this.array[index + 1] = y2;
     return this;
   }
-  setXYZ(index, x, y, z) {
+  setXYZ(index, x2, y2, z2) {
     index *= this.itemSize;
     if (this.normalized) {
-      x = normalize(x, this.array);
-      y = normalize(y, this.array);
-      z = normalize(z, this.array);
+      x2 = normalize(x2, this.array);
+      y2 = normalize(y2, this.array);
+      z2 = normalize(z2, this.array);
     }
-    this.array[index + 0] = x;
-    this.array[index + 1] = y;
-    this.array[index + 2] = z;
+    this.array[index + 0] = x2;
+    this.array[index + 1] = y2;
+    this.array[index + 2] = z2;
     return this;
   }
-  setXYZW(index, x, y, z, w) {
+  setXYZW(index, x2, y2, z2, w) {
     index *= this.itemSize;
     if (this.normalized) {
-      x = normalize(x, this.array);
-      y = normalize(y, this.array);
-      z = normalize(z, this.array);
+      x2 = normalize(x2, this.array);
+      y2 = normalize(y2, this.array);
+      z2 = normalize(z2, this.array);
       w = normalize(w, this.array);
     }
-    this.array[index + 0] = x;
-    this.array[index + 1] = y;
-    this.array[index + 2] = z;
+    this.array[index + 0] = x2;
+    this.array[index + 1] = y2;
+    this.array[index + 2] = z2;
     this.array[index + 3] = w;
     return this;
   }
@@ -36421,13 +36421,13 @@ class BufferGeometry extends EventDispatcher {
     this.applyMatrix4(_m1);
     return this;
   }
-  translate(x, y, z) {
-    _m1.makeTranslation(x, y, z);
+  translate(x2, y2, z2) {
+    _m1.makeTranslation(x2, y2, z2);
     this.applyMatrix4(_m1);
     return this;
   }
-  scale(x, y, z) {
-    _m1.makeScale(x, y, z);
+  scale(x2, y2, z2) {
+    _m1.makeScale(x2, y2, z2);
     this.applyMatrix4(_m1);
     return this;
   }
@@ -37091,11 +37091,11 @@ class BoxGeometry extends BufferGeometry {
       let groupCount = 0;
       const vector = new Vector3;
       for (let iy = 0;iy < gridY1; iy++) {
-        const y = iy * segmentHeight - heightHalf;
+        const y2 = iy * segmentHeight - heightHalf;
         for (let ix = 0;ix < gridX1; ix++) {
-          const x = ix * segmentWidth - widthHalf;
-          vector[u] = x * udir;
-          vector[v] = y * vdir;
+          const x2 = ix * segmentWidth - widthHalf;
+          vector[u] = x2 * udir;
+          vector[v] = y2 * vdir;
           vector[w] = depthHalf;
           vertices.push(vector.x, vector.y, vector.z);
           vector[u] = 0;
@@ -37194,45 +37194,45 @@ class ShaderMaterial extends Material {
     data.uniforms = {};
     for (const name in this.uniforms) {
       const uniform = this.uniforms[name];
-      const value = uniform.value;
-      if (value && value.isTexture) {
+      const value2 = uniform.value;
+      if (value2 && value2.isTexture) {
         data.uniforms[name] = {
           type: "t",
-          value: value.toJSON(meta).uuid
+          value: value2.toJSON(meta).uuid
         };
-      } else if (value && value.isColor) {
+      } else if (value2 && value2.isColor) {
         data.uniforms[name] = {
           type: "c",
-          value: value.getHex()
+          value: value2.getHex()
         };
-      } else if (value && value.isVector2) {
+      } else if (value2 && value2.isVector2) {
         data.uniforms[name] = {
           type: "v2",
-          value: value.toArray()
+          value: value2.toArray()
         };
-      } else if (value && value.isVector3) {
+      } else if (value2 && value2.isVector3) {
         data.uniforms[name] = {
           type: "v3",
-          value: value.toArray()
+          value: value2.toArray()
         };
-      } else if (value && value.isVector4) {
+      } else if (value2 && value2.isVector4) {
         data.uniforms[name] = {
           type: "v4",
-          value: value.toArray()
+          value: value2.toArray()
         };
-      } else if (value && value.isMatrix3) {
+      } else if (value2 && value2.isMatrix3) {
         data.uniforms[name] = {
           type: "m3",
-          value: value.toArray()
+          value: value2.toArray()
         };
-      } else if (value && value.isMatrix4) {
+      } else if (value2 && value2.isMatrix4) {
         data.uniforms[name] = {
           type: "m4",
-          value: value.toArray()
+          value: value2.toArray()
         };
       } else {
         data.uniforms[name] = {
-          value
+          value: value2
         };
       }
     }
@@ -37334,7 +37334,7 @@ class PerspectiveCamera extends Camera {
   getFilmHeight() {
     return this.filmGauge / Math.max(this.aspect, 1);
   }
-  setViewOffset(fullWidth, fullHeight, x, y, width, height) {
+  setViewOffset(fullWidth, fullHeight, x2, y2, width, height) {
     this.aspect = fullWidth / fullHeight;
     if (this.view === null) {
       this.view = {
@@ -37350,8 +37350,8 @@ class PerspectiveCamera extends Camera {
     this.view.enabled = true;
     this.view.fullWidth = fullWidth;
     this.view.fullHeight = fullHeight;
-    this.view.offsetX = x;
-    this.view.offsetY = y;
+    this.view.offsetX = x2;
+    this.view.offsetY = y2;
     this.view.width = width;
     this.view.height = height;
     this.updateProjectionMatrix();
@@ -37512,8 +37512,8 @@ class CubeTexture extends Texture {
   get images() {
     return this.image;
   }
-  set images(value) {
-    this.image = value;
+  set images(value2) {
+    this.image = value2;
   }
 }
 
@@ -37625,8 +37625,8 @@ class Plane {
     this.constant = constant;
     return this;
   }
-  setComponents(x, y, z, w) {
-    this.normal.set(x, y, z);
+  setComponents(x2, y2, z2, w) {
+    this.normal.set(x2, y2, z2);
     this.constant = w;
     return this;
   }
@@ -37838,10 +37838,10 @@ class PlaneGeometry extends BufferGeometry {
     const normals = [];
     const uvs = [];
     for (let iy = 0;iy < gridY1; iy++) {
-      const y = iy * segment_height - height_half;
+      const y2 = iy * segment_height - height_half;
       for (let ix = 0;ix < gridX1; ix++) {
-        const x = ix * segment_width - width_half;
-        vertices.push(x, -y, 0);
+        const x2 = ix * segment_width - width_half;
+        vertices.push(x2, -y2, 0);
         normals.push(0, 0, 1);
         uvs.push(ix / gridX);
         uvs.push(1 - iy / gridY);
@@ -38613,7 +38613,7 @@ class OrthographicCamera extends Camera {
     this.view = source.view === null ? null : Object.assign({}, source.view);
     return this;
   }
-  setViewOffset(fullWidth, fullHeight, x, y, width, height) {
+  setViewOffset(fullWidth, fullHeight, x2, y2, width, height) {
     if (this.view === null) {
       this.view = {
         enabled: true,
@@ -38628,8 +38628,8 @@ class OrthographicCamera extends Camera {
     this.view.enabled = true;
     this.view.fullWidth = fullWidth;
     this.view.fullHeight = fullHeight;
-    this.view.offsetX = x;
-    this.view.offsetY = y;
+    this.view.offsetX = x2;
+    this.view.offsetY = y2;
     this.view.width = width;
     this.view.height = height;
     this.updateProjectionMatrix();
@@ -38641,14 +38641,14 @@ class OrthographicCamera extends Camera {
     this.updateProjectionMatrix();
   }
   updateProjectionMatrix() {
-    const dx = (this.right - this.left) / (2 * this.zoom);
-    const dy = (this.top - this.bottom) / (2 * this.zoom);
+    const dx2 = (this.right - this.left) / (2 * this.zoom);
+    const dy2 = (this.top - this.bottom) / (2 * this.zoom);
     const cx = (this.right + this.left) / 2;
     const cy = (this.top + this.bottom) / 2;
-    let left = cx - dx;
-    let right = cx + dx;
-    let top = cy + dy;
-    let bottom = cy - dy;
+    let left = cx - dx2;
+    let right = cx + dx2;
+    let top = cy + dy2;
+    let bottom = cy - dy2;
     if (this.view !== null && this.view.enabled) {
       const scaleW = (this.right - this.left) / this.view.fullWidth / this.zoom;
       const scaleH = (this.top - this.bottom) / this.view.fullHeight / this.zoom;
@@ -38926,8 +38926,8 @@ class PMREMGenerator {
     const weights = [];
     let sum = 0;
     for (let i = 0;i < MAX_SAMPLES; ++i) {
-      const x2 = i / sigmaPixels;
-      const weight = Math.exp(-x2 * x2 / 2);
+      const x3 = i / sigmaPixels;
+      const weight = Math.exp(-x3 * x3 / 2);
       weights.push(weight);
       if (i === 0) {
         sum += weight;
@@ -38949,9 +38949,9 @@ class PMREMGenerator {
     blurUniforms["dTheta"].value = radiansPerPixel;
     blurUniforms["mipInt"].value = _lodMax - lodIn;
     const outputSize = this._sizeLods[lodOut];
-    const x = 3 * outputSize * (lodOut > _lodMax - LOD_MIN ? lodOut - _lodMax + LOD_MIN : 0);
-    const y = 4 * (this._cubeSize - outputSize);
-    _setViewport(targetOut, x, y, 3 * outputSize, 2 * outputSize);
+    const x2 = 3 * outputSize * (lodOut > _lodMax - LOD_MIN ? lodOut - _lodMax + LOD_MIN : 0);
+    const y2 = 4 * (this._cubeSize - outputSize);
+    _setViewport(targetOut, x2, y2, 3 * outputSize, 2 * outputSize);
     renderer.setRenderTarget(targetOut);
     renderer.render(blurMesh, _flatCamera);
   }
@@ -39027,11 +39027,11 @@ class StructuredUniform {
     this.seq = [];
     this.map = {};
   }
-  setValue(gl, value, textures) {
+  setValue(gl, value2, textures) {
     const seq = this.seq;
     for (let i = 0, n = seq.length;i !== n; ++i) {
       const u = seq[i];
-      u.setValue(gl, value[u.id], textures);
+      u.setValue(gl, value2[u.id], textures);
     }
   }
 }
@@ -39047,10 +39047,10 @@ class WebGLUniforms {
       parseUniform(info, addr, this);
     }
   }
-  setValue(gl, name, value, textures) {
+  setValue(gl, name, value2, textures) {
     const u = this.map[name];
     if (u !== undefined)
-      u.setValue(gl, value, textures);
+      u.setValue(gl, value2, textures);
   }
   setOptional(gl, object, name) {
     const v = object[name];
@@ -39517,14 +39517,14 @@ class WebXRManager extends EventDispatcher {
       renderer.setSize(currentSize.width, currentSize.height, false);
       scope.dispatchEvent({ type: "sessionend" });
     }
-    this.setFramebufferScaleFactor = function(value) {
-      framebufferScaleFactor = value;
+    this.setFramebufferScaleFactor = function(value2) {
+      framebufferScaleFactor = value2;
       if (scope.isPresenting === true) {
         console.warn("THREE.WebXRManager: Cannot change framebuffer scale while presenting.");
       }
     };
-    this.setReferenceSpaceType = function(value) {
-      referenceSpaceType = value;
+    this.setReferenceSpaceType = function(value2) {
+      referenceSpaceType = value2;
       if (scope.isPresenting === true) {
         console.warn("THREE.WebXRManager: Cannot change reference space type while presenting.");
       }
@@ -39547,8 +39547,8 @@ class WebXRManager extends EventDispatcher {
     this.getSession = function() {
       return session;
     };
-    this.setSession = async function(value) {
-      session = value;
+    this.setSession = async function(value2) {
+      session = value2;
       if (session !== null) {
         initialRenderTarget = renderer.getRenderTarget();
         session.addEventListener("select", onSessionEvent);
@@ -39752,13 +39752,13 @@ class WebXRManager extends EventDispatcher {
       }
       return foveation;
     };
-    this.setFoveation = function(value) {
-      foveation = value;
+    this.setFoveation = function(value2) {
+      foveation = value2;
       if (glProjLayer !== null) {
-        glProjLayer.fixedFoveation = value;
+        glProjLayer.fixedFoveation = value2;
       }
       if (glBaseLayer !== null && glBaseLayer.fixedFoveation !== undefined) {
-        glBaseLayer.fixedFoveation = value;
+        glBaseLayer.fixedFoveation = value2;
       }
     };
     let onAnimationFrameCallback = null;
@@ -40022,10 +40022,10 @@ class WebGLRenderer {
     this.getPixelRatio = function() {
       return _pixelRatio;
     };
-    this.setPixelRatio = function(value) {
-      if (value === undefined)
+    this.setPixelRatio = function(value2) {
+      if (value2 === undefined)
         return;
-      _pixelRatio = value;
+      _pixelRatio = value2;
       this.setSize(_width, _height, false);
     };
     this.getSize = function(target) {
@@ -40063,22 +40063,22 @@ class WebGLRenderer {
     this.getViewport = function(target) {
       return target.copy(_viewport);
     };
-    this.setViewport = function(x, y, width, height) {
-      if (x.isVector4) {
-        _viewport.set(x.x, x.y, x.z, x.w);
+    this.setViewport = function(x2, y2, width, height) {
+      if (x2.isVector4) {
+        _viewport.set(x2.x, x2.y, x2.z, x2.w);
       } else {
-        _viewport.set(x, y, width, height);
+        _viewport.set(x2, y2, width, height);
       }
       state.viewport(_currentViewport.copy(_viewport).multiplyScalar(_pixelRatio).floor());
     };
     this.getScissor = function(target) {
       return target.copy(_scissor);
     };
-    this.setScissor = function(x, y, width, height) {
-      if (x.isVector4) {
-        _scissor.set(x.x, x.y, x.z, x.w);
+    this.setScissor = function(x2, y2, width, height) {
+      if (x2.isVector4) {
+        _scissor.set(x2.x, x2.y, x2.z, x2.w);
       } else {
-        _scissor.set(x, y, width, height);
+        _scissor.set(x2, y2, width, height);
       }
       state.scissor(_currentScissor.copy(_scissor).multiplyScalar(_pixelRatio).floor());
     };
@@ -40913,17 +40913,17 @@ class WebGLRenderer {
       }
       return program;
     }
-    function markUniformsLightsNeedsUpdate(uniforms, value) {
-      uniforms.ambientLightColor.needsUpdate = value;
-      uniforms.lightProbe.needsUpdate = value;
-      uniforms.directionalLights.needsUpdate = value;
-      uniforms.directionalLightShadows.needsUpdate = value;
-      uniforms.pointLights.needsUpdate = value;
-      uniforms.pointLightShadows.needsUpdate = value;
-      uniforms.spotLights.needsUpdate = value;
-      uniforms.spotLightShadows.needsUpdate = value;
-      uniforms.rectAreaLights.needsUpdate = value;
-      uniforms.hemisphereLights.needsUpdate = value;
+    function markUniformsLightsNeedsUpdate(uniforms, value2) {
+      uniforms.ambientLightColor.needsUpdate = value2;
+      uniforms.lightProbe.needsUpdate = value2;
+      uniforms.directionalLights.needsUpdate = value2;
+      uniforms.directionalLightShadows.needsUpdate = value2;
+      uniforms.pointLights.needsUpdate = value2;
+      uniforms.pointLightShadows.needsUpdate = value2;
+      uniforms.spotLights.needsUpdate = value2;
+      uniforms.spotLightShadows.needsUpdate = value2;
+      uniforms.rectAreaLights.needsUpdate = value2;
+      uniforms.hemisphereLights.needsUpdate = value2;
     }
     function materialNeedsLights(material) {
       return material.isMeshLambertMaterial || material.isMeshToonMaterial || material.isMeshPhongMaterial || material.isMeshStandardMaterial || material.isShadowMaterial || material.isShaderMaterial && material.lights === true;
@@ -41021,7 +41021,7 @@ class WebGLRenderer {
       }
       _currentMaterialId = -1;
     };
-    this.readRenderTargetPixels = function(renderTarget, x, y, width, height, buffer, activeCubeFaceIndex) {
+    this.readRenderTargetPixels = function(renderTarget, x2, y2, width, height, buffer, activeCubeFaceIndex) {
       if (!(renderTarget && renderTarget.isWebGLRenderTarget)) {
         console.error("THREE.WebGLRenderer.readRenderTargetPixels: renderTarget is not THREE.WebGLRenderTarget.");
         return;
@@ -41045,8 +41045,8 @@ class WebGLRenderer {
             console.error("THREE.WebGLRenderer.readRenderTargetPixels: renderTarget is not in UnsignedByteType or implementation defined type.");
             return;
           }
-          if (x >= 0 && x <= renderTarget.width - width && (y >= 0 && y <= renderTarget.height - height)) {
-            _gl.readPixels(x, y, width, height, utils.convert(textureFormat), utils.convert(textureType), buffer);
+          if (x2 >= 0 && x2 <= renderTarget.width - width && (y2 >= 0 && y2 <= renderTarget.height - height)) {
+            _gl.readPixels(x2, y2, width, height, utils.convert(textureFormat), utils.convert(textureType), buffer);
           }
         } finally {
           const framebuffer2 = _currentRenderTarget !== null ? properties.get(_currentRenderTarget).__webglFramebuffer : null;
@@ -41185,9 +41185,9 @@ class WebGLRenderer {
     console.warn("THREE.WebGLRenderer: The property .useLegacyLights has been deprecated. Migrate your lighting according to the following guide: https://discourse.threejs.org/t/updates-to-lighting-in-three-js-r155/53733.");
     return this._useLegacyLights;
   }
-  set useLegacyLights(value) {
+  set useLegacyLights(value2) {
     console.warn("THREE.WebGLRenderer: The property .useLegacyLights has been deprecated. Migrate your lighting according to the following guide: https://discourse.threejs.org/t/updates-to-lighting-in-three-js-r155/53733.");
-    this._useLegacyLights = value;
+    this._useLegacyLights = value2;
   }
 }
 
@@ -41250,16 +41250,16 @@ class InterleavedBuffer {
   }
   onUploadCallback() {
   }
-  set needsUpdate(value) {
-    if (value === true)
+  set needsUpdate(value2) {
+    if (value2 === true)
       this.version++;
   }
   get updateRange() {
     console.warn("THREE.InterleavedBuffer: updateRange() is deprecated and will be removed in r169. Use addUpdateRange() instead.");
     return this._updateRange;
   }
-  setUsage(value) {
-    this.usage = value;
+  setUsage(value2) {
+    this.usage = value2;
     return this;
   }
   addUpdateRange(start, count) {
@@ -41283,8 +41283,8 @@ class InterleavedBuffer {
     }
     return this;
   }
-  set(value, offset = 0) {
-    this.array.set(value, offset);
+  set(value2, offset = 0) {
+    this.array.set(value2, offset);
     return this;
   }
   clone(data) {
@@ -41341,8 +41341,8 @@ class InterleavedBufferAttribute {
   get array() {
     return this.data.array;
   }
-  set needsUpdate(value) {
-    this.data.needsUpdate = value;
+  set needsUpdate(value2) {
+    this.data.needsUpdate = value2;
   }
   applyMatrix4(m) {
     for (let i = 0, l = this.data.count;i < l; i++) {
@@ -41368,22 +41368,22 @@ class InterleavedBufferAttribute {
     }
     return this;
   }
-  setX(index, x) {
+  setX(index, x2) {
     if (this.normalized)
-      x = normalize(x, this.array);
-    this.data.array[index * this.data.stride + this.offset] = x;
+      x2 = normalize(x2, this.array);
+    this.data.array[index * this.data.stride + this.offset] = x2;
     return this;
   }
-  setY(index, y) {
+  setY(index, y2) {
     if (this.normalized)
-      y = normalize(y, this.array);
-    this.data.array[index * this.data.stride + this.offset + 1] = y;
+      y2 = normalize(y2, this.array);
+    this.data.array[index * this.data.stride + this.offset + 1] = y2;
     return this;
   }
-  setZ(index, z) {
+  setZ(index, z2) {
     if (this.normalized)
-      z = normalize(z, this.array);
-    this.data.array[index * this.data.stride + this.offset + 2] = z;
+      z2 = normalize(z2, this.array);
+    this.data.array[index * this.data.stride + this.offset + 2] = z2;
     return this;
   }
   setW(index, w) {
@@ -41393,22 +41393,22 @@ class InterleavedBufferAttribute {
     return this;
   }
   getX(index) {
-    let x = this.data.array[index * this.data.stride + this.offset];
+    let x2 = this.data.array[index * this.data.stride + this.offset];
     if (this.normalized)
-      x = denormalize(x, this.array);
-    return x;
+      x2 = denormalize(x2, this.array);
+    return x2;
   }
   getY(index) {
-    let y = this.data.array[index * this.data.stride + this.offset + 1];
+    let y2 = this.data.array[index * this.data.stride + this.offset + 1];
     if (this.normalized)
-      y = denormalize(y, this.array);
-    return y;
+      y2 = denormalize(y2, this.array);
+    return y2;
   }
   getZ(index) {
-    let z = this.data.array[index * this.data.stride + this.offset + 2];
+    let z2 = this.data.array[index * this.data.stride + this.offset + 2];
     if (this.normalized)
-      z = denormalize(z, this.array);
-    return z;
+      z2 = denormalize(z2, this.array);
+    return z2;
   }
   getW(index) {
     let w = this.data.array[index * this.data.stride + this.offset + 3];
@@ -41416,39 +41416,39 @@ class InterleavedBufferAttribute {
       w = denormalize(w, this.array);
     return w;
   }
-  setXY(index, x, y) {
+  setXY(index, x2, y2) {
     index = index * this.data.stride + this.offset;
     if (this.normalized) {
-      x = normalize(x, this.array);
-      y = normalize(y, this.array);
+      x2 = normalize(x2, this.array);
+      y2 = normalize(y2, this.array);
     }
-    this.data.array[index + 0] = x;
-    this.data.array[index + 1] = y;
+    this.data.array[index + 0] = x2;
+    this.data.array[index + 1] = y2;
     return this;
   }
-  setXYZ(index, x, y, z) {
+  setXYZ(index, x2, y2, z2) {
     index = index * this.data.stride + this.offset;
     if (this.normalized) {
-      x = normalize(x, this.array);
-      y = normalize(y, this.array);
-      z = normalize(z, this.array);
+      x2 = normalize(x2, this.array);
+      y2 = normalize(y2, this.array);
+      z2 = normalize(z2, this.array);
     }
-    this.data.array[index + 0] = x;
-    this.data.array[index + 1] = y;
-    this.data.array[index + 2] = z;
+    this.data.array[index + 0] = x2;
+    this.data.array[index + 1] = y2;
+    this.data.array[index + 2] = z2;
     return this;
   }
-  setXYZW(index, x, y, z, w) {
+  setXYZW(index, x2, y2, z2, w) {
     index = index * this.data.stride + this.offset;
     if (this.normalized) {
-      x = normalize(x, this.array);
-      y = normalize(y, this.array);
-      z = normalize(z, this.array);
+      x2 = normalize(x2, this.array);
+      y2 = normalize(y2, this.array);
+      z2 = normalize(z2, this.array);
       w = normalize(w, this.array);
     }
-    this.data.array[index + 0] = x;
-    this.data.array[index + 1] = y;
-    this.data.array[index + 2] = z;
+    this.data.array[index + 0] = x2;
+    this.data.array[index + 1] = y2;
+    this.data.array[index + 2] = z2;
     this.data.array[index + 3] = w;
     return this;
   }
@@ -41913,12 +41913,12 @@ class CylinderGeometry extends BufferGeometry {
       const vertex2 = new Vector3;
       let groupCount = 0;
       const slope = (radiusBottom - radiusTop) / height;
-      for (let y = 0;y <= heightSegments; y++) {
+      for (let y2 = 0;y2 <= heightSegments; y2++) {
         const indexRow = [];
-        const v = y / heightSegments;
+        const v = y2 / heightSegments;
         const radius = v * (radiusBottom - radiusTop) + radiusTop;
-        for (let x = 0;x <= radialSegments; x++) {
-          const u = x / radialSegments;
+        for (let x2 = 0;x2 <= radialSegments; x2++) {
+          const u = x2 / radialSegments;
           const theta = u * thetaLength + thetaStart;
           const sinTheta = Math.sin(theta);
           const cosTheta = Math.cos(theta);
@@ -41933,12 +41933,12 @@ class CylinderGeometry extends BufferGeometry {
         }
         indexArray.push(indexRow);
       }
-      for (let x = 0;x < radialSegments; x++) {
-        for (let y = 0;y < heightSegments; y++) {
-          const a = indexArray[y][x];
-          const b = indexArray[y + 1][x];
-          const c = indexArray[y + 1][x + 1];
-          const d = indexArray[y][x + 1];
+      for (let x2 = 0;x2 < radialSegments; x2++) {
+        for (let y2 = 0;y2 < heightSegments; y2++) {
+          const a = indexArray[y2][x2];
+          const b = indexArray[y2 + 1][x2];
+          const c = indexArray[y2 + 1][x2 + 1];
+          const d = indexArray[y2][x2 + 1];
           indices.push(a, b, d);
           indices.push(b, c, d);
           groupCount += 6;
@@ -41954,15 +41954,15 @@ class CylinderGeometry extends BufferGeometry {
       let groupCount = 0;
       const radius = top === true ? radiusTop : radiusBottom;
       const sign = top === true ? 1 : -1;
-      for (let x = 1;x <= radialSegments; x++) {
+      for (let x2 = 1;x2 <= radialSegments; x2++) {
         vertices.push(0, halfHeight * sign, 0);
         normals.push(0, sign, 0);
         uvs.push(0.5, 0.5);
         index++;
       }
       const centerIndexEnd = index;
-      for (let x = 0;x <= radialSegments; x++) {
-        const u = x / radialSegments;
+      for (let x2 = 0;x2 <= radialSegments; x2++) {
+        const u = x2 / radialSegments;
         const theta = u * thetaLength + thetaStart;
         const cosTheta = Math.cos(theta);
         const sinTheta = Math.sin(theta);
@@ -41976,9 +41976,9 @@ class CylinderGeometry extends BufferGeometry {
         uvs.push(uv.x, uv.y);
         index++;
       }
-      for (let x = 0;x < radialSegments; x++) {
-        const c = centerIndexStart + x;
-        const i = centerIndexEnd + x;
+      for (let x2 = 0;x2 < radialSegments; x2++) {
+        const c = centerIndexStart + x2;
+        const i = centerIndexEnd + x2;
         if (top === true) {
           indices.push(i, i + 1, c);
         } else {
@@ -42198,47 +42198,47 @@ class MeshPhysicalMaterial extends MeshStandardMaterial {
   get anisotropy() {
     return this._anisotropy;
   }
-  set anisotropy(value) {
-    if (this._anisotropy > 0 !== value > 0) {
+  set anisotropy(value2) {
+    if (this._anisotropy > 0 !== value2 > 0) {
       this.version++;
     }
-    this._anisotropy = value;
+    this._anisotropy = value2;
   }
   get clearcoat() {
     return this._clearcoat;
   }
-  set clearcoat(value) {
-    if (this._clearcoat > 0 !== value > 0) {
+  set clearcoat(value2) {
+    if (this._clearcoat > 0 !== value2 > 0) {
       this.version++;
     }
-    this._clearcoat = value;
+    this._clearcoat = value2;
   }
   get iridescence() {
     return this._iridescence;
   }
-  set iridescence(value) {
-    if (this._iridescence > 0 !== value > 0) {
+  set iridescence(value2) {
+    if (this._iridescence > 0 !== value2 > 0) {
       this.version++;
     }
-    this._iridescence = value;
+    this._iridescence = value2;
   }
   get sheen() {
     return this._sheen;
   }
-  set sheen(value) {
-    if (this._sheen > 0 !== value > 0) {
+  set sheen(value2) {
+    if (this._sheen > 0 !== value2 > 0) {
       this.version++;
     }
-    this._sheen = value;
+    this._sheen = value2;
   }
   get transmission() {
     return this._transmission;
   }
-  set transmission(value) {
-    if (this._transmission > 0 !== value > 0) {
+  set transmission(value2) {
+    if (this._transmission > 0 !== value2 > 0) {
       this.version++;
     }
-    this._transmission = value;
+    this._transmission = value2;
   }
   copy(source) {
     super.copy(source);
@@ -42694,9 +42694,9 @@ class KeyframeTrack {
     if (values !== undefined) {
       if (isTypedArray(values)) {
         for (let i = 0, n = values.length;i !== n; ++i) {
-          const value = values[i];
-          if (isNaN(value)) {
-            console.error("THREE.KeyframeTrack: Value is not a valid number.", this, i, value);
+          const value2 = values[i];
+          if (isNaN(value2)) {
+            console.error("THREE.KeyframeTrack: Value is not a valid number.", this, i, value2);
             valid = false;
             break;
           }
@@ -42716,8 +42716,8 @@ class KeyframeTrack {
         if (!smoothInterpolation) {
           const offset = i * stride, offsetP = offset - stride, offsetN = offset + stride;
           for (let j = 0;j !== stride; ++j) {
-            const value = values[offset + j];
-            if (value !== values[offsetP + j] || value !== values[offsetN + j]) {
+            const value2 = values[offset + j];
+            if (value2 !== values[offsetP + j] || value2 !== values[offsetN + j]) {
               keep = true;
               break;
             }
@@ -42935,8 +42935,8 @@ class Loader {
     this.crossOrigin = crossOrigin;
     return this;
   }
-  setWithCredentials(value) {
-    this.withCredentials = value;
+  setWithCredentials(value2) {
+    this.withCredentials = value2;
     return this;
   }
   setPath(path) {
@@ -43606,14 +43606,14 @@ class Spherical {
   setFromVector3(v) {
     return this.setFromCartesianCoords(v.x, v.y, v.z);
   }
-  setFromCartesianCoords(x, y, z) {
-    this.radius = Math.sqrt(x * x + y * y + z * z);
+  setFromCartesianCoords(x2, y2, z2) {
+    this.radius = Math.sqrt(x2 * x2 + y2 * y2 + z2 * z2);
     if (this.radius === 0) {
       this.theta = 0;
       this.phi = 0;
     } else {
-      this.theta = Math.atan2(x, z);
-      this.phi = Math.acos(clamp(y / this.radius, -1, 1));
+      this.theta = Math.atan2(x2, z2);
+      this.phi = Math.acos(clamp(y2 / this.radius, -1, 1));
     }
     return this;
   }
@@ -43951,18 +43951,18 @@ class OrbitControls extends EventDispatcher {
         scope.enableZoom = false;
       }
     }
-    function updateZoomParameters(x, y) {
+    function updateZoomParameters(x2, y2) {
       if (!scope.zoomToCursor) {
         return;
       }
       performCursorZoom = true;
       const rect = scope.domElement.getBoundingClientRect();
-      const dx = x - rect.left;
-      const dy = y - rect.top;
+      const dx2 = x2 - rect.left;
+      const dy2 = y2 - rect.top;
       const w = rect.width;
       const h = rect.height;
-      mouse.x = dx / w * 2 - 1;
-      mouse.y = -(dy / h) * 2 + 1;
+      mouse.x = dx2 / w * 2 - 1;
+      mouse.y = -(dy2 / h) * 2 + 1;
       dollyDirection.set(mouse.x, mouse.y, 1).unproject(scope.object).sub(scope.object.position).normalize();
     }
     function clampDistance(dist) {
@@ -44060,9 +44060,9 @@ class OrbitControls extends EventDispatcher {
         rotateStart.set(event.pageX, event.pageY);
       } else {
         const position = getSecondPointerPosition(event);
-        const x = 0.5 * (event.pageX + position.x);
-        const y = 0.5 * (event.pageY + position.y);
-        rotateStart.set(x, y);
+        const x2 = 0.5 * (event.pageX + position.x);
+        const y2 = 0.5 * (event.pageY + position.y);
+        rotateStart.set(x2, y2);
       }
     }
     function handleTouchStartPan(event) {
@@ -44070,16 +44070,16 @@ class OrbitControls extends EventDispatcher {
         panStart.set(event.pageX, event.pageY);
       } else {
         const position = getSecondPointerPosition(event);
-        const x = 0.5 * (event.pageX + position.x);
-        const y = 0.5 * (event.pageY + position.y);
-        panStart.set(x, y);
+        const x2 = 0.5 * (event.pageX + position.x);
+        const y2 = 0.5 * (event.pageY + position.y);
+        panStart.set(x2, y2);
       }
     }
     function handleTouchStartDolly(event) {
       const position = getSecondPointerPosition(event);
-      const dx = event.pageX - position.x;
-      const dy = event.pageY - position.y;
-      const distance = Math.sqrt(dx * dx + dy * dy);
+      const dx2 = event.pageX - position.x;
+      const dy2 = event.pageY - position.y;
+      const distance = Math.sqrt(dx2 * dx2 + dy2 * dy2);
       dollyStart.set(0, distance);
     }
     function handleTouchStartDollyPan(event) {
@@ -44099,9 +44099,9 @@ class OrbitControls extends EventDispatcher {
         rotateEnd.set(event.pageX, event.pageY);
       } else {
         const position = getSecondPointerPosition(event);
-        const x = 0.5 * (event.pageX + position.x);
-        const y = 0.5 * (event.pageY + position.y);
-        rotateEnd.set(x, y);
+        const x2 = 0.5 * (event.pageX + position.x);
+        const y2 = 0.5 * (event.pageY + position.y);
+        rotateEnd.set(x2, y2);
       }
       rotateDelta.subVectors(rotateEnd, rotateStart).multiplyScalar(scope.rotateSpeed);
       const element = scope.domElement;
@@ -44114,9 +44114,9 @@ class OrbitControls extends EventDispatcher {
         panEnd.set(event.pageX, event.pageY);
       } else {
         const position = getSecondPointerPosition(event);
-        const x = 0.5 * (event.pageX + position.x);
-        const y = 0.5 * (event.pageY + position.y);
-        panEnd.set(x, y);
+        const x2 = 0.5 * (event.pageX + position.x);
+        const y2 = 0.5 * (event.pageY + position.y);
+        panEnd.set(x2, y2);
       }
       panDelta.subVectors(panEnd, panStart).multiplyScalar(scope.panSpeed);
       pan(panDelta.x, panDelta.y);
@@ -44124,9 +44124,9 @@ class OrbitControls extends EventDispatcher {
     }
     function handleTouchMoveDolly(event) {
       const position = getSecondPointerPosition(event);
-      const dx = event.pageX - position.x;
-      const dy = event.pageY - position.y;
-      const distance = Math.sqrt(dx * dx + dy * dy);
+      const dx2 = event.pageX - position.x;
+      const dy2 = event.pageY - position.y;
+      const distance = Math.sqrt(dx2 * dx2 + dy2 * dy2);
       dollyEnd.set(0, distance);
       dollyDelta.set(0, Math.pow(dollyEnd.y / dollyStart.y, scope.zoomSpeed));
       dollyOut(dollyDelta.y);
@@ -44386,20 +44386,19 @@ class OrbitControls extends EventDispatcher {
 var VERTEX_MASS = 1.4;
 
 class PhysicsSystem {
+  plane;
+  vertexVelocities;
   vertexPositions;
   springs;
-  vertexVelocities;
   faces;
-  constructor() {
-    this.vertexVelocities = this.vertexPositions.map((position) => [0, 0, 0]);
-  }
-  addSpring(fromIdx, toIdx) {
-    this.springs.push(new Spring(fromIdx, toIdx, this.norm(this.subtractVectors(this.vertexPositions[fromIdx], this.vertexPositions[toIdx]))));
-  }
-  addSpringSeries(vertexIndices) {
-    for (let i = 0;i < vertexIndices.length - 1; i++) {
-      this.addSpring(vertexIndices[i], vertexIndices[i + 1]);
-    }
+  engine;
+  constructor(plane) {
+    this.plane = plane;
+    this.vertexVelocities = new Array(plane.vertexPositions.length).fill([0, 0, 0]);
+    this.vertexPositions = plane.vertexPositions;
+    this.faces = plane.faces;
+    this.springs = plane.springs;
+    this.faces.unshift(plane.engine);
   }
   centerOfMass() {
     let centerOfMass = [0, 0, 0];
@@ -44410,63 +44409,14 @@ class PhysicsSystem {
     }
     return this.divideVectorByScalar(centerOfMass, totalMass);
   }
-  getSpringByVertexIndices(vertexIndex1, vertexIndex2) {
+  getSpring(vertexIndex1, vertexIndex2) {
     return this.springs.find((spring) => {
       return spring.fromIdx === vertexIndex1 && spring.toIdx === vertexIndex2 || spring.fromIdx === vertexIndex2 && spring.toIdx === vertexIndex1;
     });
   }
   handleKeyDown(event) {
-    const otherSpring = this.getSpringByVertexIndices(16, 17);
-    const springToShorten = this.getSpringByVertexIndices(13, 17);
-    if (event.key === "w") {
-      otherSpring.restLength += 0.02;
-      springToShorten.restLength -= 0.02;
-    }
-    if (event.key === "s") {
-      otherSpring.restLength -= 0.02;
-      springToShorten.restLength += 0.02;
-    }
-    const lspring = this.getSpringByVertexIndices(15, 17);
-    const rspring = this.getSpringByVertexIndices(14, 17);
-    if (event.key === "a") {
-      lspring.restLength -= 0.01;
-      rspring.restLength += 0.01;
-    }
-    if (event.key === "d") {
-      lspring.restLength += 0.01;
-      rspring.restLength -= 0.01;
-    }
-    if (event.key === "q") {
-      this.faces[0].force += 0.03;
-    }
-    if (event.key === "e") {
-      this.faces[0].force -= 0.03;
-      if (this.faces[0].force < 0) {
-        this.faces[0].force = 0;
-      }
-    }
   }
   handleGameController() {
-    const gamepads = navigator.getGamepads();
-    const gamepad = gamepads[0] || gamepads[1] || gamepads[2] || gamepads[3];
-    if (!gamepad) {
-      return;
-    }
-    if (gamepad.buttons[4].pressed) {
-      this.faces[0].force += 0.03;
-    }
-    if (gamepad.buttons[5].pressed) {
-      this.faces[0].force -= 0.03;
-    }
-    this.faces[0].force = Math.min(5, Math.max(0, this.faces[0].force));
-    const lspring = this.getSpringByVertexIndices(15, 17);
-    const rspring = this.getSpringByVertexIndices(14, 17);
-    lspring.restLength += gamepad.axes[0] * 0.01;
-    rspring.restLength -= gamepad.axes[0] * 0.01;
-    const otherSpring = this.getSpringByVertexIndices(16, 17);
-    const springToShorten = this.getSpringByVertexIndices(13, 17);
-    otherSpring.restLength -= gamepad.axes[1] * 0.01;
-    springToShorten.restLength += gamepad.axes[1] * 0.01;
   }
   computeForces(vertexPositions, vertexVelocities, dampingCoefficient) {
     const numVertices = vertexPositions.length;
@@ -44474,9 +44424,11 @@ class PhysicsSystem {
     for (let i = 0;i < numVertices; i++) {
       const gravityForce = this.multiplyVectorByScalar([0, -3, 0], VERTEX_MASS);
       forces[i] = this.addVectors(forces[i], gravityForce);
-      const y = vertexPositions[i][1];
-      const groundForce = this.multiplyVectorByScalar([0, Math.max(0, 0.5 - y), 0], 100);
-      forces[i] = this.addVectors(forces[i], groundForce);
+      const y2 = vertexPositions[i][1];
+      if (vertexPositions[i][0] > -5000 && vertexPositions[i][0] < 5000 && vertexPositions[i][2] > -5000 && vertexPositions[i][2] < 5000) {
+        const groundForce = this.multiplyVectorByScalar([0, Math.max(0, 0.5 - y2), 0], 100);
+        forces[i] = this.addVectors(forces[i], groundForce);
+      }
     }
     for (const [index, spring] of this.springs.entries()) {
       const vertex1 = spring.fromIdx;
@@ -44505,22 +44457,11 @@ class PhysicsSystem {
       const DRAG_STRENGTH = 0.001;
       const dragForce = this.multiplyVectorByScalar(averageVelocity, -DRAG_STRENGTH);
       const force = this.addVectors(this.multiplyVectorByScalar(normal, thrustMagnitude + windForceStrength), dragForce);
-      if (this.norm(force) > 1000) {
-        debugger;
-      }
       face.vertexIndices.forEach((vertexIndex) => {
         forces[vertexIndex] = this.addVectors(forces[vertexIndex], this.divideVectorByScalar(force, 3));
       });
     }
     return forces;
-  }
-  deleteVerticesBelowGround() {
-    for (let i = 0;i < this.vertexPositions.length; i++) {
-      if (this.vertexPositions[i][1] < 0) {
-        this.deleteVertex(i);
-        i--;
-      }
-    }
   }
   addVectors(a, b) {
     return [a[0] + b[0], a[1] + b[1], a[2] + b[2]];
@@ -44596,7 +44537,7 @@ class PhysicsSystem {
       let k4Position = endVelocities.map((velocity) => this.multiplyVectorByScalar(velocity, dt));
       for (let i = 0;i < vertexVelocities.length; i++) {
         vertexVelocities[i] = this.addVectors(vertexVelocities[i], this.multiplyVectorByScalar(this.addVectors(this.addVectors(k1Velocity[i], this.multiplyVectorByScalar(this.addVectors(k2Velocity[i], k3Velocity[i]), 2)), k4Velocity[i]), 0.16666666666666666));
-        if (vertexPositions[i][1] > 0.02) {
+        if (vertexPositions[i][1] > 0.02 || vertexPositions[i][0] < -5000 || vertexPositions[i][0] > 5000 || vertexPositions[i][2] < -5000 || vertexPositions[i][2] > 5000) {
           vertexPositions[i] = this.addVectors(vertexPositions[i], this.multiplyVectorByScalar(this.addVectors(this.addVectors(k1Position[i], this.multiplyVectorByScalar(this.addVectors(k2Position[i], k3Position[i]), 2)), k4Position[i]), 0.16666666666666666));
         } else {
           vertexPositions[i][1] = 0.02;
@@ -44819,14 +44760,16 @@ class FaceGraphics {
     this.triangles = [];
     for (let i = 0;i < physicsSystem.faces.length; i++) {
       const geometry = new BufferGeometry;
+      geometry.name = `triangle-${i}`;
       const [a, b, c] = physicsSystem.faces[i].vertexIndices;
-      geometry.setFromPoints([a, b, c].map((x) => new Vector3(...physicsSystem.vertexPositions[x])));
+      geometry.setFromPoints([a, b, c].map((x2) => new Vector3(...physicsSystem.vertexPositions[x2])));
       const triangle = new Mesh(geometry, physicsSystem.faces[i].constructor.name == "Engine" ? engineMaterial : faceMaterial);
       scene.add(triangle);
       triangle.frustumCulled = false;
       this.triangles.push(triangle);
       triangle.name = `triangle-${i}`;
     }
+    this.update();
   }
   update() {
     for (let faceIdx = 0;faceIdx < this.physicsSystem.faces.length; faceIdx++) {
@@ -44839,13 +44782,20 @@ class FaceGraphics {
         positions.setXYZ(i, pos[0], pos[1], pos[2]);
       }
       positions.needsUpdate = true;
-      if (this.physicsSystem.faces[faceIdx].force != 0) {
-        const otherLightness = this.physicsSystem.faces[faceIdx].force / 5;
-        triangle.material.color = new Color(otherLightness, otherLightness, 1);
+      if (faceIdx == 0) {
+        const force = this.physicsSystem.faces[faceIdx].force;
+        triangle.material.color = new Color(Math.min(force, 1) - Math.max(force - 3.5, 0), Math.max(Math.min(force - 1.5, 1), 0) * 0.8, Math.max(Math.min(force - 2.5, 1), 0));
         triangle.color_needs_update = true;
       }
       triangle.geometry.computeVertexNormals();
     }
+  }
+  dispose() {
+    this.triangles.forEach((triangle) => {
+      this.scene.remove(triangle);
+      triangle.geometry.dispose();
+      triangle.material.dispose();
+    });
   }
 }
 
@@ -44892,6 +44842,21 @@ class LabelGraphics {
       this.labels[i].position.set(...this.physicsSystem.vertexPositions[i]);
     }
   }
+  dispose() {
+    this.labels.forEach((label) => {
+      this.scene.remove(label);
+    });
+  }
+  setVisible() {
+    this.labels.forEach((label) => {
+      label.visible = true;
+    });
+  }
+  setInvisible() {
+    this.labels.forEach((label) => {
+      label.visible = false;
+    });
+  }
 }
 
 // particleGraphics.ts
@@ -44905,6 +44870,7 @@ class ParticleGraphics {
   nextIndex;
   particleCount;
   particlesGeometry;
+  particlesSystem;
   oldCenterOfMass;
   constructor(scene, physicsSystem) {
     this.scene = scene;
@@ -44929,15 +44895,16 @@ class ParticleGraphics {
     const particleSystem = new Points(this.particlesGeometry, particlesMaterial);
     particleSystem.frustumCulled = false;
     scene.add(particleSystem);
+    this.particlesSystem = particleSystem;
     this.particlesGeometry.setAttribute("position", new BufferAttribute(this.positions, 3));
     this.particlesGeometry.setAttribute("color", new BufferAttribute(this.colors, 3));
     this.oldCenterOfMass = physicsSystem.centerOfMass();
   }
-  spawnParticle(x, y, z, vx, vy, vz, speed) {
+  spawnParticle(x2, y2, z2, vx, vy, vz, speed) {
     const nextIndex = this.nextIndex;
-    this.positions[nextIndex * 3] = x;
-    this.positions[nextIndex * 3 + 1] = y;
-    this.positions[nextIndex * 3 + 2] = z;
+    this.positions[nextIndex * 3] = x2;
+    this.positions[nextIndex * 3 + 1] = y2;
+    this.positions[nextIndex * 3 + 2] = z2;
     this.velocities[nextIndex * 3] = vx;
     this.velocities[nextIndex * 3 + 1] = vy;
     this.velocities[nextIndex * 3 + 2] = vz;
@@ -44980,17 +44947,23 @@ class ParticleGraphics {
     const [x3, y3, z3] = this.physicsSystem.vertexPositions[engine.vertexIndices[2]];
     const [avg_x, avg_y, avg_z] = [(x1 + x2 + x3) / 3, (y1 + y2 + y3) / 3, (z1 + z2 + z3) / 3];
     const [nx, ny, nz] = this.physicsSystem.calculateNormal([x1, y1, z1], [x2, y2, z2], [x3, y3, z3]);
-    const newCenterOfMass = this.physicsSystem.centerOfMass();
-    const [x, y, z] = newCenterOfMass;
-    const [oldX, oldY, oldZ] = this.oldCenterOfMass;
-    const [dx, dy, dz] = [x - oldX, y - oldY, z - oldZ];
-    this.oldCenterOfMass = newCenterOfMass;
+    const newCenterOfMass2 = this.physicsSystem.centerOfMass();
+    const [x4, y4, z4] = newCenterOfMass2;
+    const [oldX2, oldY2, oldZ2] = this.oldCenterOfMass;
+    const [dx2, dy2, dz2] = [x4 - oldX2, y4 - oldY2, z4 - oldZ2];
+    this.oldCenterOfMass = newCenterOfMass2;
     for (let i = 0;i < numberToSpawn; i++) {
       const scale = Math.random();
       const scale2 = Math.random();
-      this.spawnParticle(avg_x - scale2 * dx, avg_y - scale2 * dy, avg_z - scale2 * dz, -nx / 0.4 * scale, -ny / 0.4 * scale, -nz / 0.4 * scale, Math.hypot(dx, dy, dz));
+      this.spawnParticle(avg_x - scale2 * dx2, avg_y - scale2 * dy2, avg_z - scale2 * dz2, -nx / 0.4 * scale, -ny / 0.4 * scale, -nz / 0.4 * scale, Math.hypot(dx2, dy2, dz2));
     }
     this.updateParticles();
+  }
+  dispose() {
+    this.scene.remove(this.particlesGeometry);
+    this.particlesGeometry.dispose();
+    this.particlesSystem.material.dispose();
+    this.scene.remove(this.particlesSystem);
   }
 }
 
@@ -45026,6 +44999,9 @@ class FulcrumGraphics {
       this.fulcrumsInstancedMesh.setMatrixAt(i, matrix);
     }
     this.fulcrumsInstancedMesh.instanceMatrix.needsUpdate = true;
+  }
+  dispose() {
+    this.scene.remove(this.fulcrumsInstancedMesh);
   }
 }
 
@@ -45072,46 +45048,250 @@ class SpringGraphics {
     this.cylindersInstancedMesh.instanceColor.needsUpdate = true;
     this.cylindersInstancedMesh.instanceMatrix.needsUpdate = true;
   }
+  dispose() {
+    this.cylindersInstancedMesh.geometry.dispose();
+    this.cylindersInstancedMesh.material.dispose();
+    this.scene.remove(this.cylindersInstancedMesh);
+  }
+}
+
+// planeBuilder.ts
+var MAX_THRUST_CHANGE = 0.01;
+var MAX_THRUST = 5;
+
+class Plane2 {
+  vertexPositions;
+  springs;
+  faces;
+  engine;
+  constructor() {
+    this.vertexPositions = [[0, 0, 0]];
+    this.springs = [];
+    this.faces = [];
+    this.engine = null;
+  }
+  addSpring(fromIdx, toIdx) {
+    this.springs.push(new Spring(fromIdx, toIdx, Math.hypot(...this.vertexPositions[fromIdx].map((x2, i) => x2 - this.vertexPositions[toIdx][i]))));
+    return this.springs[this.springs.length - 1];
+  }
+  addSpringSeries(vertexIndices) {
+    for (let i = 0;i < vertexIndices.length - 1; i++) {
+      this.addSpring(vertexIndices[i], vertexIndices[i + 1]);
+    }
+  }
+  getSpring(fromIdx, toIdx) {
+    return this.springs.find((spring) => spring.fromIdx == fromIdx && spring.toIdx == toIdx || spring.fromIdx == toIdx && spring.toIdx == fromIdx);
+  }
+  addThrust(thrust) {
+    const clampedThrustChange = Math.min(Math.abs(thrust), MAX_THRUST_CHANGE) * Math.sign(thrust);
+    this.engine.force += clampedThrustChange;
+    this.engine.force = Math.max(0, Math.min(MAX_THRUST, this.engine.force));
+  }
+  update() {
+    this.engine.update();
+    this.faces.forEach((face) => face.update());
+    this.springs.forEach((spring) => spring.update(this.vertexPositions));
+  }
+}
+
+class MyPlane extends Plane2 {
+  constructor() {
+    super();
+    this.vertexPositions = [
+      [0, 0.5, 0.3],
+      [1, 0.5, 0.3],
+      [-0.3, 0.5, 1],
+      [1.3, 0.5, 1],
+      [0, 0.5, 2],
+      [1, 0.5, 2],
+      [0, 0.5, 3],
+      [1, 0.5, 3],
+      [-1, 1, 4],
+      [2, 1, 4],
+      [0.5, 1.5, 0.4],
+      [0.5, 1.8, 1.2],
+      [0.5, 1.5, 2.5],
+      [0.5, 2.5, 3.5],
+      [4, 3, 3],
+      [-3, 3, 3],
+      [0.5, 0.6, 4.1],
+      [0.5, 1, 6]
+    ];
+    this.addSpring(0, 1);
+    this.addSpring(2, 3);
+    this.addSpring(4, 5);
+    this.addSpring(6, 7);
+    this.addSpring(8, 9);
+    this.addSpringSeries([0, 2, 4, 6, 8]);
+    this.addSpringSeries([1, 3, 5, 7, 9]);
+    this.addSpringSeries([10, 11, 12, 13]);
+    this.addSpringSeries([0, 10, 1]);
+    this.addSpringSeries([2, 10, 3]);
+    this.addSpringSeries([2, 11, 3]);
+    this.addSpringSeries([4, 11, 5]);
+    this.addSpringSeries([4, 12, 5]);
+    this.addSpringSeries([6, 12, 7]);
+    this.addSpringSeries([6, 13, 7]);
+    this.addSpringSeries([8, 13, 9]);
+    this.addSpringSeries([3, 14, 9]);
+    this.addSpringSeries([2, 15, 8]);
+    this.addSpringSeries([8, 16, 9]);
+    this.addSpringSeries([16, 17, 13]);
+    this.addSpringSeries([15, 10, 14]);
+    this.addSpringSeries([15, 11, 14]);
+    this.addSpringSeries([15, 12, 14]);
+    this.addSpringSeries([15, 13, 14]);
+    this.addSpringSeries([15, 17, 14]);
+    this.addSpringSeries([4, 10, 5]);
+    this.addSpringSeries([0, 3, 4, 7, 8]);
+    this.addSpringSeries([1, 2, 5, 6, 9]);
+    this.addSpringSeries([6, 16, 7]);
+    this.addSpringSeries([0, 11, 1]);
+    this.addSpring(14, 15);
+    const specialSpring = this.addSpring(13, 16);
+    specialSpring.restLength *= 1.1;
+    this.engine = new Engine([11, 3, 2]);
+    this.faces = [
+      new Face([0, 8, 15]),
+      new Face([1, 9, 14]),
+      new Face([16, 13, 17]),
+      new Face([8, 9, 17])
+    ];
+  }
+  handleInput(input) {
+    this.addThrust((input.q - input.e + input.button_4 - input.button_5) * 0.1);
+    const steeringChange = (input.a - input.d) * 0.01 + input.axis_0 * 0.01;
+    this.getSpring(15, 17).restLength += steeringChange;
+    this.getSpring(14, 17).restLength -= steeringChange;
+    const pitchChange = (input.w - input.s) * 0.01 + -input.axis_1 * 0.01;
+    this.getSpring(16, 17).restLength += pitchChange;
+    this.getSpring(13, 17).restLength -= pitchChange;
+  }
+}
+
+class Spring {
+  fromIdx;
+  toIdx;
+  restLength;
+  initialRestLength;
+  constructor(fromIdx, toIdx, restLength) {
+    this.fromIdx = fromIdx;
+    this.toIdx = toIdx;
+    this.restLength = restLength;
+    this.initialRestLength = restLength;
+  }
+}
+
+class Face {
+  vertexIndices;
+  force = 0;
+  constructor(vertexIndices) {
+    this.vertexIndices = vertexIndices;
+  }
+}
+
+class Engine extends Face {
+  constructor(vertexIndices) {
+    super(vertexIndices);
+  }
+}
+
+// magicInput.ts
+class MagicInput {
+  values;
+  constructor() {
+    this.values = {};
+    for (let i = 65;i <= 90; i++) {
+      this.values[String.fromCharCode(i).toLowerCase()] = 0;
+    }
+    for (let i = 0;i < 20; i++) {
+      this.values[`button_${i}`] = 0;
+    }
+    for (let i = 0;i < 4; i++) {
+      this.values[`axis_${i}`] = 0;
+    }
+    document.addEventListener("keydown", this.onKeyDown.bind(this));
+    document.addEventListener("keyup", this.onKeyUp.bind(this));
+  }
+  onKeyDown(event) {
+    this.values[event.key.toLowerCase()] = 1;
+  }
+  onKeyUp(event) {
+    this.values[event.key.toLowerCase()] = 0;
+  }
+  step() {
+    const gamepads2 = navigator.getGamepads ? navigator.getGamepads() : [];
+    const gamepad2 = gamepads2[0] || gamepads2[1] || gamepads2[2] || gamepads2[3];
+    if (gamepad2) {
+      gamepad2.buttons.forEach((button, index) => {
+        this.values[`button_${index}`] = button.pressed ? 1 : 0;
+      });
+      gamepad2.axes.forEach((axis, index) => {
+        this.values[`axis_${index}`] = axis;
+      });
+    }
+  }
+  get input() {
+    return {
+      ...this.values
+    };
+  }
 }
 
 // index.tsx
 var jsx_dev_runtime = __toESM(require_jsx_dev_runtime(), 1);
+var loadPlane = function(newPlane) {
+  if (gameStuff.plane) {
+    gameStuff.faceGraphics.dispose();
+    gameStuff.labelGraphics.dispose();
+    gameStuff.particleGraphics.dispose();
+    gameStuff.fulcrumGraphics.dispose();
+    gameStuff.springGraphics.dispose();
+  }
+  gameStuff.plane = newPlane;
+  gameStuff.physicsSystem = new PhysicsSystem(newPlane);
+  const physicsSystem = gameStuff.physicsSystem;
+  gameStuff.faceGraphics = new FaceGraphics(scene, physicsSystem);
+  gameStuff.labelGraphics = new LabelGraphics(scene, physicsSystem);
+  gameStuff.particleGraphics = new ParticleGraphics(scene, physicsSystem);
+  gameStuff.fulcrumGraphics = new FulcrumGraphics(scene, physicsSystem);
+  gameStuff.springGraphics = new SpringGraphics(scene, physicsSystem);
+};
 var onPointerMove = function(event) {
   pointer.x = event.clientX / window.innerWidth * 2 - 1;
   pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
 };
 var animate = function() {
   requestAnimationFrame(animate);
-  {
-    const gamepads = navigator.getGamepads();
-    const gamepad = gamepads[0] || gamepads[1] || gamepads[2] || gamepads[3];
-    if (gamepad) {
-      angle1 += gamepad.axes[2] * 0.02;
-      angle2 += gamepad.axes[3] * 0.02;
-      const x = 15 * Math.cos(angle1) * Math.cos(angle2) + oldCenterOfMass[0];
-      const y = 15 * Math.sin(angle2) + oldCenterOfMass[1];
-      const z = 15 * Math.sin(angle1) * Math.cos(angle2) + oldCenterOfMass[2];
-      camera.position.set(x, y, z);
-      camera.lookAt(new Vector3(oldCenterOfMass));
-    }
+  const physicsSystem = gameStuff.physicsSystem;
+  magicInput2.step();
+  gameStuff.plane.handleInput(magicInput2.input);
+  if (magicInput2.input.axis_2) {
+    angle1 += (magicInput2.input.axis_2 + 0.08) * 0.02;
+    angle2 += (magicInput2.input.axis_3 + 0.08) * 0.02;
+    const x2 = 15 * Math.cos(angle1) * Math.cos(angle2) + oldCenterOfMass[0];
+    const y2 = 15 * Math.sin(angle2) + oldCenterOfMass[1];
+    const z2 = 15 * Math.sin(angle1) * Math.cos(angle2) + oldCenterOfMass[2];
+    camera.position.set(x2, y2, z2);
+    camera.lookAt(new Vector3(oldCenterOfMass));
+    controls.update();
   }
   if (uiState.playing) {
-    physicsSystem.handleGameController();
     physicsSystem.rk4Integrate(0.01, 10, 30);
-    particleGraphics2.update();
-    labelGraphics2.update();
-    fulcrumGraphics2.update();
-    springGraphics2.update();
-    faceGraphics2.update();
-    const newCenterOfMass = physicsSystem.centerOfMass();
-    const [x, y, z] = newCenterOfMass;
-    const [oldX, oldY, oldZ] = oldCenterOfMass;
-    const [dx, dy, dz] = [x - oldX, y - oldY, z - oldZ];
-    camera.position.x += x - oldX;
-    camera.position.y += y - oldY;
-    camera.position.z += z - oldZ;
-    oldCenterOfMass = newCenterOfMass;
-    controls.target = new Vector3(...newCenterOfMass);
+    gameStuff.particleGraphics.update();
+    gameStuff.labelGraphics.update();
+    gameStuff.fulcrumGraphics.update();
+    gameStuff.springGraphics.update();
+    gameStuff.faceGraphics.update();
+    const newCenterOfMass2 = physicsSystem.centerOfMass();
+    const [x2, y2, z2] = newCenterOfMass2;
+    const [oldX2, oldY2, oldZ2] = oldCenterOfMass;
+    const [dx2, dy2, dz2] = [x2 - oldX2, y2 - oldY2, z2 - oldZ2];
+    camera.position.x += x2 - oldX2;
+    camera.position.y += y2 - oldY2;
+    camera.position.z += z2 - oldZ2;
+    oldCenterOfMass = newCenterOfMass2;
+    controls.target = new Vector3(...newCenterOfMass2);
     controls.update();
   }
   renderer.render(scene, camera);
@@ -45125,21 +45305,21 @@ var camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0
 var renderer = new WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
-var physicsSystem = new PhysicsSystem;
+var magicInput2 = new MagicInput;
 var light = new DirectionalLight(16777215, 0.5);
 scene.add(light);
 scene.add(new AmbientLight(16777215, 0.5));
 {
-  const planeGeometry = new PlaneGeometry(1e4, 1e4);
+  const groundGeometry = new PlaneGeometry(1e4, 1e4);
   const loader = new TextureLoader;
   const texture = loader.load("grass.jpg");
   texture.wrapS = RepeatWrapping;
   texture.wrapT = RepeatWrapping;
   texture.repeat.set(100, 100);
-  const planeMaterial = new MeshBasicMaterial({ map: texture, side: DoubleSide });
-  const plane = new Mesh(planeGeometry, planeMaterial);
-  plane.rotation.x = -Math.PI / 2;
-  scene.add(plane);
+  const groundMaterial = new MeshBasicMaterial({ map: texture, side: DoubleSide });
+  const ground = new Mesh(groundGeometry, groundMaterial);
+  ground.rotation.x = -Math.PI / 2;
+  scene.add(ground);
 }
 {
   const sphereGeometry = new SphereGeometry(10, 32, 32);
@@ -45152,15 +45332,21 @@ scene.add(new AmbientLight(16777215, 0.5));
     scene.add(sphere);
   }
 }
-var faceGraphics2 = new FaceGraphics(scene, physicsSystem);
-var labelGraphics2 = new LabelGraphics(scene, physicsSystem);
-var particleGraphics2 = new ParticleGraphics(scene, physicsSystem);
-var fulcrumGraphics2 = new FulcrumGraphics(scene, physicsSystem);
-var springGraphics2 = new SpringGraphics(scene, physicsSystem);
+var gameStuff = {
+  plane: null,
+  physicsSystem: null,
+  faceGraphics: null,
+  labelGraphics: null,
+  particleGraphics: null,
+  fulcrumGraphics: null,
+  springGraphics: null
+};
+loadPlane(new MyPlane);
 var controls = new OrbitControls(camera, renderer.domElement);
 camera.position.z = 5;
 camera.position.y = 5;
 controls.update();
+var physicsSystem = gameStuff.physicsSystem;
 var oldCenterOfMass = physicsSystem.centerOfMass();
 var overlayElement = document.getElementById("overlay");
 var raycaster = new Raycaster;
@@ -45191,8 +45377,11 @@ animate();
 window.addEventListener("keydown", (e) => {
   physicsSystem.handleKeyDown(e);
 });
+var reactState = { oldCenterOfMass: [0, 0, 0] };
 var MyComponent = () => {
   const [value, setValue] = import_react.useState(0);
+  const [planeCode, setPlaneCode] = import_react.useState(MyPlane + "");
+  const [showPlaneEditor, setShowPlaneEditor] = import_react.useState(true);
   var gamepads = navigator.getGamepads();
   const gamepad = gamepads[1];
   import_react.useEffect(() => {
@@ -45206,24 +45395,185 @@ var MyComponent = () => {
       cancelAnimationFrame(frameId);
     };
   }, []);
-  const newCenterOfMass = physicsSystem.centerOfMass();
+  const newCenterOfMass = gameStuff.physicsSystem.centerOfMass();
   const [x, y, z] = newCenterOfMass;
-  const [oldX, oldY, oldZ] = oldCenterOfMass;
+  const [oldX, oldY, oldZ] = reactState.oldCenterOfMass;
   const [dx, dy, dz] = [x - oldX, y - oldY, z - oldZ];
+  reactState.oldCenterOfMass = newCenterOfMass;
+  const heading = Math.atan2(z - oldZ, x - oldX);
+  const horizontalSpeed = Math.sqrt((x - oldX) ** 2 + (z - oldZ) ** 2) / 0.03;
+  const verticalSpeed = dy / 0.03;
+  if (magicInput2.input.button_9) {
+    loadPlane(new (eval("(" + planeCode + ")")));
+  }
   return jsx_dev_runtime.jsxDEV("div", {
     children: [
-      jsx_dev_runtime.jsxDEV("p", {
-        style: { backgroundColor: y < 10 ? "lightblue" : y < 100 ? "pink" : "grey" },
+      jsx_dev_runtime.jsxDEV("div", {
+        className: "overlay-l",
         children: [
-          "Altitude: ",
-          y.toFixed(0)
+          jsx_dev_runtime.jsxDEV("svg", {
+            xmlns: "http://www.w3.org/2000/svg",
+            width: "500",
+            height: "500",
+            viewBox: "-1.2 -1.2 2.4 2.4",
+            children: [
+              jsx_dev_runtime.jsxDEV("circle", {
+                cx: "0",
+                cy: "0",
+                r: horizontalSpeed / 400,
+                stroke: "white",
+                strokeWidth: "0.02",
+                fill: "none"
+              }, undefined, false, undefined, this),
+              jsx_dev_runtime.jsxDEV("circle", {
+                cx: "0",
+                cy: "0",
+                r: Math.abs(verticalSpeed / 400),
+                stroke: verticalSpeed > 0 ? "green" : "red",
+                strokeWidth: "0.02",
+                fill: "none"
+              }, undefined, false, undefined, this),
+              jsx_dev_runtime.jsxDEV("line", {
+                x1: Math.cos(heading),
+                y1: -Math.sin(heading),
+                x2: "0",
+                y2: "0",
+                stroke: "red",
+                strokeWidth: "0.1"
+              }, undefined, false, undefined, this),
+              jsx_dev_runtime.jsxDEV("text", {
+                x: Math.cos(heading),
+                y: -Math.sin(heading),
+                fill: "red",
+                fontSize: "0.5",
+                textAnchor: "middle",
+                dominantBaseline: "middle",
+                children: "N"
+              }, undefined, false, undefined, this),
+              jsx_dev_runtime.jsxDEV("line", {
+                x1: -Math.cos(heading),
+                y1: Math.sin(heading),
+                x2: "0",
+                y2: "0",
+                stroke: "white",
+                strokeWidth: "0.05"
+              }, undefined, false, undefined, this),
+              jsx_dev_runtime.jsxDEV("text", {
+                x: -Math.cos(heading),
+                y: Math.sin(heading),
+                fill: "white",
+                fontSize: "0.5",
+                textAnchor: "middle",
+                dominantBaseline: "middle",
+                children: "S"
+              }, undefined, false, undefined, this),
+              jsx_dev_runtime.jsxDEV("line", {
+                x1: Math.sin(heading),
+                y1: Math.cos(heading),
+                x2: "0",
+                y2: "0",
+                stroke: "white",
+                strokeWidth: "0.05"
+              }, undefined, false, undefined, this),
+              jsx_dev_runtime.jsxDEV("text", {
+                x: Math.sin(heading),
+                y: Math.cos(heading),
+                fill: "white",
+                fontSize: "0.5",
+                textAnchor: "middle",
+                dominantBaseline: "middle",
+                children: "E"
+              }, undefined, false, undefined, this),
+              jsx_dev_runtime.jsxDEV("line", {
+                x1: -Math.sin(heading),
+                y1: -Math.cos(heading),
+                x2: "0",
+                y2: "0",
+                stroke: "white",
+                strokeWidth: "0.05"
+              }, undefined, false, undefined, this),
+              jsx_dev_runtime.jsxDEV("text", {
+                x: -Math.sin(heading),
+                y: -Math.cos(heading),
+                fill: "white",
+                fontSize: "0.5",
+                textAnchor: "middle",
+                dominantBaseline: "middle",
+                children: "W"
+              }, undefined, false, undefined, this),
+              jsx_dev_runtime.jsxDEV("line", {
+                x1: "0",
+                y1: "0",
+                x2: "0",
+                y2: "-1",
+                stroke: "pink",
+                strokeWidth: "0.01"
+              }, undefined, false, undefined, this)
+            ]
+          }, undefined, true, undefined, this),
+          jsx_dev_runtime.jsxDEV("div", {
+            style: { backgroundColor: y < 10 ? "lightblue" : y < 100 ? "pink" : "grey" },
+            children: [
+              "Altitude: ",
+              y.toFixed(0)
+            ]
+          }, undefined, true, undefined, this),
+          jsx_dev_runtime.jsxDEV("div", {
+            children: [
+              "Vertical speed: ",
+              verticalSpeed.toFixed(1)
+            ]
+          }, undefined, true, undefined, this),
+          jsx_dev_runtime.jsxDEV("div", {
+            children: [
+              "Horizontal speed: ",
+              horizontalSpeed.toFixed(1)
+            ]
+          }, undefined, true, undefined, this),
+          jsx_dev_runtime.jsxDEV("div", {
+            children: [
+              "Thrust: ",
+              gameStuff.physicsSystem.faces[0].force.toFixed(2)
+            ]
+          }, undefined, true, undefined, this)
         ]
       }, undefined, true, undefined, this),
-      jsx_dev_runtime.jsxDEV("button", {
-        onClick: () => {
-          uiState.playing = !uiState.playing;
-        },
-        children: "play/pause"
+      jsx_dev_runtime.jsxDEV("div", {
+        className: "overlay-r",
+        children: showPlaneEditor ? jsx_dev_runtime.jsxDEV("div", {
+          children: [
+            jsx_dev_runtime.jsxDEV("textarea", {
+              rows: 50,
+              style: { width: 500 },
+              value: planeCode,
+              onChange: (e) => {
+                setPlaneCode(e.target.value);
+              }
+            }, undefined, false, undefined, this),
+            jsx_dev_runtime.jsxDEV("br", {}, undefined, false, undefined, this),
+            jsx_dev_runtime.jsxDEV("button", {
+              onClick: () => {
+                loadPlane(new (eval("(" + planeCode + ")")));
+              },
+              children: "load plane"
+            }, undefined, false, undefined, this),
+            jsx_dev_runtime.jsxDEV("button", {
+              onClick: () => {
+                setShowPlaneEditor(false);
+                gameStuff.labelGraphics.setInvisible();
+              },
+              children: "hide plane editor"
+            }, undefined, false, undefined, this)
+          ]
+        }, undefined, true, undefined, this) : jsx_dev_runtime.jsxDEV("div", {
+          children: jsx_dev_runtime.jsxDEV("button", {
+            onClick: () => {
+              setShowPlaneEditor(true);
+              gameStuff.labelGraphics.setVisible();
+            },
+            children: "show plane editor"
+          }, undefined, false, undefined, this)
+        }, undefined, false, undefined, this)
       }, undefined, false, undefined, this)
     ]
   }, undefined, true, undefined, this);

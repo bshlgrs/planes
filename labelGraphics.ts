@@ -63,4 +63,22 @@ export class LabelGraphics {
         }
 
     }
+
+    dispose() {
+        this.labels.forEach((label) => {
+            this.scene.remove(label);
+        });
+    }
+
+    setVisible() {
+        this.labels.forEach((label) => {
+            label.visible = true;
+        });
+    }
+
+    setInvisible() {
+        this.labels.forEach((label) => {
+            label.visible = false;
+        });
+    }
 }
