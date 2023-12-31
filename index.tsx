@@ -413,10 +413,9 @@ const MyComponent = ({ myPlaneText }) => {
 
             </svg>
             <div style={{ backgroundColor: y < 10 ? 'lightblue' : (y < 100 ? 'pink' : 'grey') }}>Altitude: {y.toFixed(0)}m</div>
-            <div>Vertical speed: {verticalSpeed.toFixed(0)}m/s</div>
-            <div>Horizontal speed: {horizontalSpeed.toFixed()}m/s</div>
+            <div>Vertical speed (m/s): {verticalSpeed.toFixed(0)}</div>
+            <div>Horizontal speed (m/s): {horizontalSpeed.toFixed()}</div>
             <div>Thrust: {(gameStuff.physicsSystem.faces[0].force / MAX_THRUST * 100).toFixed(0)}%</div>
-            <div>Thrust: {gameStuff.physicsSystem.faces[0].force.toFixed(0)}</div>
             <div style={{ fontSize: 18 }}>Default controls are qweasd, as you'd know if you read the airplane's <code>handleInput</code> method.</div>
         </div>
 

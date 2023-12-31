@@ -46279,16 +46279,14 @@ var MyComponent = ({ myPlaneText }) => {
           }, undefined, true, undefined, this),
           jsx_dev_runtime.jsxDEV("div", {
             children: [
-              "Vertical speed: ",
-              verticalSpeed.toFixed(0),
-              "m/s"
+              "Vertical speed (m/s): ",
+              verticalSpeed.toFixed(0)
             ]
           }, undefined, true, undefined, this),
           jsx_dev_runtime.jsxDEV("div", {
             children: [
-              "Horizontal speed: ",
-              horizontalSpeed.toFixed(),
-              "m/s"
+              "Horizontal speed (m/s): ",
+              horizontalSpeed.toFixed()
             ]
           }, undefined, true, undefined, this),
           jsx_dev_runtime.jsxDEV("div", {
@@ -46296,12 +46294,6 @@ var MyComponent = ({ myPlaneText }) => {
               "Thrust: ",
               (gameStuff.physicsSystem.faces[0].force / MAX_THRUST * 100).toFixed(0),
               "%"
-            ]
-          }, undefined, true, undefined, this),
-          jsx_dev_runtime.jsxDEV("div", {
-            children: [
-              "Thrust: ",
-              gameStuff.physicsSystem.faces[0].force.toFixed(0)
             ]
           }, undefined, true, undefined, this),
           jsx_dev_runtime.jsxDEV("div", {
