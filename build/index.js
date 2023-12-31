@@ -46097,8 +46097,8 @@ var gameStuff = {
 loadPlane(new MyAirplane);
 var controls = new OrbitControls(camera, renderer.domElement);
 controls.enableZoom = false;
-camera.position.z = 10;
-camera.position.y = 10;
+camera.position.z = 7;
+camera.position.y = 7;
 controls.update();
 var physicsSystem = gameStuff.physicsSystem;
 var oldCenterOfMass = physicsSystem.centerOfMass();

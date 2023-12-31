@@ -114,8 +114,8 @@ controls.enableZoom = false;
 //controls.update() must be called after any manual changes to the camera's transform
 
 // Camera position
-camera.position.z = 10;
-camera.position.y = 10;
+camera.position.z = 7;
+camera.position.y = 7;
 controls.update();
 
 const physicsSystem = gameStuff.physicsSystem;
