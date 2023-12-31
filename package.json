@@ -9,8 +9,13 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "@monaco-editor/react": "^4.6.0",
+    "@uiw/react-textarea-code-editor": "^3.0.2",
+    "install": "^0.13.0",
+    "prismjs": "^1.29.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-simple-code-editor": "^0.13.1",
     "three": "^0.160.0",
     "three-addons": "^1.2.0"
   }

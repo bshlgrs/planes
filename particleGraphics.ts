@@ -1,6 +1,7 @@
 
 import * as THREE from 'three';
 import { PhysicsSystem } from './physics';
+import { MAX_THRUST } from './airplaneBuilder';
 
 
 // Texture loader
@@ -80,7 +81,7 @@ export class ParticleGraphics {
         // console.log(speed);
         this.nextIndex = (nextIndex + 1) % this.particleCount;
 
-        const force = this.physicsSystem.faces[0].force + Math.random() - 0.3;
+        const force = (this.physicsSystem.faces[0].force * 5 / MAX_THRUST) + Math.random() - 0.3;
         // Assign a random color
         // const rand = Math.random() * 0.2 + 0.8;
         // const rand = 1;
@@ -128,7 +129,7 @@ export class ParticleGraphics {
 
 
         const engine = this.physicsSystem.faces[0];
-        const numberToSpawn = Math.floor(10 * engine.force ** 2);
+        const numberToSpawn = Math.floor(20 * (engine.force * 5 / MAX_THRUST) ** 2 + 2 * engine.force);
 
         // const numberToSpawn = 50;
         const [x1, y1, z1] = this.physicsSystem.vertexPositions[engine.vertexIndices[0]];
@@ -159,7 +160,7 @@ export class ParticleGraphics {
             const [particleX, particleY, particleZ] = [x1 * k1 + x2 * k2 + x3 * k3, y1 * k1 + y2 * k2 + y3 * k3, z1 * k1 + z2 * k2 + z3 * k3];
 
 
-            const scale = Math.random() * (engine.force / 3 + 1);
+            const scale = Math.random() * (engine.force * 5 / MAX_THRUST / 3 + 1);
             const scale2 = Math.random();
             this.spawnParticle(particleX - scale2 * dx, particleY - scale2 * dy, particleZ - scale2 * dz, (-nx) / 0.4 * scale, (-ny) / 0.4 * scale, (-nz) / 0.4 * scale,
                 Math.hypot(dx, dy, dz));

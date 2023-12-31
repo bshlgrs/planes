@@ -1,6 +1,7 @@
 
 import * as THREE from 'three';
 import { PhysicsSystem } from './physics';
+import { MAX_THRUST } from './airplaneBuilder';
 
 export class FaceGraphics {
     scene: THREE.Scene;
@@ -40,7 +41,7 @@ export class FaceGraphics {
             geometry.setFromPoints([a, b, c].map((x) => new THREE.Vector3(...physicsSystem.vertexPositions[x])));
 
             // Create a mesh and add it to the scene
-            const triangle = new THREE.Mesh(geometry, physicsSystem.faces[i].constructor.name == 'Engine' ? engineMaterial : faceMaterial);
+            const triangle = new THREE.Mesh(geometry, i === 0 ? engineMaterial : faceMaterial);
             scene.add(triangle);
             triangle.frustumCulled = false; // Important for updating the geometry
 
@@ -72,7 +73,7 @@ export class FaceGraphics {
 
 
             if (faceIdx == 0) { // this is the engine
-                const force = this.physicsSystem.faces[faceIdx].force;
+                const force = this.physicsSystem.faces[faceIdx].force * 5 / MAX_THRUST;
 
                 triangle.material.color = new THREE.Color(
                     Math.min(force, 1) - Math.max(force - 3.5, 0), // Red

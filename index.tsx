@@ -13,9 +13,19 @@ import { LabelGraphics } from './labelGraphics';
 import { ParticleGraphics } from './particleGraphics';
 import { FulcrumGraphics } from './fulcrumGraphics';
 import { SpringGraphics } from './springGraphics';
-import { MyPlane } from './planeBuilder';
+import { MyAirplane } from './myAirplane';
+import { Airplane, Spring, Face, Engine, MAX_THRUST } from './airplaneBuilder';
 import { MagicInput } from './magicInput';
 
+import Editor from "@monaco-editor/react";
+// import Editor from 'react-simple-code-editor';
+// import { highlight, languages } from 'prismjs/components/prism-core';
+// import 'prismjs/components/prism-clike';
+// import 'prismjs/components/prism-javascript';
+// import 'prismjs/themes/prism.css'; //Example style, you can use another
+
+
+// import CodeEditor from '@uiw/react-textarea-code-editor';
 
 // Basic setup
 const scene = new THREE.Scene();
@@ -55,9 +65,8 @@ scene.add(new THREE.AmbientLight(0xffffff, 0.5));
     for (let i = 0; i < 1000; i++) {
         const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
 
-        // Random position within the box (200 units above the plane)
         sphere.position.x = Math.random() * 10000 - 5000;
-        sphere.position.y = Math.random() * 200; // Between 200 and 400 units above the plane
+        sphere.position.y = Math.random() * 200;
         sphere.position.z = Math.random() * 10000 - 5000;
 
         scene.add(sphere);
@@ -66,7 +75,7 @@ scene.add(new THREE.AmbientLight(0xffffff, 0.5));
 }
 
 const gameStuff = {
-    plane: null,
+    airplane: null,
     physicsSystem: null,
     faceGraphics: null,
     labelGraphics: null,
@@ -77,15 +86,15 @@ const gameStuff = {
 };
 
 
-function loadPlane(newPlane: Plane) {
-    if (gameStuff.plane) {
+function loadPlane(newPlane: Airplane) {
+    if (gameStuff.airplane) {
         gameStuff.faceGraphics.dispose();
         gameStuff.labelGraphics.dispose();
         gameStuff.particleGraphics.dispose();
         gameStuff.fulcrumGraphics.dispose();
         gameStuff.springGraphics.dispose();
     }
-    gameStuff.plane = newPlane;
+    gameStuff.airplane = newPlane;
     gameStuff.physicsSystem = new PhysicsSystem(newPlane);
     const physicsSystem = gameStuff.physicsSystem;
     gameStuff.faceGraphics = new FaceGraphics(scene, physicsSystem);
@@ -95,17 +104,18 @@ function loadPlane(newPlane: Plane) {
     gameStuff.springGraphics = new SpringGraphics(scene, physicsSystem);
 }
 
-loadPlane(new MyPlane());
+loadPlane(new MyAirplane());
 
 // debugger;
 
 const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableZoom = false;
 
 //controls.update() must be called after any manual changes to the camera's transform
 
 // Camera position
-camera.position.z = 5;
-camera.position.y = 5;
+camera.position.z = 10;
+camera.position.y = 10;
 controls.update();
 
 const physicsSystem = gameStuff.physicsSystem;
@@ -167,18 +177,18 @@ let angle2 = controls.getAzimuthalAngle();
 
 
 
-
+let time = 0;
 
 // Animation loop
-function animate() {
+function animate(timestamp: number) {
     requestAnimationFrame(animate);
+    time = timestamp;
 
     const physicsSystem = gameStuff.physicsSystem;
 
     magicInput.step();
-    // console.log(magicInput.input);
 
-    gameStuff.plane.handleInput(magicInput.input);
+    gameStuff.airplane.handleInput(magicInput.input);
 
     // debugger;
     if (magicInput.input.axis_2) {
@@ -288,11 +298,9 @@ function animate() {
         // }
     }
 }
-animate();
 
-window.addEventListener('keydown', (e) => {
-    physicsSystem.handleKeyDown(e);
-})
+requestAnimationFrame(animate);
+
 
 
 
@@ -303,11 +311,40 @@ window.addEventListener('keydown', (e) => {
 // });
 
 const reactState = { oldCenterOfMass: [0, 0, 0] };
+
+function loadAirplaneFromSrc(src: string) {
+    // debugger;
+    try {
+        const newAirplane = (((Spring, Face, Engine, Airplane) =>
+            new (eval("(" + src + ")"))
+        )(Spring, Face, Engine, Airplane));
+        // const newPlane = new newPlaneClass();
+        // debugger;
+        loadPlane(newAirplane);
+        return [];
+    }
+    catch (e) {
+        return [{ startLineNumber: 'unknown', message: e.message }];
+    }
+
+}
+function transformTypeScriptCode(code: string) {
+    // Remove import statements
+    let transformedCode = code.replace(/^import.*;$/gm, '');
+
+    // Change 'export class' to 'class'
+    transformedCode = transformedCode.replace(/export class/g, 'class');
+
+    return transformedCode;
+}
+
+
 /////// react shit
-const MyComponent = () => {
+const MyComponent = ({ myPlaneText }) => {
     // State for the animated value
     const [value, setValue] = useState(0);
-    const [planeCode, setPlaneCode] = useState(MyPlane + "");
+    const [planeCode, setPlaneCode] = useState(myPlaneText);
+    const [errorMessages, setErrorMessages] = useState([]);
     const [showPlaneEditor, setShowPlaneEditor] = useState(true);
     var gamepads = navigator.getGamepads();
 
@@ -340,16 +377,19 @@ const MyComponent = () => {
     const [x, y, z] = newCenterOfMass;
     const [oldX, oldY, oldZ] = reactState.oldCenterOfMass;
     const [dx, dy, dz] = [x - oldX, y - oldY, z - oldZ];
-    reactState.oldCenterOfMass = newCenterOfMass;
-
+    if (uiState.playing) {
+        reactState.oldCenterOfMass = newCenterOfMass;
+    }
     const heading = Math.atan2(z - oldZ, x - oldX);
-    const horizontalSpeed = (Math.sqrt((x - oldX) ** 2 + (z - oldZ) ** 2) / 0.03);
-    const verticalSpeed = dy / 0.03;
+    const horizontalSpeed = (Math.sqrt((x - oldX) ** 2 + (z - oldZ) ** 2) * 60);
+    const verticalSpeed = dy * 60;
 
     if (magicInput.input.button_9) {
-        loadPlane(new (eval("(" + planeCode + ")")));
-    }
+        const errorMessages = loadAirplaneFromSrc(planeCode);
+        setTimeout(() => { setErrorMessages(errorMessages); }, 10);
 
+    }
+    // debugger;
     return <div>
         <div className='overlay-l'>
             <svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="-1.2 -1.2 2.4 2.4">
@@ -372,26 +412,46 @@ const MyComponent = () => {
                 <line x1="0" y1="0" x2="0" y2="-1" stroke="pink" strokeWidth="0.01" />
 
             </svg>
-            <div style={{ backgroundColor: y < 10 ? 'lightblue' : (y < 100 ? 'pink' : 'grey') }}>Altitude: {y.toFixed(0)}</div>
-            <div>Vertical speed: {verticalSpeed.toFixed(1)}</div>
-            <div>Horizontal speed: {horizontalSpeed.toFixed(1)}</div>
-            <div>Thrust: {gameStuff.physicsSystem.faces[0].force.toFixed(2)}</div>
+            <div style={{ backgroundColor: y < 10 ? 'lightblue' : (y < 100 ? 'pink' : 'grey') }}>Altitude: {y.toFixed(0)}m</div>
+            <div>Vertical speed: {verticalSpeed.toFixed(0)}m/s</div>
+            <div>Horizontal speed: {horizontalSpeed.toFixed()}m/s</div>
+            <div>Thrust: {(gameStuff.physicsSystem.faces[0].force / MAX_THRUST * 100).toFixed(0)}%</div>
+            <div>Thrust: {gameStuff.physicsSystem.faces[0].force.toFixed(0)}</div>
+            <div style={{ fontSize: 18 }}>Default controls are qweasd, as you'd know if you read the airplane's <code>handleInput</code> method.</div>
         </div>
 
         <div className='overlay-r'>
+            <button onClick={() => { uiState.playing = !uiState.playing }}>play/pause</button>
             {showPlaneEditor ? <div>
-                {/* <button onClick={() => { uiState.playing = !uiState.playing }}>play/pause</button> */}
-                <textarea rows={50} style={{ width: 500 }} value={planeCode} onChange={(e) => { setPlaneCode(e.target.value) }}></textarea>
-                <br />
-                <button onClick={() => { loadPlane(new (eval("(" + planeCode + ")"))) }}>load plane</button>
 
-                <button onClick={() => { setShowPlaneEditor(false); gameStuff.labelGraphics.setInvisible() }}>hide plane editor</button>
+                <button onClick={() => { setErrorMessages(loadAirplaneFromSrc(planeCode)) }}>load airplane</button>
+
+                <button onClick={() => { setShowPlaneEditor(false); gameStuff.labelGraphics.setInvisible() }}>hide airplane editor</button>
+                <div>See  <a href="https://github.com/search?q=repo%3Abshlgrs/planes%20MyPlane&type=code">here</a> for commented code.</div>
+
+                <Editor options={{ fontSize: 16, minimap: false, wordWrap: 'on' }} height="60vh" defaultLanguage="javascript" defaultValue={myPlaneText} onChange={(val) => { setPlaneCode(val); }} onValidate={(e) => { setErrorMessages(e) }} />
+                <div style={{ color: 'red', backgroundColor: 'white', padding: 20 }}>{errorMessages.map(e => (e.message.indexOf("Could not find name 'Airplane'") === -1) && `line ${e.startLineNumber}: ${e.message}`)}</div>
+
+
             </div> : <div>
-                <button onClick={() => { setShowPlaneEditor(true); gameStuff.labelGraphics.setVisible() }}>show plane editor</button>
+                <button onClick={() => { setShowPlaneEditor(true); gameStuff.labelGraphics.setVisible() }}>show airplane editor</button>
             </div>}
+            <div style={{ fontSize: '20px', fontFamily: 'sans-serif' }}>source at <a href="https://github.com/bshlgrs/planes">https://github.com/bshlgrs/planes</a></div>
         </div>
     </div >;
 };
 
+fetch('myAirplane.ts').then(r => r.text()).then(t => {
+    ReactDOM.render(<MyComponent myPlaneText={transformTypeScriptCode(t)} />, document.getElementById('overlay'));
+});
 
-ReactDOM.render(<MyComponent />, document.getElementById('overlay'));
+window.addEventListener('resize', onWindowResize, false);
+
+function onWindowResize() {
+
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+
+    renderer.setSize(window.innerWidth, window.innerHeight);
+
+}
