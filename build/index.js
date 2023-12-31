@@ -46377,12 +46377,24 @@ var MyComponent = ({ myPlaneText }) => {
             }, undefined, false, undefined, this)
           }, undefined, false, undefined, this),
           jsx_dev_runtime.jsxDEV("div", {
-            style: { fontSize: "20px", fontFamily: "sans-serif" },
+            style: { fontSize: "24px", fontFamily: "sans-serif" },
             children: [
               "source at ",
               jsx_dev_runtime.jsxDEV("a", {
                 href: "https://github.com/bshlgrs/planes",
                 children: "https://github.com/bshlgrs/planes"
+              }, undefined, false, undefined, this),
+              ". The physics of this simulation are described in ",
+              jsx_dev_runtime.jsxDEV("a", {
+                href: "https://github.com/bshlgrs/planes/blob/main/physics.ts#L33",
+                children: jsx_dev_runtime.jsxDEV("code", {
+                  children: "PhysicsSystem.computeForces"
+                }, undefined, false, undefined, this)
+              }, undefined, false, undefined, this),
+              ".Game by ",
+              jsx_dev_runtime.jsxDEV("a", {
+                href: "https://twitter.com/bshlgrs",
+                children: "Buck Shlegeris"
               }, undefined, false, undefined, this)
             ]
           }, undefined, true, undefined, this)

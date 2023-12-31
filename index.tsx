@@ -436,7 +436,7 @@ const MyComponent = ({ myPlaneText }) => {
             </div> : <div>
                 <button onClick={() => { setShowPlaneEditor(true); gameStuff.labelGraphics.setVisible() }}>show airplane editor</button>
             </div>}
-            <div style={{ fontSize: '20px', fontFamily: 'sans-serif' }}>source at <a href="https://github.com/bshlgrs/planes">https://github.com/bshlgrs/planes</a></div>
+            <div style={{ fontSize: '24px', fontFamily: 'sans-serif' }}>source at <a href="https://github.com/bshlgrs/planes">https://github.com/bshlgrs/planes</a>. The physics of this simulation are described in <a href="https://github.com/bshlgrs/planes/blob/main/physics.ts#L33"><code>PhysicsSystem.computeForces</code></a>.Game by <a href="https://twitter.com/bshlgrs">Buck Shlegeris</a></div>
         </div>
     </div >;
 };
